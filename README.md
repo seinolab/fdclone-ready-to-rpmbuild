@@ -1,0 +1,1 @@
+# fdclone-ready-to-rpmbuild
