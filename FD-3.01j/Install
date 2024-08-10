@@ -1,29 +1,29 @@
-[FDclone3 $B$r%$%s%9%H!<%k$9$kK!(B]
+[FDclone3 をインストールする法]
 
 
-$B!&(BUNIX $BHG$N>l9g(B
+・UNIX 版の場合
 
-1. machine.h $B$G%3%a%s%H%"%&%H$5$l$F$$$kItJ,$r!"IUB0$N%3%a%s(B
-   $B%HJ8$r;2>H$7$J$,$i!"<+J,$N%^%7%s4D6-$K9g$o$;$F!"9TF,$K$"(B
-   $B$k(B "/*" $B$rD>8e$N(B ';' $B$NA0$K0\F0$5$;$^$9!#(B
-   $BFC$K!"2<5-$N(B 4 $B$D$N@_Dj$K$D$$$F$O!"(BOS $B$N%G%U%)%k%H$H4IM}(B
-   $B<T$N@_Dj$,0[$J$C$F$$$k>l9g$,$"$k$N$G!"Cm0U$7$FA*Br$7$F2<(B
-   $B$5$$!#(B
-	CODEEUC		OS $B$G$O(B EUC $B4A;z%3!<%I$r;H$C$F$$$k!#(B
-			($B$3$N<1JL;R$,L$Dj5A$N>l9g$O(B Shift JIS)
-	DEFKCODE	OS $BI8=`$GMQ$$$k4A;z%3!<%I$r<($9J8;z(B
-			$BNs!#(B
-	UTF8DOC		OS $B$G$O%I%-%e%a%s%HMQ$N4A;z%3!<%I$H(B
-			$B$7$F(B UTF-8 $B$r;H$C$F$$$k!#(B
-	UTF8LANG	$B4D6-JQ?t(B LANG $B$,!V(BUTF$B!W$r4^$`>l9g$K!"(B
-			OS $BI8=`$GMQ$$$k4A;z%3!<%I$r<($9J8;z(B
-			$BNs!#(B
-	TARUSESPACE	tar(1) $B$N(B t $B%*%W%7%g%s$N=PNO$G!"3F9T(B
-			$B$N%U%!%$%k%b!<%IJ8;zNs$N8e$m$K!"I,$:(B
-			$B6uGrJ8;z$,$D$$$F$$$k!#(B
-   $B0J2<$N(B OS $B$G$O!"$3$N(B 2 $B$D0J30$NJQ99$NI,MW$OFC$K$"$j$^$;$s!#(B
-   $BL5M}$KJQ99$9$k$H5Q$C$F<:GT$7$^$9$N$G!"$=$N$^$^<!$N%9%F%C(B
-   $B%W$K?J$s$G2<$5$$!#(B
+1. machine.h でコメントアウトされている部分を、付属のコメン
+   ト文を参照しながら、自分のマシン環境に合わせて、行頭にあ
+   る "/*" を直後の ';' の前に移動させます。
+   特に、下記の 4 つの設定については、OS のデフォルトと管理
+   者の設定が異なっている場合があるので、注意して選択して下
+   さい。
+	CODEEUC		OS では EUC 漢字コードを使っている。
+			(この識別子が未定義の場合は Shift JIS)
+	DEFKCODE	OS 標準で用いる漢字コードを示す文字
+			列。
+	UTF8DOC		OS ではドキュメント用の漢字コードと
+			して UTF-8 を使っている。
+	UTF8LANG	環境変数 LANG が「UTF」を含む場合に、
+			OS 標準で用いる漢字コードを示す文字
+			列。
+	TARUSESPACE	tar(1) の t オプションの出力で、各行
+			のファイルモード文字列の後ろに、必ず
+			空白文字がついている。
+   以下の OS では、この 2 つ以外の変更の必要は特にありません。
+   無理に変更すると却って失敗しますので、そのまま次のステッ
+   プに進んで下さい。
 	Sun	SunOS		(5.x)
 	(free)	Cygwin		(1.x, 2.x)
 	(free)	Linux		(2.x, 3.x)
@@ -34,11 +34,11 @@
 	Google	Android		(1.x, 2.x, 3.x, 4.x)
 	Apple	Mac OS X	(10.x)
 
-   $B$^$?!"0J2<$N(B OS $B$O!"(BVer. 3.01 $B$G$NF0:n3NG'$O9T$J$o$l$F$$(B
-   $B$^$;$s$,!"3F(B OS $BMQ$N%3!<%I$,5-=R$5$l$F$$$^$9$N$G!"B?J,JQ(B
-   $B99$NI,MW$,$J$$$b$N$H;W$o$l$^$9!#(B
-   $B>/$J$/$H$b!"L5JQ99$N$^$^%3%s%Q%$%k$,L5;vDL$k$h$&$G$"$l$P!"(B
-   $BM>7W$JJQ99$O9T$J$o$J$$J}$,L5Fq$@$H;W$$$^$9!#(B
+   また、以下の OS は、Ver. 3.01 での動作確認は行なわれてい
+   ませんが、各 OS 用のコードが記述されていますので、多分変
+   更の必要がないものと思われます。
+   少なくとも、無変更のままコンパイルが無事通るようであれば、
+   余計な変更は行なわない方が無難だと思います。
 	Sun	SunOS		(4.1.x)
 	SONY	NEWS-OS		(3.2, 4.x, 6.x)
 	SGI	IRIX		(R4.0.5, R5.x, R6.x)
@@ -64,159 +64,159 @@
 	JCC	4.4BSD-Lite	(v1.0)
 	ASCII	BSD on Windows	(1.0, 1.5)
 
-   $B$3$N$I$A$i$K$b5s$2$i$l$F$$$J$$(B OS $B$G$O!"$=$N(B OS $B$N4D6-$r(B
-   $B<+F0H=Dj$9$k%W%m%0%i%`$,IUB0$5$l$F$$$^$9$N$G!"(Bmake config
-   $B$H$9$l$P4D6-@_Dj%U%!%$%k$,:n@.$5$l$^$9!#(B
-   $BC"$7!"$3$N<+F0H=Dj$b40`z$G$O$J$$$N$G!"$&$^$/%3%s%Q%$%k$G(B
-   $B$-$J$$$h$&$J$i!"(Bmake config $B$G:n@.$5$l$k(B config.h $B$rJT=8(B
-   $B$7D>$7$F2<$5$$!#=$@5$K$D$$$F$N>\:Y$O(B TECHKNOW $B$r;2>H$7$F(B
-   $B2<$5$$!#(B
+   このどちらにも挙げられていない OS では、その OS の環境を
+   自動判定するプログラムが付属されていますので、make config
+   とすれば環境設定ファイルが作成されます。
+   但し、この自動判定も完璧ではないので、うまくコンパイルで
+   きないようなら、make config で作成される config.h を編集
+   し直して下さい。修正についての詳細は TECHKNOW を参照して
+   下さい。
 
-   $B5U$K!">e5-$N$I$A$i$+$K5s$2$i$l$F$$$k(B OS $B$G$O!"(Bmake config
-   $B$,5Q$C$FITE,@Z$J7k2L$r$b$?$i$9$3$H$,$"$k$N$G!"(Bmake config
-   $B$O$7$J$$$G2<$5$$!#(B
-   $BFC$K(B Linux $B$O(B UNIX $B$NCf$G$b$+$J$jFC<l$JItN`$KB0$7$^$9$N$G!"(B
-   Linux $BMQ$NFC<l$J=hM}$,4v$D$+4^$^$l$F$$$^$9!#$3$l$i$N=hM}(B
-   $B$O(B make config $B$G$O<+F0G'<1$5$l$^$;$s$N$G!"(BLinux $B$G$O@dBP(B
-   $B$K(B make config $B$r$7$F$O$$$1$^$;$s!#(B
-   $B$b$78m$C$F(B make config $B$r9T$J$C$F$7$^$C$?>l9g$O!"<!$N%9%F(B
-   $B%C%W$K?J$`A0$K(B make realclean $B$r<B9T$7$F2<$5$$!#(B
+   逆に、上記のどちらかに挙げられている OS では、make config
+   が却って不適切な結果をもたらすことがあるので、make config
+   はしないで下さい。
+   特に Linux は UNIX の中でもかなり特殊な部類に属しますので、
+   Linux 用の特殊な処理が幾つか含まれています。これらの処理
+   は make config では自動認識されませんので、Linux では絶対
+   に make config をしてはいけません。
+   もし誤って make config を行なってしまった場合は、次のステ
+   ップに進む前に make realclean を実行して下さい。
 
-2. fd.h $B$GDj5A$5$l$F$$$kDj?t$N4v$D$+$r!"<+J,$N9%$_$K9g$o$;$F(B
-   $BJQ99$7$^$9!#3FDj?t$N0UL#$O!"%^%K%e%"%k$K=q$+$l$F$$$k4D6-(B
-   $BJQ?t$N9`$r;2>H$7$F2<$5$$!#(B
-   $B4D6-JQ?tL>$HA4$/F1$8Dj?tL>$K$7$F$"$j$^$9!#H=CG$G$-$J$1$l(B
-   $B$P$=$N$^$^$K$7$F$*$$$FLdBj$O$"$j$^$;$s!#(B
+2. fd.h で定義されている定数の幾つかを、自分の好みに合わせて
+   変更します。各定数の意味は、マニュアルに書かれている環境
+   変数の項を参照して下さい。
+   環境変数名と全く同じ定数名にしてあります。判断できなけれ
+   ばそのままにしておいて問題はありません。
 
-   $B$^$?!"(BPAGER, EDITOR $B$N(B 2 $B$D$O!"4D6-$K1~$8$FE,Ev$J%3%^%s%I(B
-   $BL>$K=q$-49$($F$*$/$HNI$$$G$7$g$&!#C"$7!"3:Ev$9$k%3%^%s%I(B
-   $B$,$I$&$7$F$bMQ0U$G$-$J$$>l9g$K$O$=$N9T$r%3%a%s%H%"%&%H$7(B
-   $B$F$*$$$F2<$5$$!#(B
-   (PAGER: $B%U%!%$%k1\Mw%=%U%H(B, EDITOR: $B%F%-%9%H%(%G%#%?(B)
+   また、PAGER, EDITOR の 2 つは、環境に応じて適当なコマンド
+   名に書き換えておくと良いでしょう。但し、該当するコマンド
+   がどうしても用意できない場合にはその行をコメントアウトし
+   ておいて下さい。
+   (PAGER: ファイル閲覧ソフト, EDITOR: テキストエディタ)
 
-3. make$B!#(B
-   $BI8=`$G$O%3%s%Q%$%i$H$7$F(B cc $B$rMQ$$$^$9$,!"$3$l0J30$N$b$N(B
-   $B$r;H$$$?$$>l9g$K$O!V(Bmake CC=gcc$B!W$N$h$&$K;XDj$9$k$3$H$,(B
-   $B$G$-$^$9!#$3$NNc$N>l9g!"(Bgcc $B$r%3%s%Q%$%i$KMQ$$$^$9!#(B
-   $B%/%m%9%3%s%Q%$%k4D6-$G$O!"!V(Bmake CC=lcc80 HOSTCC=cc$B!W$N(B
-   $B$h$&$K;XDj$9$k$3$H$G!"%/%m%9%3%s%Q%$%kMQ%3%s%Q%$%i$H$OJL(B
-   $B$K!"%3%s%Q%$%k2aDx$G@8@.$5$l$k%m!<%+%k$J<B9T%U%!%$%kMQ$N(B
-   $B%3%s%Q%$%i$r;XDj$9$k$3$H$b$G$-$^$9!#$3$NNc$N>l9g!"(Blcc80
-   $B$r%3%s%Q%$%i$KMQ$$!"%m!<%+%kMQ$K$O(B cc $B$rMQ$$$^$9!#(B
-   $B$3$N;~!"F1MM$K!V(BCFLAGS$B!W$H!V(BHOSTCFLAGS$B!W!"!V(BCPPFLAGS$B!W$H(B
-   $B!V(BHOSTCPPFLAGS$B!W!"!V(BLDFLAGS$B!W$H!V(BHOSTLDFLAGS$B!W$N$h$&$K<1(B
-   $BJL;R$r;XDj$9$k$3$H$G!"%/%m%9%3%s%Q%$%kMQ$H%m!<%+%k%3%s%Q(B
-   $B%$%kMQ$H$GJL!9$N%3%s%Q%$%k%*%W%7%g%s$r;XDj$9$k$3$H$b$G$-(B
-   $B$^$9!#(B
-   $B$^$?!"I8=`$G$O(B /usr/local $B0J2<$K%$%s%9%H!<%k$9$k$3$H$rA0(B
-   $BDs$H$7$F$$$^$9$,!"!V(Bmake PREFIX=/usr$B!W$N$h$&$K%Q%9;XDj$9(B
-   $B$k$3$H$G!"%$%s%9%H!<%k%Q%9$r;XDj$G$-$^$9!#$3$NNc$N>l9g!"(B
-   /usr $B0J2<$K%$%s%9%H!<%k$9$k$3$H$rA0Ds$H$7$^$9!#(B
-   $BF1MM$K!V(Bmake CONFDIR=/usr/local/etc$B!W$NMQ$K%Q%9;XDj$9$k(B
-   $B$3$H$G!"@_Dj%U%!%$%k$NCV$->l=j$r;XDj$G$-$^$9!#(B
+3. make。
+   標準ではコンパイラとして cc を用いますが、これ以外のもの
+   を使いたい場合には「make CC=gcc」のように指定することが
+   できます。この例の場合、gcc をコンパイラに用います。
+   クロスコンパイル環境では、「make CC=lcc80 HOSTCC=cc」の
+   ように指定することで、クロスコンパイル用コンパイラとは別
+   に、コンパイル過程で生成されるローカルな実行ファイル用の
+   コンパイラを指定することもできます。この例の場合、lcc80
+   をコンパイラに用い、ローカル用には cc を用います。
+   この時、同様に「CFLAGS」と「HOSTCFLAGS」、「CPPFLAGS」と
+   「HOSTCPPFLAGS」、「LDFLAGS」と「HOSTLDFLAGS」のように識
+   別子を指定することで、クロスコンパイル用とローカルコンパ
+   イル用とで別々のコンパイルオプションを指定することもでき
+   ます。
+   また、標準では /usr/local 以下にインストールすることを前
+   提としていますが、「make PREFIX=/usr」のようにパス指定す
+   ることで、インストールパスを指定できます。この例の場合、
+   /usr 以下にインストールすることを前提とします。
+   同様に「make CONFDIR=/usr/local/etc」の用にパス指定する
+   ことで、設定ファイルの置き場所を指定できます。
 
-4. $B%3%s%Q%$%k$5$l$?$b$N$,L5;v$KF0$/$3$H$r3NG'$7$^$9!#(B
+4. コンパイルされたものが無事に動くことを確認します。
 
-5. Makefile.in $B$K$"$k(B TOPDIR $BEy$N%^%/%m$r<+J,$N4D6-$K1~$8$F(B
-   $B=q$-49$($^$9!#(B
-   $B$3$3$G(B DEFRC $B$r=q$-49$($F$7$^$C$?>l9g$O!"(Bmake clean $B$r$7(B
-   $B$F$+$i$b$&0lEY(B make $B$7$^$9!#$3$N>l9g!"3F%I%-%e%a%s%H$N5-(B
-   $B:\$HL7=b$9$k$3$H$K$O$J$j$^$9$,!"%W%m%0%i%`<B9T$K$O;Y>c$"(B
-   $B$j$^$;$s!#(B
-   $B$^$?!"(BDICTSRC $B$r=q$-49$($k$3$H$G!"$+$J4A;zJQ49<-=q$rI8=`(B
-   $B$NC14A;z<-=q$+$iB>$N$b$N$KJQ99$9$k$3$H$b$G$-$^$9!#>\:Y$O(B
-   TECHKNOW $B$N9`L\(B 11. $B$r;2>H$7$F2<$5$$!#(B
+5. Makefile.in にある TOPDIR 等のマクロを自分の環境に応じて
+   書き換えます。
+   ここで DEFRC を書き換えてしまった場合は、make clean をし
+   てからもう一度 make します。この場合、各ドキュメントの記
+   載と矛盾することにはなりますが、プログラム実行には支障あ
+   りません。
+   また、DICTSRC を書き換えることで、かな漢字変換辞書を標準
+   の単漢字辞書から他のものに変更することもできます。詳細は
+   TECHKNOW の項目 11. を参照して下さい。
 
-6. _fdrc $B$r(B fdrc $B$H$$$&L>A0$G%3%T!<$7!"(Bfdrc $B$r<+J,$N4D6-$K(B
-   $B1~$8$F=q$-49$($^$9!#0l$+$i:n@.$7$F$b9=$$$^$;$s!#(B
-   $BM=$aMQ0U$7$F$"$k(B _fdrc $B$OK0$/$^$G$b@_DjNc$K2a$.$^$;$s!#(B
-   $B$3$3$G$N@_Dj$,%7%9%F%`6&DL$N@_Dj$H$J$C$F$7$^$&$N$G!"%7%9(B
-   $B%F%`4IM}<T$H$7$F$N%]%j%7!<$r;}$C$F!"==J,9M$($?>e$G;E>e$2(B
-   $B$^$7$g$&!#(B
-   $B$3$3$G(B fdrc $B$r:n@.$7$J$1$l$P!"%7%9%F%`6&DL$N@_Dj%U%!%$%k(B
-   $B$O%$%s%9%H!<%k$7$^$;$s!#$=$N>l9g!"%f!<%6$N@_Dj%U%!%$%k$N(B
-   $B$_M-8z$K$J$j$^$9!#(B
+6. _fdrc を fdrc という名前でコピーし、fdrc を自分の環境に
+   応じて書き換えます。一から作成しても構いません。
+   予め用意してある _fdrc は飽くまでも設定例に過ぎません。
+   ここでの設定がシステム共通の設定となってしまうので、シス
+   テム管理者としてのポリシーを持って、十分考えた上で仕上げ
+   ましょう。
+   ここで fdrc を作成しなければ、システム共通の設定ファイル
+   はインストールしません。その場合、ユーザの設定ファイルの
+   み有効になります。
 
-7. make install$B!#(B
+7. make install。
 
-8. $B@5$7$/%^%K%e%"%k$,%$%s%9%H!<%k$5$l$?(B (man fd $B$G$-$k(B) $B>l(B
-   $B9g$O$3$3$G=*N;$G$9!#(B
+8. 正しくマニュアルがインストールされた (man fd できる) 場
+   合はここで終了です。
 
-   nroff $B$,F|K\8lBP1~$G$J$$Ey$NM}M3$G%^%K%e%"%k$,@5$7$/%$%s(B
-   $B%9%H!<%k$5$l$J$$>l9g$,$"$j$^$9!#Nc$($P!"J8;z2=$1$7$F$$$?(B
-   $B$j!"(Bman $B%3%^%s%I$,%(%i!<%a%C%;!<%8$rEG$$$?$j!#(B
-   $B$=$N>l9g!"%W%l!<%s%F%-%9%HHG$N%^%K%e%"%k$r%$%s%9%H!<%k$9(B
-   $B$l$P!"@5$7$/%^%K%e%"%k$r;2>H$G$-$^$9!#(B
+   nroff が日本語対応でない等の理由でマニュアルが正しくイン
+   ストールされない場合があります。例えば、文字化けしていた
+   り、man コマンドがエラーメッセージを吐いたり。
+   その場合、プレーンテキスト版のマニュアルをインストールす
+   れば、正しくマニュアルを参照できます。
 
-   make $B$N%?!<%2%C%H$r(B
+   make のターゲットを
 	jcatman -> jcatman-b -> jcompman -> jcompman-b
-   $B$N=g$GJQ99$7$J$,$i=g<!(B man fd $B$G$-$k$h$&$K$J$C$?$+;n$7$F(B
-   $B$_$F2<$5$$!#(B
-   make jcatman $B$G$b@5$7$/%$%s%9%H!<%k$5$l$F$$$J$$$J$i!"<!$N(B
-   make jcatman-b $B$r<B9T$7$F(B... $B$HB3$1$^$9!#(B
+   の順で変更しながら順次 man fd できるようになったか試して
+   みて下さい。
+   make jcatman でも正しくインストールされていないなら、次の
+   make jcatman-b を実行して... と続けます。
 
-   -b $B$N$D$$$?%?!<%2%C%H$G$O!"%P%C%/%9%Z!<%9J8;z(B (^H) $B$r2r<a(B
-   $B$G$-$J$$C<KvMQ$K%$%s%9%H!<%k$7!"(Bcomp $B$N$D$$$?%?!<%2%C%H$O(B
-   $B%F%-%9%H$r(B compress $B$G05=L$7$F%$%s%9%H!<%k$7$^$9!#(B
+   -b のついたターゲットでは、バックスペース文字 (^H) を解釈
+   できない端末用にインストールし、comp のついたターゲットは
+   テキストを compress で圧縮してインストールします。
 
-9. $B=*N;!#(B
+9. 終了。
 
 
 --------
-$B!&(BMS-DOS $BHG$N>l9g(B
+・MS-DOS 版の場合
 
-1. $B0J2<$N%3%s%Q%$%i$GF0:n3NG'$r9T$J$C$F$$$^$9!#(B
+1. 以下のコンパイラで動作確認を行なっています。
 	djgpp 1.1x			(g)
 	djgpp 2.0x			(d)
 	LSI C-86 Ver. 3.5		(l)
 	Borland C++ 5.xx		(b)
 
-   DOS/V, PC-98x1 $BMQ$K$=$l$>$l(B makefile.?pc, makefile.?98 $B$,(B
-   $BMQ0U$5$l$F$$$^$9$N$G!"$3$l$rMQ$$$^$9!#(B? $B$N2U=j$K$O!"$=$l(B
-   $B$>$l$N%3%s%Q%$%i$K1~$8$F>e5-$N(B () $BFb$NJ8;z$,F~$j$^$9!#(B
-   $B$=$l$>$l$r(B makefile $B$H2~L>$7$F$bNI$$$G$9$7!"(Bmake $B;~$KL@<((B
-   $BE*$K(B make -f makefile.xxx $B$H9T$J$C$F$b9=$$$^$;$s!#(B
+   DOS/V, PC-98x1 用にそれぞれ makefile.?pc, makefile.?98 が
+   用意されていますので、これを用います。? の箇所には、それ
+   ぞれのコンパイラに応じて上記の () 内の文字が入ります。
+   それぞれを makefile と改名しても良いですし、make 時に明示
+   的に make -f makefile.xxx と行なっても構いません。
 
-   (LSI C-86 $B;n?)HG$G$O%3%s%Q%$%k$G$-$^$;$s!#(B)
+   (LSI C-86 試食版ではコンパイルできません。)
 
-2. fd.h $B$GDj5A$5$l$F$$$kDj?t$N4v$D$+$r!"<+J,$N9%$_$K9g$o$;$F(B
-   $BJQ99$7$^$9!#3FDj?t$N0UL#$O!"%^%K%e%"%k$K=q$+$l$F$$$k4D6-(B
-   $BJQ?t$N9`$r;2>H$7$F2<$5$$!#(B
-   $B4D6-JQ?tL>$HA4$/F1$8Dj?tL>$K$7$F$"$j$^$9!#H=CG$G$-$J$1$l(B
-   $B$P$=$N$^$^$K$7$F$*$$$FLdBj$O$"$j$^$;$s!#(B
+2. fd.h で定義されている定数の幾つかを、自分の好みに合わせて
+   変更します。各定数の意味は、マニュアルに書かれている環境
+   変数の項を参照して下さい。
+   環境変数名と全く同じ定数名にしてあります。判断できなけれ
+   ばそのままにしておいて問題はありません。
 
-   $B$^$?!"(BPAGER, EDITOR $B$N(B 2 $B$D$O!"4D6-$K1~$8$FE,Ev$J%3%^%s%I(B
-   $BL>$K=q$-49$($F$*$/$HNI$$$G$7$g$&!#C"$7!"3:Ev$9$k%3%^%s%I(B
-   $B$,$I$&$7$F$bMQ0U$G$-$J$$>l9g$K$O$=$N9T$r%3%a%s%H%"%&%H$7(B
-   $B$F$*$$$F2<$5$$!#(B
-   (PAGER: $B%U%!%$%k1\Mw%=%U%H(B, EDITOR: $B%F%-%9%H%(%G%#%?(B)
+   また、PAGER, EDITOR の 2 つは、環境に応じて適当なコマンド
+   名に書き換えておくと良いでしょう。但し、該当するコマンド
+   がどうしても用意できない場合にはその行をコメントアウトし
+   ておいて下さい。
+   (PAGER: ファイル閲覧ソフト, EDITOR: テキストエディタ)
 
-3. make$B!#(B
+3. make。
 
-4. $B%3%s%Q%$%k;~$K%a%b%jITB-Ey$G%(%i!<$K$J$k$h$&$G$"$l$P!"0l(B
-   $BIt$N5!G=$r=L>.$9$k$?$a$K!"(BTECHKNOW $B$N9`L\(B 8. $B$r;2>H$7$J$,(B
-   $B$i!"(Bconfig.hin $B$G5!G=@)8BMQ<1JL;R$rDj5A$7$?>e$G!":F%3%s%Q(B
-   $B%$%k$7$F2<$5$$!#(B
-	$BNc(B: #define _NOTREE	($B%D%j!<I=<(2hLL$,;EMMITG=(B)
+4. コンパイル時にメモリ不足等でエラーになるようであれば、一
+   部の機能を縮小するために、TECHKNOW の項目 8. を参照しなが
+   ら、config.hin で機能制限用識別子を定義した上で、再コンパ
+   イルして下さい。
+	例: #define _NOTREE	(ツリー表示画面が仕様不能)
 
-5. make fd.doc $B$G%^%K%e%"%k%U%!%$%k$,:n@.$5$l$^$9!#F1MM$K!"(B
-   README.doc, HISTORY.doc, FAQ.doc, LICENSES.doc $B$N3F<o%I%-(B
-   $B%e%a%s%H%U%!%$%k$b:n@.$G$-$^$9!#(B
+5. make fd.doc でマニュアルファイルが作成されます。同様に、
+   README.doc, HISTORY.doc, FAQ.doc, LICENSES.doc の各種ドキ
+   ュメントファイルも作成できます。
 
-6. fd.exe $B$H(B fd-unicd.tbl $B$r!"%Q%9$,DL$C$?F10l$N%G%#%l%/%H%j(B
-   $B$K%3%T!<$7$^$9!#5l(B DOS $B$G$N(B LFN $B%"%/%;%95!G=$,I,MW$G$J$1(B
-   $B$l$P!"(Bfd-unicd.tbl $B$OI,MW$"$j$^$;$s!#(B
+6. fd.exe と fd-unicd.tbl を、パスが通った同一のディレクトリ
+   にコピーします。旧 DOS での LFN アクセス機能が必要でなけ
+   れば、fd-unicd.tbl は必要ありません。
 
-7. _fdrc $B$r(B $B<+J,$N4D6-$K1~$8$F=q$-49$(!"(Bfd2rc $B$H$$$&L>A0$G(B
-   fd.exe $B$HF10l$N%G%#%l%/%H%j$KCV$-$^$9!#0l$+$i:n@.$7$F$b(B
-   $B9=$$$^$;$s!#(B
-   $BM=$aMQ0U$7$F$"$k(B _fdrc $B$OK0$/$^$G$b@_DjNc$K2a$.$^$;$s!#(B
-   $BFC$K!"(BMS-DOS $BHG$G$OB8:_$7$J$$$O$:$N@_Dj$b5-=R$7$F$"$j$^(B
-   $B$9$N$G!"==J,9M$($?>e$G;E>e$2$^$7$g$&!#(B
-   $B3F%f!<%6C10L$K@_Dj%U%!%$%k$rMQ0U$7$?$$>l9g$O!"3F%f!<%6$N(B
-   $B%[!<%`%G%#%l%/%H%j$rI=$94D6-JQ?t(B HOME $B$r%f!<%6Kh$K@_Dj$7!"(B
-   $B4D6-JQ?t(B HOME $B$GI=$5$l$k%G%#%l%/%H%j2<$K(B fd2.rc $B$r@_$1$^(B
-   $B$9!#(B
-   $B$J$*!"%R%9%H%j%U%!%$%k(B fd.hst $B$b(B $HOME $B$N2<$K:n$i$l$^$9!#(B
+7. _fdrc を 自分の環境に応じて書き換え、fd2rc という名前で
+   fd.exe と同一のディレクトリに置きます。一から作成しても
+   構いません。
+   予め用意してある _fdrc は飽くまでも設定例に過ぎません。
+   特に、MS-DOS 版では存在しないはずの設定も記述してありま
+   すので、十分考えた上で仕上げましょう。
+   各ユーザ単位に設定ファイルを用意したい場合は、各ユーザの
+   ホームディレクトリを表す環境変数 HOME をユーザ毎に設定し、
+   環境変数 HOME で表されるディレクトリ下に fd2.rc を設けま
+   す。
+   なお、ヒストリファイル fd.hst も $HOME の下に作られます。
 
-8. $B=*N;!#(B
+8. 終了。

@@ -1,1134 +1,1134 @@
-Ver. 3.01j	$B%7%s%\%j%C%/%j%s%/%3%T!<;~$KAjBP%Q%9$,@dBP%Q%9$K$J$kE@$r=$@5!#(B
- (07/27/19)	$B%7%s%\%j%C%/%j%s%/@h$N4A;z%3!<%IJQ49$K<:GT$7$F$$$?E@$r=$@5!#(B
+Ver. 3.01j	シンボリックリンクコピー時に相対パスが絶対パスになる点を修正。
+ (07/27/19)	シンボリックリンク先の漢字コード変換に失敗していた点を修正。
 
-Ver. 3.01i	Android 9.0 $BBP1~!#(B
- (05/25/19)	clang $B$G%/%m%9%3%s%Q%$%k$K<:GT$9$k$3$H$,$"$kE@$r=$@5!#(B
+Ver. 3.01i	Android 9.0 対応。
+ (05/25/19)	clang でクロスコンパイルに失敗することがある点を修正。
 
-Ver. 3.01h	$B%U%!%$%kL>%3!<%IJQ49;~$K(B UTF-8 $B%F!<%V%k$,0lBP0l$rJ]$D$h$&=$@5!#(B
- (08/11/18)	$B0l$DA0$N%8%g%V$,%+%l%s%H%8%g%V$K$J$l$J$$E@$r=$@5!#(B
-		$B30It%3%^%s%I$N=*N;$dDd;_;~$K=PNO$r<:$&$3$H$,$"$kE@$r=$@5!#(B
+Ver. 3.01h	ファイル名コード変換時に UTF-8 テーブルが一対一を保つよう修正。
+ (08/11/18)	一つ前のジョブがカレントジョブになれない点を修正。
+		外部コマンドの終了や停止時に出力を失うことがある点を修正。
 
-Ver. 3.01g	WSL $B4D6-$G%U%!%$%k%7%9%F%`>pJs$,I=<($G$-$J$$E@$r=$@5!#(B
- (06/02/18)	$B%(%i!<%a%C%;!<%8I=<($,GKB;$7$F$$$?E@$r=$@5!#(B
-		$BFbB"%7%'%k$GIT@5$K9=J8%(%i!<$r@8$8$5$;$F$$$?E@$r=$@5!#(B
-		$B0lItAH9~$_%3%^%s%I$r<B9T;~$N4A;z$NJ8;z2=$1$r=$@5!#(B
-		$BFbIt%3%^%s%I$r(B EXECUTE_SH $B$+$i<B9T;~$N4A;z$NJ8;z2=$1$r=$@5!#(B
+Ver. 3.01g	WSL 環境でファイルシステム情報が表示できない点を修正。
+ (06/02/18)	エラーメッセージ表示が破損していた点を修正。
+		内蔵シェルで不正に構文エラーを生じさせていた点を修正。
+		一部組込みコマンドを実行時の漢字の文字化けを修正。
+		内部コマンドを EXECUTE_SH から実行時の漢字の文字化けを修正。
 
-Ver. 3.01f	FreeBSD 11.1 $BBP1~!#(B
- (04/14/18)	NetBSD 7.1 $BBP1~!#(B
-		OpenBSD 6.2 $BBP1~!#(B
-		MINIX 3.3 $BBP1~!#(B
-		clang $B$G%3%s%Q%$%k$K<:GT$9$k$3$H$,$"$kE@$r=$@5!#(B
-		$B0lIt(B POSIX $B4D6-$G%3%s%Q%$%k$K<:GT$9$k$3$H$,$"$kE@$r=$@5!#(B
+Ver. 3.01f	FreeBSD 11.1 対応。
+ (04/14/18)	NetBSD 7.1 対応。
+		OpenBSD 6.2 対応。
+		MINIX 3.3 対応。
+		clang でコンパイルに失敗することがある点を修正。
+		一部 POSIX 環境でコンパイルに失敗することがある点を修正。
 
-Ver. 3.01e	Cygwin 2.5.1 $BBP1~!#(B
- (01/20/18)	PTYMODE=1 $B;~$K4A;z$NI=<(I}$,$*$+$7$/$J$k$3$H$,$"$kE@$r=$@5!#(B
-		$BFbB"%7%'%k$G4A;zI=<($,J8;z2=$1$9$k$3$H$,$"$kE@$r=$@5!#(B
-		$BF|K\8lJ8=q$r(B EUC-JP $B$+$i(B Shift_JIS $B$K=$@5!#(B(MS-DOS $BHG(B)
+Ver. 3.01e	Cygwin 2.5.1 対応。
+ (01/20/18)	PTYMODE=1 時に漢字の表示幅がおかしくなることがある点を修正。
+		内蔵シェルで漢字表示が文字化けすることがある点を修正。
+		日本語文書を EUC-JP から Shift_JIS に修正。(MS-DOS 版)
 
-Ver. 3.01d	$B%=!<%9%Q%C%1!<%8$KITMW%U%!%$%k$,:.F~$7$F$$$?E@$r=$@5!#(B
- (12/25/17)	fd.spec $B$N99?7K:$l$r=$@5!#(B
+Ver. 3.01d	ソースパッケージに不要ファイルが混入していた点を修正。
+ (12/25/17)	fd.spec の更新忘れを修正。
 
-Ver. 3.01c	64bit $B4D6-$GAH9~$_%3%^%s%I(B checkid $B$,7W;;%_%9$9$kE@$r=$@5!#(B
- (12/23/17)	$B0lIt4D6-$GC<Kv%5%$%:$r@5$7$/<hF@$G$-$J$$E@$r=$@5!#(B
-		$BC<Kv%5%$%:JQ99;~$KFbB"%7%'%k$GI=<($,$*$+$7$/$J$kE@$r=$@5!#(B
-		fdsh $B$+$i(B fd $B$r5/F0$7$?;~$K@8$8$k0lIt4A;z$NJ8;z2=$1$r=$@5!#(B
+Ver. 3.01c	64bit 環境で組込みコマンド checkid が計算ミスする点を修正。
+ (12/23/17)	一部環境で端末サイズを正しく取得できない点を修正。
+		端末サイズ変更時に内蔵シェルで表示がおかしくなる点を修正。
+		fdsh から fd を起動した時に生じる一部漢字の文字化けを修正。
 
-Ver. 3.01b	sparc64 $B4D6-$G0[>o=*N;$9$kE@$r=$@5!#(B
- (05/06/14)	Linux kernel 2.6.23 $B0J9_$G%^%/%mE83+$K<:GT$9$kE@$r=$@5!#(B
-		bind $B$G%^%/%m3dEv$F$N>e=q$-$K<:GT$9$kE@$r=$@5!#(B
-		$BAH9~$_%3%^%s%I$H(B %M $B%^%/%m$NJ;MQ$K$h$kL58B%k!<%W$r=$@5!#(B
+Ver. 3.01b	sparc64 環境で異常終了する点を修正。
+ (05/06/14)	Linux kernel 2.6.23 以降でマクロ展開に失敗する点を修正。
+		bind でマクロ割当ての上書きに失敗する点を修正。
+		組込みコマンドと %M マクロの併用による無限ループを修正。
 
-Ver. 3.01a	$B:.MpKI;_$N$?$aFbItJQ?t(B IMELARNING $B$r(B IMELEARNING $B$K2~L>!#(B
- (06/08/13)	$B%D%j!<2hLL$N3HD%;R=g%=!<%H5,B'$r%V%i%&%62hLL$HF10l;EMM$KJQ99!#(B
-		$BB8:_$7$J$$(B UID/GID $B$r0lMw$K@5$7$/I=<($G$-$J$$E@$r=$@5!#(B
-		$B%+%l%s%H%G%#%l%/%H%j$r<:$C$?:]$K0lMw$,99?7$5$l$J$$E@$r=$@5!#(B
-		termio $B$rMQ$$$k4D6-$G%3%s%Q%$%k$K<:GT$9$kE@$r=$@5!#(B
+Ver. 3.01a	混乱防止のため内部変数 IMELARNING を IMELEARNING に改名。
+ (06/08/13)	ツリー画面の拡張子順ソート規則をブラウザ画面と同一仕様に変更。
+		存在しない UID/GID を一覧に正しく表示できない点を修正。
+		カレントディレクトリを失った際に一覧が更新されない点を修正。
+		termio を用いる環境でコンパイルに失敗する点を修正。
 
-Ver. 3.01	$BFbItJQ?t(B WIDEDIGIT, SIZEUNIT $B$NDI2C!#(B
- (08/03/12)	$BFbItJQ?t(B HISTUMASK, DIRHISTUMASK $B$NDI2C!#(B
-		$BFbItJQ?t(B IMELARNING, FREQFILE, FREQUMASK $B$NDI2C!#(B
-		$BAH9~$_%3%^%s%I(B getfreq, setfreq $B$NDI2C!#(B
-		$BFbItJQ?t(B IMEBUFFER $B$NBP>]%F!<%V%k$r3HD%!#(B
+Ver. 3.01	内部変数 WIDEDIGIT, SIZEUNIT の追加。
+ (08/03/12)	内部変数 HISTUMASK, DIRHISTUMASK の追加。
+		内部変数 IMELARNING, FREQFILE, FREQUMASK の追加。
+		組込みコマンド getfreq, setfreq の追加。
+		内部変数 IMEBUFFER の対象テーブルを拡張。
 
-Ver. 3.00m	$B%3%s%Q%$%kMQ<1JL;R(B UTF8LANG $B$rDI2C!#(B
- (07/27/12)	$B0lIt4D6-$G%+%9%?%^%$%6$N@_DjJ]B8;~$K0[>o=*N;$9$kE@$r=$@5!#(B
-		IME $BJQ498uJd$NM%@h=g0L$,$*$+$7$+$C$?E@$r=$@5!#(B
-		ShiftJIS $B4D6-$G(B DICTSRC $B$K5-=R$7$?<-=q$rMxMQ$G$-$J$$E@$r=$@5!#(B
-		gcc-4.2 $B$G%3%s%Q%$%k$K<:GT$9$kE@$r=$@5!#(B
-		$B%Q%$%W=hM};~$KL58B%k!<%W$K4Y$k$3$H$,$"$kE@$r=$@5!#(B
-		$B%Q%$%W=hM}Cf$K%5%9%Z%s%I%-!<$,8z$+$J$$E@$r=$@5!#(B
-		$BAH9~$_%3%^%s%I(B wait $B$N0z?t>JN,;~$N%^%K%e%"%k8m5-$r=$@5!#(B
+Ver. 3.00m	コンパイル用識別子 UTF8LANG を追加。
+ (07/27/12)	一部環境でカスタマイザの設定保存時に異常終了する点を修正。
+		IME 変換候補の優先順位がおかしかった点を修正。
+		ShiftJIS 環境で DICTSRC に記述した辞書を利用できない点を修正。
+		gcc-4.2 でコンパイルに失敗する点を修正。
+		パイプ処理時に無限ループに陥ることがある点を修正。
+		パイプ処理中にサスペンドキーが効かない点を修正。
+		組込みコマンド wait の引数省略時のマニュアル誤記を修正。
 
-Ver. 3.00l	Android 4.0 $BBP1~!#(B
- (06/30/12)	MINIX 3.2 $BBP1~!#(B
-		$B%3%s%Q%$%kMQ<1JL;R(B DEFKCODE, UTF8DOC, LANGWIDTH $B$rDI2C!#(B
-		$B%3%s%Q%$%kMQ<1JL;R(B _NOUNICDTBL, _NODICTTBL $B$rDI2C!#(B
-		$B%/%m%9%3%s%Q%$%kBP1~$r6/2=!#(B
-		$B2#I}$N69$$C<Kv$G%U%!%$%kB0@-JQ992hLL$,$*$+$7$/$J$kE@$r=$@5!#(B
-		$B%"!<%+%$%V%V%i%&%6$r3+$/$H0[>o=*N;$9$k$3$H$,$"$kE@$r=$@5!#(B
-		MS-DOS $B7A<0$N%Q%9$X$N%"%/%;%9$G0[>o=*N;$9$k$3$H$,$"$kE@$r=$@5!#(B
-		TRADLAYOUT=1 $B$N;~$K!V$7$P$i$/$*BT$A2<$5$$!W$,>C$($J$$E@$r=$@5!#(B
-		PTYMODE=1 $B;~$K%+!<%=%kJ]B8%7!<%1%s%9$,8z$+$J$$E@$r=$@5!#(B
-		$B%"!<%+%$%V%V%i%&%6$G!V(B./$B!W$G;O$^$k%U%!%$%k$rFI$a$J$$E@$r=$@5!#(B
+Ver. 3.00l	Android 4.0 対応。
+ (06/30/12)	MINIX 3.2 対応。
+		コンパイル用識別子 DEFKCODE, UTF8DOC, LANGWIDTH を追加。
+		コンパイル用識別子 _NOUNICDTBL, _NODICTTBL を追加。
+		クロスコンパイル対応を強化。
+		横幅の狭い端末でファイル属性変更画面がおかしくなる点を修正。
+		アーカイブブラウザを開くと異常終了することがある点を修正。
+		MS-DOS 形式のパスへのアクセスで異常終了することがある点を修正。
+		TRADLAYOUT=1 の時に「しばらくお待ち下さい」が消えない点を修正。
+		PTYMODE=1 時にカーソル保存シーケンスが効かない点を修正。
+		アーカイブブラウザで「./」で始まるファイルを読めない点を修正。
 
-Ver. 3.00k	Cygwin 1.7.13 $BBP1~!#(B
- (04/21/12)	$B%G%#%l%/%H%j>e0L0\F08e$N%+!<%=%k=i4|0LCV$r;EMMJQ99!#(B
-		$B%D%j!<I=<(2hLL$G$N(B PageUp/PageDown $B$K$h$k5sF00[>o$r=$@5!#(B
-		$B%U%m%C%T!<%I%i%$%V$NICJ,2rG=$,(B LFN $BL$BP1~$@$C$?E@$r=$@5!#(B
-		$B%D%j!<I=<(2hLL$G(B Bs $B%-!<$K$h$j0[>o=*N;$9$k$3$H$,$"$kE@$r=$@5!#(B
-		MS-DOS $B7A<0$N%Q%92<$G%D%j!<I=<($,@5$7$/I=<($5$l$J$$E@$r=$@5!#(B
-		$B0lIt4D6-$G(B HTTP $B%m%0<hF@$K<:GT$9$kE@$r=$@5!#(B
-		NEXT_WINDOW $BD>A0$N%3%^%s%I7k2L$,H?1G$5$l$J$$E@$r=$@5!#(B
-		$B%"!<%+%$%V%V%i%&%6Fb$G$N(B LOG_DIR $B$K$h$k0[>o=*N;$r=$@5!#(B
-		$B%"!<%+%$%V%V%i%&%6Fb$G$N(B LOG_DIR $B$K$h$k$*$+$7$J5sF0$r=$@5!#(B
-		$BD92a$.$k%Q%9L>$K$h$k%*!<%P%U%m!<$rM^@)!#(B
-		$B%"!<%+%$%V%V%i%&%6Fb$G$N%3%^%s%I<B9T$r0lIt@)8B!#(B
+Ver. 3.00k	Cygwin 1.7.13 対応。
+ (04/21/12)	ディレクトリ上位移動後のカーソル初期位置を仕様変更。
+		ツリー表示画面での PageUp/PageDown による挙動異常を修正。
+		フロッピードライブの秒分解能が LFN 未対応だった点を修正。
+		ツリー表示画面で Bs キーにより異常終了することがある点を修正。
+		MS-DOS 形式のパス下でツリー表示が正しく表示されない点を修正。
+		一部環境で HTTP ログ取得に失敗する点を修正。
+		NEXT_WINDOW 直前のコマンド結果が反映されない点を修正。
+		アーカイブブラウザ内での LOG_DIR による異常終了を修正。
+		アーカイブブラウザ内での LOG_DIR によるおかしな挙動を修正。
+		長過ぎるパス名によるオーバフローを抑制。
+		アーカイブブラウザ内でのコマンド実行を一部制限。
 
-Ver. 3.00j	HTTP $B%j%@%$%l%/%H$K<:GT$9$k$3$H$,$"$kE@$r=$@5!#(B
- (09/25/10)	URLDRIVE=1 $B$N;~$NITMW$J%M%C%H%o!<%/%"%/%;%9$rM^@)!#(B
-		$B0lIt$N(B HTTP $B%5!<%P$NEG$/%U%!%$%k0lMw$N2r@O$K<:GT$9$kE@$r=$@5!#(B
-		MINIX $B>e$G(B INFO_FILESYS $B$K<:GT$9$kE@$r=$@5!#(B
+Ver. 3.00j	HTTP リダイレクトに失敗することがある点を修正。
+ (09/25/10)	URLDRIVE=1 の時の不要なネットワークアクセスを抑制。
+		一部の HTTP サーバの吐くファイル一覧の解析に失敗する点を修正。
+		MINIX 上で INFO_FILESYS に失敗する点を修正。
 
-Ver. 3.00i	MINIX 3 $BBP1~!#(B
- (07/24/10)	NetBSD 5.0 $BBP1~!#(B
-		$B2>A[%U%!%$%k%7%9%F%`>e$N%G%#%l%/%H%j0\F0$r5v2D!#(B
-		utf8-mac $B;HMQ;~$K5?;wC<Kv$,%U%j!<%:$9$kE@$r=$@5!#(B
-		$B5/F0;~$N%Q%9L>0z?t$,4A;z%3!<%IJQ49$5$l$J$$E@$r=$@5!#(B
-		DEFKCODE $B;XDj;~$N%7%'%k=PNOJ8;zNs$NJ8;z2=$1$r=$@5!#(B
-		ShiftJIS $B4D6-$G$NBgJ8;z>.J8;zJQ49%_%9$r=$@5!#(B
-		$B%+%9%?%^%$%6%?%V0\F0;~$N9`L\?t%+%&%s%H%_%9$r=$@5!#(B
-		$B%^%C%T%s%0MQ%-!<%3!<%IJ8;zNs$NI=5-%_%9$r=$@5!#(B
-		$B%9%F!<%?%99T$NF|K\8l%U%!%$%kL>7e0n$l$r=$@5!#(B
-		$B%"!<%+%$%V%V%i%&%6=*N;;~$N%+!<%=%k0LCV%_%9$r=$@5!#(B
-		$B%R%"%I%-%e%a%s%HMxMQ;~$K%"!<%+%$%V%V%i%&%6$,<:GT$9$kE@$r=$@5!#(B
-		$B%"!<%+%$%V%V%i%&%6$GIT@5$J2~9T%3!<%I$,$D$/E@$r=$@5!#(B(MS-DOS $BHG(B)
-		DJGPP $BHG$GFbB"%7%'%k$NC<KvF~NO$,8z$+$J$$E@$r=$@5!#(B
-		$B%3%^%s%IMzNr%U%!%$%k$+$i2~9T(B (^J) $B$rFI9~$a$J$+$C$?E@$r=$@5!#(B
+Ver. 3.00i	MINIX 3 対応。
+ (07/24/10)	NetBSD 5.0 対応。
+		仮想ファイルシステム上のディレクトリ移動を許可。
+		utf8-mac 使用時に疑似端末がフリーズする点を修正。
+		起動時のパス名引数が漢字コード変換されない点を修正。
+		DEFKCODE 指定時のシェル出力文字列の文字化けを修正。
+		ShiftJIS 環境での大文字小文字変換ミスを修正。
+		カスタマイザタブ移動時の項目数カウントミスを修正。
+		マッピング用キーコード文字列の表記ミスを修正。
+		ステータス行の日本語ファイル名桁溢れを修正。
+		アーカイブブラウザ終了時のカーソル位置ミスを修正。
+		ヒアドキュメント利用時にアーカイブブラウザが失敗する点を修正。
+		アーカイブブラウザで不正な改行コードがつく点を修正。(MS-DOS 版)
+		DJGPP 版で内蔵シェルの端末入力が効かない点を修正。
+		コマンド履歴ファイルから改行 (^J) を読込めなかった点を修正。
 
-Ver. 3.00h	$BFbItJQ?t(B PS1 $B$K(B \[...\] $B$rMQ$$$k$HL58B%k!<%W$K4Y$kE@$r=$@5!#(B
- (06/14/10)	$BHsI8=`(B C $B4D6-$G%3%s%Q%$%k$K<:GT$9$kE@$r=$@5!#(B
-		$B0[>o=*N;;~$N(B malloc() $B:F5"8F=P$r2sHr!#(B
+Ver. 3.00h	内部変数 PS1 に \[...\] を用いると無限ループに陥る点を修正。
+ (06/14/10)	非標準 C 環境でコンパイルに失敗する点を修正。
+		異常終了時の malloc() 再帰呼出を回避。
 
-Ver. 3.00g	$BHsI=<(J8;z$r4^$`%G%#%l%/%H%j$N%D%j!<I=<($G$N2hLLJx$l$r=$@5!#(B
- (06/04/10)	$BF|K\8l$r4^$`%G%#%l%/%H%j$X$N%"%/%;%9$G0[>o=*N;$9$kE@$r=$@5!#(B
-		$BF|K\8lJ8;zNs=hM}$G$N%P%C%U%!%*!<%P%U%m!<$r=$@5!#(B
+Ver. 3.00g	非表示文字を含むディレクトリのツリー表示での画面崩れを修正。
+ (06/04/10)	日本語を含むディレクトリへのアクセスで異常終了する点を修正。
+		日本語文字列処理でのバッファオーバフローを修正。
 
-Ver. 3.00f	$BAH9~$_%3%^%s%I(B dir $B$N5sF0$,(B MS-DOS $B;EMM$H0[$J$C$F$$$?E@$r=$@5!#(B
- (05/29/10)	$BAH9~$_%3%^%s%I(B dir $B$NB0@-%^%9%/4{DjCM$,L58z2=$7$F$$$?E@$r=$@5!#(B
-		COPY_TREE/MOVE_TREE $BCf$N%-%c%s%;%k$G0[>o=*N;$9$kE@$r=$@5!#(B
+Ver. 3.00f	組込みコマンド dir の挙動が MS-DOS 仕様と異なっていた点を修正。
+ (05/29/10)	組込みコマンド dir の属性マスク既定値が無効化していた点を修正。
+		COPY_TREE/MOVE_TREE 中のキャンセルで異常終了する点を修正。
 
-Ver. 3.00e	$B%$%s%9%H!<%kMQ$K(B mkdir_p.c $B$rDI2C!#(B
- (02/27/10)	Cygwin 1.7.1 $BBP1~!#(B
-		$BHs(B ANSI C $B4D6-$G%3%s%Q%$%k$K<:GT$9$k$3$H$,$"$kE@$r=$@5!#(B
+Ver. 3.00e	インストール用に mkdir_p.c を追加。
+ (02/27/10)	Cygwin 1.7.1 対応。
+		非 ANSI C 環境でコンパイルに失敗することがある点を修正。
 
-Ver. 3.00d	$B0lIt$N4D6-$G%U%!%$%kL>Jd40;~$K%U%j!<%:$9$kE@$r=$@5!#(B
- (11/30/08)	su(1) $B7PM3$G(B login shell $B$H$7$F;HMQ;~$N5/F0%Q%9G'<1%_%9$r=$@5!#(B
-		$BFbItJQ?t(B HISTSIZE $B$KBg$-$JCM$r@_Dj$9$k$H%U%j!<%:$9$kE@$r=$@5!#(B
-		$BAH9~$_%3%^%s%I(B echo $B$,(B - $B$G;O$^$kJ8;zNs$rL5;k$7$F$$$?E@$r=$@5!#(B
-		$B0lIt$N(B VT100 $B8_49C<Kv$G%U%!%s%/%7%g%s%-!<$,8z$+$J$$E@$r=$@5!#(B
-		64bit $B4D6-$N(B BSD $B$G(B ioctl() $B$,EG$$$F$$$?7Y9p$r=$@5!#(B
+Ver. 3.00d	一部の環境でファイル名補完時にフリーズする点を修正。
+ (11/30/08)	su(1) 経由で login shell として使用時の起動パス認識ミスを修正。
+		内部変数 HISTSIZE に大きな値を設定するとフリーズする点を修正。
+		組込みコマンド echo が - で始まる文字列を無視していた点を修正。
+		一部の VT100 互換端末でファンクションキーが効かない点を修正。
+		64bit 環境の BSD で ioctl() が吐いていた警告を修正。
 
-Ver. 3.00c	INPUTKCODE=utf8 $B;~$N%Z!<%9%HJ8;zNs$NJ8;z2=$1$r=$@5!#(B
- (07/27/08)	$B%k!<%H%G%#%l%/%H%j$K%"%/%;%9$G$-$J$+$C$?E@$r=$@5!#(B(MS-DOS $BHG(B)
-		Windows NT $B$G5/F0$K<:GT$7$F$$$?E@$r=$@5!#(B(MS-DOS $BHG(B)
-		$BF~=PNO$N2~9T%3!<%I$,@5$7$/$J$+$C$?E@$r=$@5!#(B(MS-DOS $BHG(B)
-		$BAH9~$_%3%^%s%I(B fc $B$NJ8;zNsCV49$($K<:GT$9$k$3$H$,$"$kE@$r=$@5!#(B
+Ver. 3.00c	INPUTKCODE=utf8 時のペースト文字列の文字化けを修正。
+ (07/27/08)	ルートディレクトリにアクセスできなかった点を修正。(MS-DOS 版)
+		Windows NT で起動に失敗していた点を修正。(MS-DOS 版)
+		入出力の改行コードが正しくなかった点を修正。(MS-DOS 版)
+		組込みコマンド fc の文字列置換えに失敗することがある点を修正。
 
-Ver. 3.00b	$()/$(()) $B$K$h$kCV49$,5!G=$7$F$$$J$+$C$?E@$r=$@5!#(B
- (07/06/08)	$B=*N;;~$K0l;~%U%!%$%k$,:o=|$5$l$:$K;D$k$3$H$,$"$kE@$r=$@5!#(B
-		$B%5%$%:$NBg$-$J%R%"%I%-%e%a%s%H$G%U%j!<%:$9$kE@$r=$@5!#(B
-		$B=*N;%9%F!<%?%9$rJQ?t$K@5$7$/BeF~$G$-$J$+$C$?E@$r=$@5!#(B
-		$B!V(B=$B!W$r4^$`0z?t$,JQ?tBeF~07$$$5$l$F$7$^$&$3$H$,$"$kE@$r=$@5!#(B
-		$BL$Dj5A%U%m%C%T!<%I%i%$%VMxMQ;~$N%P%C%U%!%*!<%P%U%m!<$r=$@5!#(B
-		$BJ#J8$N%j%@%$%l%/%H=hM}$,4E$+$C$?E@$r=$@5!#(B
-		$B=*N;;~(B trap $B$,4|BT$5$l$?%?%$%_%s%0$G<B9T$5$l$J$$E@$r=$@5!#(B
-		$BFbItJQ?t(B LINENO $B$NCM$,@53N$G$J$+$C$?E@$r=$@5!#(B
-		case $BJ8$NCf$K2~9T$rCV$1$J$$E@$r=$@5!#(B
-		"" $B$G3g$i$l$?Cf$G(B ${} $BFb$K%a%?J8;z$r4^$a$J$+$C$?E@$r=$@5!#(B
-		$B%R%"%I%-%e%a%s%HCf$N%a%?J8;z$N07$$$,4E$+$C$?E@$r=$@5!#(B
-		$BFbItJQ?t(B FD_VERSION $B$N3F<o%I%-%e%a%s%H5-=R%_%9$r=$@5!#(B
-		$BFbItJQ?t(B FD_VERSION $B$NCM$,L$@_Dj$K$J$k$3$H$,$"$kE@$r=$@5!#(B
+Ver. 3.00b	$()/$(()) による置換が機能していなかった点を修正。
+ (07/06/08)	終了時に一時ファイルが削除されずに残ることがある点を修正。
+		サイズの大きなヒアドキュメントでフリーズする点を修正。
+		終了ステータスを変数に正しく代入できなかった点を修正。
+		「=」を含む引数が変数代入扱いされてしまうことがある点を修正。
+		未定義フロッピードライブ利用時のバッファオーバフローを修正。
+		複文のリダイレクト処理が甘かった点を修正。
+		終了時 trap が期待されたタイミングで実行されない点を修正。
+		内部変数 LINENO の値が正確でなかった点を修正。
+		case 文の中に改行を置けない点を修正。
+		"" で括られた中で ${} 内にメタ文字を含めなかった点を修正。
+		ヒアドキュメント中のメタ文字の扱いが甘かった点を修正。
+		内部変数 FD_VERSION の各種ドキュメント記述ミスを修正。
+		内部変数 FD_VERSION の値が未設定になることがある点を修正。
 
-Ver. 3.00a	$B0z?t$N$J$$(B alias $B$NCV49$K<:GT$7$F$$$?E@$r=$@5!#(B
- (06/21/08)	$B%"!<%+%$%V%V%i%&%6$r:F5"E*$K5/F0$7$?;~$K0[>o=*N;$9$kE@$r=$@5!#(B
-		URL $B%I%i%$%V$N(B directory traverse $BLdBj$KBP=h!#(B
-		FTP $BDL?.;~$N(B telnet $B%3%^%s%I<BAu%_%9$r=$@5!#(B
-		Solaris 8 $B$G%3%s%Q%$%k$K<:GT$9$kE@$r=$@5!#(B
-		$B3F<o%I%-%e%a%s%HI=5-$N(B Ver. 3.00 $BBP1~!#(B
+Ver. 3.00a	引数のない alias の置換に失敗していた点を修正。
+ (06/21/08)	アーカイブブラウザを再帰的に起動した時に異常終了する点を修正。
+		URL ドライブの directory traverse 問題に対処。
+		FTP 通信時の telnet コマンド実装ミスを修正。
+		Solaris 8 でコンパイルに失敗する点を修正。
+		各種ドキュメント表記の Ver. 3.00 対応。
 
-Ver. 3.00	URL $B%I%i%$%V5!G=$NDI2C!#(B
- (05/31/08)	$B%j%@%$%l%/%H%U%!%$%k$H$7$F%=%1%C%H$r07$&%9%-!<%`=$>~;R$NDI2C!#(B
-		$B%a%C%;!<%8%+%?%m%05!G=$NDI2C!#(B
-		$B3F<o@_DjEPO??t$N>e8B$rE1GQ!#(B
-		EDIT_CONFIG $B$,0z?t$KFbItJQ?tL>$r;XDj2DG=$K!#(B
-		$BFbItJQ?t(B AUTOUPDATE $B$NDI2C!#(B
-		$BFbItJQ?t(B VERSION $B$NDI2C!#(B
-		$BFbItJQ?t(B URLDRIVE, URLKCODE, HIDEPASSWD $B$NDI2C!#(B
-		$BFbItJQ?t(B URLOPTIONS, URLTIMEOUT $B$NDI2C!#(B
-		$BFbItJQ?t(B FTPPROXY, FTPLOGFILE, FTPADDRESS $B$NDI2C!#(B
-		$BFbItJQ?t(B HTTPPROXY, HTTPLOGFILE $B$NDI2C!#(B
-		$BFbItJQ?t(B HTMLLOGFILE $B$NDI2C!#(B
-		$BAH9~$_%3%^%s%I(B accept, socketinfo, addcr $B$NDI2C!#(B
-		$BAH9~$_%3%^%s%I(B echo $B$K(B -N $B%*%W%7%g%s$NDI2C!#(B
-		$BAH9~$_%3%^%s%I(B read $B$K(B -N $B%*%W%7%g%s$NDI2C!#(B
-		$B%"!<%+%$%V%V%i%&%6%U%)!<%^%C%H(B %w, %p, %B, %b, %/, %! $B$NDI2C!#(B
-		$BJ#@=MQ%j%@%$%l%/%H5-=R;R(B <>&, ><& $B$NDI2C!#(B
-		$B%/%m!<%:MQ%j%@%$%l%/%H5-=R;R(B <>-, <>&-, ><-, ><&- $B$NDI2C!#(B
-		$B%j%@%$%l%/%H5-=R;R(B >< $B$N4{Dj%U%!%$%k5-=R;R$rI8=`=PNO$KJQ99!#(B
+Ver. 3.00	URL ドライブ機能の追加。
+ (05/31/08)	リダイレクトファイルとしてソケットを扱うスキーム修飾子の追加。
+		メッセージカタログ機能の追加。
+		各種設定登録数の上限を撤廃。
+		EDIT_CONFIG が引数に内部変数名を指定可能に。
+		内部変数 AUTOUPDATE の追加。
+		内部変数 VERSION の追加。
+		内部変数 URLDRIVE, URLKCODE, HIDEPASSWD の追加。
+		内部変数 URLOPTIONS, URLTIMEOUT の追加。
+		内部変数 FTPPROXY, FTPLOGFILE, FTPADDRESS の追加。
+		内部変数 HTTPPROXY, HTTPLOGFILE の追加。
+		内部変数 HTMLLOGFILE の追加。
+		組込みコマンド accept, socketinfo, addcr の追加。
+		組込みコマンド echo に -N オプションの追加。
+		組込みコマンド read に -N オプションの追加。
+		アーカイブブラウザフォーマット %w, %p, %B, %b, %/, %! の追加。
+		複製用リダイレクト記述子 <>&, ><& の追加。
+		クローズ用リダイレクト記述子 <>-, <>&-, ><-, ><&- の追加。
+		リダイレクト記述子 >< の既定ファイル記述子を標準出力に変更。
 
-Ver. 2.09i	Darwin 9.x (Mac OS X 10.5) $B$G%3%s%Q%$%k$K<:GT$9$kE@$r=$@5!#(B
- (04/19/08)	$BD9$$%U%!%$%kL>$NI=<(;~$K2hLL$,$*$+$7$/$J$k$3$H$,$"$kE@$r=$@5!#(B
-		FAT file system $B$N%G%#%l%/%H%j=q9~$_IT6q9g$r=$@5!#(B
+Ver. 2.09i	Darwin 9.x (Mac OS X 10.5) でコンパイルに失敗する点を修正。
+ (04/19/08)	長いファイル名の表示時に画面がおかしくなることがある点を修正。
+		FAT file system のディレクトリ書込み不具合を修正。
 
-Ver. 2.09h	ATTR_FILE/ATTR_DIR $B$N7k2L$,H?1G$5$l$J$$$3$H$,$"$kE@$r=$@5!#(B
- (03/15/08)	$B@)8fC<Kv$,L5$$>l9g$K%(%i!<I=<($5$l$k$3$H$,$"$kE@$r=$@5!#(B
-		$B%U%!%$%kL>I=<(HO0OJQ99Cf$NJd408uJd0lMwI=<($,$*$+$7$$E@$r=$@5!#(B
+Ver. 2.09h	ATTR_FILE/ATTR_DIR の結果が反映されないことがある点を修正。
+ (03/15/08)	制御端末が無い場合にエラー表示されることがある点を修正。
+		ファイル名表示範囲変更中の補完候補一覧表示がおかしい点を修正。
 
-Ver. 2.09g	$B@)8fC<Kv$,L5$$>l9g$K0[>o=*N;$7$F$$$?E@$r=$@5!#(B
- (01/26/08)	$B5/F0%G%#%l%/%H%j$r8!:w$7@Z$l$F$$$J$+$C$?E@$r<c432r>C!#(B
-		$BFC<l%-!<F~NO$N<h$j$3$\$7$r<c432~A1!#(B
+Ver. 2.09g	制御端末が無い場合に異常終了していた点を修正。
+ (01/26/08)	起動ディレクトリを検索し切れていなかった点を若干解消。
+		特殊キー入力の取りこぼしを若干改善。
 
-Ver. 2.09f	$B0lIt$N4D6-$G%Z!<%9%HJ8;zNs$,J8;z2=$1$9$k$3$H$,$"$kE@$r=$@5!#(B
- (10/28/07)	$BFbItJQ?t(B TERM $B$NF0E*JQ99;~$KF~NO$G$-$J$$%-!<$,@8$8$kE@$r=$@5!#(B
-		NFS $B>e$N@_Dj%U%!%$%k$,H?1G$5$l$J$$$3$H$,$"$kE@$r=$@5!#(B
-		$BHsBPOC%7%'%k$G0lIt$NAH9~$_%3%^%s%I$,=*N;$G$-$J$$E@$r=$@5!#(B
-		~ $B$K8eB3$9$kJQ?t$,E83+$5$l$J$$E@$r=$@5!#(B
+Ver. 2.09f	一部の環境でペースト文字列が文字化けすることがある点を修正。
+ (10/28/07)	内部変数 TERM の動的変更時に入力できないキーが生じる点を修正。
+		NFS 上の設定ファイルが反映されないことがある点を修正。
+		非対話シェルで一部の組込みコマンドが終了できない点を修正。
+		~ に後続する変数が展開されない点を修正。
 
-Ver. 2.09e	$BAH9~$_%3%^%s%I(B copy $B$G%U%j!<%:$9$k$3$H$,$"$kE@$r=$@5!#(B
- (09/16/07)	$B%+%l%s%H%G%#%l%/%H%jAS<:;~$N0[>o=*N;$r=$@5!#(B
-		$B%j%@%$%l%/%H5-=R;R(B <>, >< $B$N4{Dj%U%!%$%k5-=R;R$N4V0c$$$r=$@5!#(B
-		$BJd=u%0%k!<%W$NH=Dj$,4E$+$C$?E@$r=$@5!#(B
+Ver. 2.09e	組込みコマンド copy でフリーズすることがある点を修正。
+ (09/16/07)	カレントディレクトリ喪失時の異常終了を修正。
+		リダイレクト記述子 <>, >< の既定ファイル記述子の間違いを修正。
+		補助グループの判定が甘かった点を修正。
 
-Ver. 2.09d	Linux kernel 2.6.20 $B$KBP1~!#(B
- (04/26/07)	INPUTKCODE=utf8 $B$N;~$N%l%9%]%s%9$r8~>e!#(B
-		$B6u%G%#%l%/%H%j$X$N%"%/%;%9;~$K0[>o=*N;$9$k$3$H$,$"$kE@$r=$@5!#(B
-		$BBgMFNL$N%U%m%C%T!<%I%i%$%V$K%"%/%;%9$G$-$J$+$C$?E@$r=$@5!#(B
+Ver. 2.09d	Linux kernel 2.6.20 に対応。
+ (04/26/07)	INPUTKCODE=utf8 の時のレスポンスを向上。
+		空ディレクトリへのアクセス時に異常終了することがある点を修正。
+		大容量のフロッピードライブにアクセスできなかった点を修正。
 
-Ver. 2.09c	Linux kernel 2.6.18 $B$K@5$7$/BP1~$G$-$F$$$J$+$C$?E@$r=$@5!#(B
+Ver. 2.09c	Linux kernel 2.6.18 に正しく対応できていなかった点を修正。
  (01/17/07)
 
-Ver. 2.09b	Linux kernel 2.6.18 $B$KBP1~!#(B
- (12/22/06)	$B%U%m%C%T!<%I%i%$%V>e$G!V(B..$B!W$,07$($J$+$C$?E@$r=$@5!#(B
+Ver. 2.09b	Linux kernel 2.6.18 に対応。
+ (12/22/06)	フロッピードライブ上で「..」が扱えなかった点を修正。
 
-Ver. 2.09a	GNU tar $B$N%O!<%I%j%s%/$5$l$?%"!<%+%$%V%U%!%$%k$KBP1~!#(B
- (10/31/06)	$B%U%!%$%k%m%C%/;~$K%?%$%`%"%&%H$r@_Dj!#(B
-		Cygwin $B$G6&M-%U%)%k%@$r07$($J$+$C$?E@$r=$@5!#(B
-		$B4v$D$+$N4A;z%3!<%I@_Dj$G(B UTF8-mac $B$,8z$+$J$+$C$?E@$r=$@5!#(B
-		PTYMODE=1 $B;~$KF|K\8lF~NO$NJ8;z2=$1$,5/$3$k$3$H$,$"$kE@$r=$@5!#(B
-		IGNORECASE=1 $B;~$K%U%!%$%kL>%=!<%H=g$,$*$+$7$+$C$?E@$r=$@5!#(B
-		$B0lItC<Kv4D6-$G%U%!%s%/%7%g%s%-!<$,8z$+$J$+$C$?E@$r=$@5!#(B
+Ver. 2.09a	GNU tar のハードリンクされたアーカイブファイルに対応。
+ (10/31/06)	ファイルロック時にタイムアウトを設定。
+		Cygwin で共有フォルダを扱えなかった点を修正。
+		幾つかの漢字コード設定で UTF8-mac が効かなかった点を修正。
+		PTYMODE=1 時に日本語入力の文字化けが起こることがある点を修正。
+		IGNORECASE=1 時にファイル名ソート順がおかしかった点を修正。
+		一部端末環境でファンクションキーが効かなかった点を修正。
 
-Ver. 2.09	$BFbItJQ?t(B IMEKEY, IMEBUFFER $B$NDI2C!#(B
- (08/22/06)	$BFbItJQ?t(B BASICCUSTOM $B$NDI2C!#(B
-		$BFbItJQ?t(B PROGRESSBAR, PRECOPYMENU $B$NDI2C!#(B
-		$BFbItJQ?t(B SAVEDIRHIST, DIRHISTFILE $B$NDI2C!#(B
-		$BFbItJQ?t(B FUNCLAYOUT $B$NDI2C!#(B
-		$BFbItJQ?t(B MESSAGELANG $B$NDI2C!#(B
-		$BFbItJQ?t(B LANGUAGE $BEy$N@_DjCM$K(B UTF8-iconv $B$NDI2C!#(B
-		$BFbItJQ?t(B UTF8ICONVPATH $B$NDI2C!#(B
-		%JI $B%^%/%m$NDI2C!#(B
-		$BFbItJQ?t(B SORTTYPE $B$K%"!<%+%$%V%V%i%&%6$N%=!<%HJ]B85!G=$rDI2C!#(B
-		$BFbItJQ?t(B ANSIPALETTE $B$K<B9T%U%!%$%k$NG[?'$rDI2C!#(B
-		$BAH9~$_%3%^%s%I(B setroman, printroman $B$NDI2C!#(B
-		$BAH9~$_%3%^%s%I(B bind $B$,(B F20 $B$^$G%3%a%s%H;XDj2DG=$K!#(B
-		$B5?;wC<Kv%a%K%e!<$K4A;zF~NO$rDI2C!#(B
-		$B5?;wC<Kv%a%K%e!<$NJ8;z%3!<%IF~NO$G4A;z%3!<%I$KBP1~!#(B
-		PTYMODE=1 $B;~$K(B Cygwin $B$G%U%j!<%:$7$F$$$?E@$r=$@5!#(B
-		$B%m%0=PNO;XDj;~$K0[>o=*N;$9$k$3$H$,$"$kE@$r=$@5!#(B
-		UTF8 $B$N%U%!%$%kL>$,07$($J$$E@$r=$@5!#(B
-		UNICODEBUFFER=1 $B;~$K(B UTF8 $B4D6-$G0[>o=*N;$9$kE@$r=$@5!#(B
+Ver. 2.09	内部変数 IMEKEY, IMEBUFFER の追加。
+ (08/22/06)	内部変数 BASICCUSTOM の追加。
+		内部変数 PROGRESSBAR, PRECOPYMENU の追加。
+		内部変数 SAVEDIRHIST, DIRHISTFILE の追加。
+		内部変数 FUNCLAYOUT の追加。
+		内部変数 MESSAGELANG の追加。
+		内部変数 LANGUAGE 等の設定値に UTF8-iconv の追加。
+		内部変数 UTF8ICONVPATH の追加。
+		%JI マクロの追加。
+		内部変数 SORTTYPE にアーカイブブラウザのソート保存機能を追加。
+		内部変数 ANSIPALETTE に実行ファイルの配色を追加。
+		組込みコマンド setroman, printroman の追加。
+		組込みコマンド bind が F20 までコメント指定可能に。
+		疑似端末メニューに漢字入力を追加。
+		疑似端末メニューの文字コード入力で漢字コードに対応。
+		PTYMODE=1 時に Cygwin でフリーズしていた点を修正。
+		ログ出力指定時に異常終了することがある点を修正。
+		UTF8 のファイル名が扱えない点を修正。
+		UNICODEBUFFER=1 時に UTF8 環境で異常終了する点を修正。
 
-Ver. 2.08f	NFS $B>e$NMzNr%;!<%V%U%!%$%kJ]8nMQ$K%U%!%$%k%m%C%/$KBP1~!#(B
- (08/08/06)	$BHs(B ANSI $B4D6-$G%3%s%Q%$%k$K<:GT$9$kE@$r=$@5!#(B
-		Cygwin 1.5.21 $BBP1~!#(B
-		IGNORECASE=1 $B;~$KF|K\8l%U%!%$%kL>%=!<%H$,$*$+$7$+$C$?E@$r=$@5!#(B
-		UNICODE $B%F!<%V%k$,2u$l$F$$$?E@$r=$@5!#(B(MS-DOS $BHG(B)
+Ver. 2.08f	NFS 上の履歴セーブファイル保護用にファイルロックに対応。
+ (08/08/06)	非 ANSI 環境でコンパイルに失敗する点を修正。
+		Cygwin 1.5.21 対応。
+		IGNORECASE=1 時に日本語ファイル名ソートがおかしかった点を修正。
+		UNICODE テーブルが壊れていた点を修正。(MS-DOS 版)
 
-Ver. 2.08e	$B%+%9%?%^%$%6$N(B ANSIPALETTE $B9`L\$r%a%K%e!<2=!#(B
- (07/28/06)	$B%+%9%?%^%$%6$N(B PTYMENUKEY $B9`L\$r%-!<F~NO$K$h$k@_Dj$KJQ99!#(B
-		$B%+%9%?%^%$%6$G(B EDITOR, PAGER $BEy$NFbItJQ?t$r@_Dj$G$-$k$h$&=$@5!#(B
-		SORTTYPE $B$N@_Dj$,B(:B$KH?1G$5$l$J$$E@$r=$@5!#(B
-		sparc64 $B4D6-$G0[>o=*N;$9$kE@$r=$@5!#(B
-		PTYMODE=1 $B;~$K(B UTF8 $B4D6-$G%+!<%=%k0LCV$,$*$+$7$/$J$kE@$r=$@5!#(B
-		$B=q9~$_8"$N$J$$%G%#%l%/%H%j%3%T!<(B/$B0\F0$K<:GT$9$kE@$r=$@5!#(B
-		$B%I%i%$%VL>$r4'$7$?%U%!%$%kL>Jd40$K<:GT$7$F$$$?E@$r=$@5!#(B
-		SFN $BI=5-$N%G%#%l%/%H%j%?%$%`%9%?%s%WJQ99<:GT$r=$@5!#(B(MS-DOS $BHG(B)
+Ver. 2.08e	カスタマイザの ANSIPALETTE 項目をメニュー化。
+ (07/28/06)	カスタマイザの PTYMENUKEY 項目をキー入力による設定に変更。
+		カスタマイザで EDITOR, PAGER 等の内部変数を設定できるよう修正。
+		SORTTYPE の設定が即座に反映されない点を修正。
+		sparc64 環境で異常終了する点を修正。
+		PTYMODE=1 時に UTF8 環境でカーソル位置がおかしくなる点を修正。
+		書込み権のないディレクトリコピー/移動に失敗する点を修正。
+		ドライブ名を冠したファイル名補完に失敗していた点を修正。
+		SFN 表記のディレクトリタイムスタンプ変更失敗を修正。(MS-DOS 版)
 
-Ver. 2.08d	$B5?;wC<Kv$N%3%^%s%I%i%$%s$+$iF|K\8lF~NO$G$-$J$+$C$?E@$r=$@5!#(B
- (06/13/06)	$B%3%^%s%I%i%$%s$+$i2>L>F~NO$G$-$J$+$C$?E@$r=$@5!#(B
-		$BMzNr%$%s%/%j%a%s%?%k%5!<%A;~$NI=<($,$*$+$7$+$C$?E@$r=$@5!#(B
-		NFS $B>e$NMzNr%;!<%V%U%!%$%k$,%G%C%I%m%C%/$K4Y$kE@$r=$@5!#(B
+Ver. 2.08d	疑似端末のコマンドラインから日本語入力できなかった点を修正。
+ (06/13/06)	コマンドラインから仮名入力できなかった点を修正。
+		履歴インクリメンタルサーチ時の表示がおかしかった点を修正。
+		NFS 上の履歴セーブファイルがデッドロックに陥る点を修正。
 
-Ver. 2.08c	NFS $B>e$N%3%^%s%IMzNr%;!<%V%U%!%$%k$,>C$5$l$F$7$^$&E@$r=$@5!#(B
- (05/24/06)	$BA4$F$N%"!<%+%$%V%U%!%$%k%5%$%:$r(B 0 $B$HI=<($7$F$7$^$&(B OS $B$KBP1~!#(B
+Ver. 2.08c	NFS 上のコマンド履歴セーブファイルが消されてしまう点を修正。
+ (05/24/06)	全てのアーカイブファイルサイズを 0 と表示してしまう OS に対応。
 
-Ver. 2.08b	Cygwin 1.5.19 $BBP1~!#(B
- (03/30/06)	PTYMODE=1 $B;~$N%3%^%s%I%i%$%s$+$i$NFbIt%3%^%s%I<B9T$KBP1~!#(B
-		$B0lIt$N4D6-$GF~NO%-!<$r<h$j$3$\$9$3$H$,$"$kE@$r=$@5!#(B
-		"!$BJ8;zNs(B" $B7A<0$N%R%9%H%j$,Hs8!=P;~$K0[>o=*N;$9$kE@$r=$@5!#(B
-		$B%a%?J8;z$r4^$`%U%!%$%kL>Jd40$,$*$+$7$+$C$?E@$r=$@5!#(B
-		PTYMODE=1 $B;~$K%^%/%m$G%^!<%/%U%!%$%k$,L5;k$5$l$kE@$r=$@5!#(B
-		PTYMODE=1 $B;~$K(B ANSICOLOR=2 $B;XDj$,8z$+$J$/$J$kE@$r=$@5!#(B
-		PTYMODE=1 $B;~$K%+%l%s%H%G%#%l%/%H%jJQ99$,EA$o$i$J$$E@$r=$@5!#(B
-		mlterm $B$G=*N;8e$NC<Kv>uBV$,$*$+$7$/$J$kE@$r=$@5!#(B
-		$BI=<($9$Y$-%U%!%$%k$,$J$$;~$K(B OUT_DIR $B$,8z$+$J$$E@$r=$@5!#(B
-		bgnotify $B%U%i%0$,(B EXECUTE_SH $B$rH4$1$k$H8z$+$J$/$J$kE@$r=$@5!#(B
-		$B%P%C%/%0%i%&%s%I%8%g%V$,$*$+$7$J=PNO$r$9$k$3$H$,$"$kE@$r=$@5!#(B
+Ver. 2.08b	Cygwin 1.5.19 対応。
+ (03/30/06)	PTYMODE=1 時のコマンドラインからの内部コマンド実行に対応。
+		一部の環境で入力キーを取りこぼすことがある点を修正。
+		"!文字列" 形式のヒストリが非検出時に異常終了する点を修正。
+		メタ文字を含むファイル名補完がおかしかった点を修正。
+		PTYMODE=1 時にマクロでマークファイルが無視される点を修正。
+		PTYMODE=1 時に ANSICOLOR=2 指定が効かなくなる点を修正。
+		PTYMODE=1 時にカレントディレクトリ変更が伝わらない点を修正。
+		mlterm で終了後の端末状態がおかしくなる点を修正。
+		表示すべきファイルがない時に OUT_DIR が効かない点を修正。
+		bgnotify フラグが EXECUTE_SH を抜けると効かなくなる点を修正。
+		バックグラウンドジョブがおかしな出力をすることがある点を修正。
 
-Ver. 2.08a	NetBSD 3.0 $BBP1~!#(B
- (02/07/06)	PTYINKCODE $B$N@_Dj$,$&$^$/5!G=$7$F$$$J$+$C$?E@$r=$@5!#(B
-		varargs $B$rMQ$$$k4D6-$G(B compile $B$K<:GT$7$F$$$?E@$r=$@5!#(B
-		sgtty $B$rMQ$$$k4D6-$G(B compile $B$K<:GT$7$F$$$?E@$r=$@5!#(B
-		$BC<KvL>L$EPO?;~$K(B fdsh $B$G%-!<F~NO$G$-$J$+$C$?E@$r=$@5!#(B
-		$BAH9~$_%3%^%s%I(B echo $B$,(B DEFKCODE $B$r8+$F$$$J$+$C$?E@$r=$@5!#(B
+Ver. 2.08a	NetBSD 3.0 対応。
+ (02/07/06)	PTYINKCODE の設定がうまく機能していなかった点を修正。
+		varargs を用いる環境で compile に失敗していた点を修正。
+		sgtty を用いる環境で compile に失敗していた点を修正。
+		端末名未登録時に fdsh でキー入力できなかった点を修正。
+		組込みコマンド echo が DEFKCODE を見ていなかった点を修正。
 
-Ver. 2.08	$BFbItJQ?t(B PTYINKCODE, PTYOUTKCODE $B$NDI2C!#(B
- (12/26/05)	$BFbItJQ?t(B LOGFILE, LOGSIZE, USESYSLOG $B$NDI2C!#(B
-		$BFbItJQ?t(B LOGLEVEL, ROOTLOGLEVEL $B$NDI2C!#(B
-		$BFbItJQ?t(B THRUARGS $B$NDI2C!#(B
-		$BAH9~$_%3%^%s%I(B savetty $B$rDI2C!#(B
-		$BAH9~$_%3%^%s%I(B set $B$K(B -o autosavetty, -S $B%*%W%7%g%s$NDI2C!#(B
-		$BAH9~$_%3%^%s%I(B set $B$K(B -o ptyshell, -T $B%*%W%7%g%s$NDI2C!#(B
-		$BAH9~$_%3%^%s%I(B set $B$K(B -o physical $B$NJLL>(B -P $B%*%W%7%g%s$rDI2C!#(B
-		ATTR_DIR $B%3%^%s%I$NDI2C(B
-		ATTR_FILE $B$G(B owner/group $B$rJQ992DG=$K!#(B
-		$B%G%#%l%/%H%j=q9~$_;~$K:FG[CV$K<:GT$9$k$3$H$,$"$kE@$r=$@5!#(B
+Ver. 2.08	内部変数 PTYINKCODE, PTYOUTKCODE の追加。
+ (12/26/05)	内部変数 LOGFILE, LOGSIZE, USESYSLOG の追加。
+		内部変数 LOGLEVEL, ROOTLOGLEVEL の追加。
+		内部変数 THRUARGS の追加。
+		組込みコマンド savetty を追加。
+		組込みコマンド set に -o autosavetty, -S オプションの追加。
+		組込みコマンド set に -o ptyshell, -T オプションの追加。
+		組込みコマンド set に -o physical の別名 -P オプションを追加。
+		ATTR_DIR コマンドの追加
+		ATTR_FILE で owner/group を変更可能に。
+		ディレクトリ書込み時に再配置に失敗することがある点を修正。
 
-Ver. 2.07c	$B=EJ#$9$k%Q%9L>%G%j%_%?$G=*$o$k%"!<%+%$%P=PNO$KBP1~!#(B
- (12/13/05)	fdsh $B$+$i(B fd $B$r5/F0$9$k:]$N0z?t$,=EJ#I>2A$5$l$F$$$?E@$r=$@5!#(B
-		$B%+%9%?%^%$%6$G(B FNAMEKCODE $B$K(B HEX/CAP $B$rDj5A$G$-$J$$E@$r=$@5!#(B
-		$BA*Br%a%K%e!<$G2hLL$,Jx$l$k$3$H$,$"$kE@$r=$@5!#(B
-		PTYMODE=1 $B;~$N(B LANGUAGE $BCM$NF0E*JQ99BP1~%_%9$r=$@5!#(B
-		fdsh $B$r(B -N $B%*%W%7%g%sIU$-$G5/F0$9$k$H0[>o=*N;$9$kE@$r=$@5!#(B
-		$B%3%^%s%IMzNr%;!<%V%U%!%$%k$r%m%C%/$GJ]8n$9$k$h$&$K=$@5!#(B
-		fdsh $B$G(B ADJTTY $B$,8z$$$F$$$J$+$C$?E@$r=$@5(B
+Ver. 2.07c	重複するパス名デリミタで終わるアーカイバ出力に対応。
+ (12/13/05)	fdsh から fd を起動する際の引数が重複評価されていた点を修正。
+		カスタマイザで FNAMEKCODE に HEX/CAP を定義できない点を修正。
+		選択メニューで画面が崩れることがある点を修正。
+		PTYMODE=1 時の LANGUAGE 値の動的変更対応ミスを修正。
+		fdsh を -N オプション付きで起動すると異常終了する点を修正。
+		コマンド履歴セーブファイルをロックで保護するように修正。
+		fdsh で ADJTTY が効いていなかった点を修正
 
-Ver. 2.07b	$B%Q%$%W=hM};~$KDd;_$7$F$7$^$&$3$H$,$"$kE@$r=$@5!#(B
- (09/14/05)	POSIX $B$K87L)$J(B tail(1) $B$G(B make $B$K<:GT$9$kE@$r=$@5!#(B
+Ver. 2.07b	パイプ処理時に停止してしまうことがある点を修正。
+ (09/14/05)	POSIX に厳密な tail(1) で make に失敗する点を修正。
 
-Ver. 2.07a	$BI=<($9$Y$-%U%!%$%k$,$J$$;~$K2hLL$,99?7$5$l$J$$IT6q9g$r=$@5!#(B
- (06/22/05)	Darwin (Mac OS X) $B4D6-$G5/F0$K<:GT$9$kE@$r=$@5!#(B
-		$BFbB"%7%'%k$G(B `` $B$K0O$^$l$?(B \ $B$rI>2A$9$k$h$&$K;EMMJQ99!#(B
-		$BFbB"%7%'%k$G?75,%U%!%$%k5-=R;R$X%j%@%$%l%/%H$G$-$J$$E@$r=$@5!#(B
+Ver. 2.07a	表示すべきファイルがない時に画面が更新されない不具合を修正。
+ (06/22/05)	Darwin (Mac OS X) 環境で起動に失敗する点を修正。
+		内蔵シェルで `` に囲まれた \ を評価するように仕様変更。
+		内蔵シェルで新規ファイル記述子へリダイレクトできない点を修正。
 
-Ver. 2.07	$BFbItJQ?t(B PTYMODE, PTYTERM, PTYMENUKEY $B$NDI2C!#(B
- (05/26/05)	$BFbItJQ?t(B DEFKCODE $B$NDI2C!#(B
-		$BJ,3d%&%#%s%I%&$N:GBg?t$r(B 5 $B$K3HD%!#(B
-		WIDEN_WINDOW, NARROW_WINDOW, KILL_WINDOW $B%3%^%s%I$NDI2C!#(B
-		$B4D6-JQ?t(B COLUMNS, LINES $B$NCM$rF0E*$KJQ99$9$k;EMM$K!#(B
+Ver. 2.07	内部変数 PTYMODE, PTYTERM, PTYMENUKEY の追加。
+ (05/26/05)	内部変数 DEFKCODE の追加。
+		分割ウィンドウの最大数を 5 に拡張。
+		WIDEN_WINDOW, NARROW_WINDOW, KILL_WINDOW コマンドの追加。
+		環境変数 COLUMNS, LINES の値を動的に変更する仕様に。
 
-Ver. 2.06d	/etc/fd2rc $B$N%$%s%9%H!<%k@h$r%3%s%Q%$%k;~$K;XDj2DG=$K!#(B
- (05/10/05)	$B%U%m%C%T!<%I%i%$%V$N6X;_%U%!%$%kL>$K(B COM5-COM9 $B$rDI2C!#(B
-		$B4X?tFb$K%R%"%I%-%e%a%s%H$r5-=R$G$-$J$+$C$?E@$r=$@5!#(B
-		$B%U%!%$%kL>Jd40;~$K2hLL$,Jx$l$k$3$H$,$"$kE@$r=$@5!#(B
-		$BAH9~$_%3%^%s%I$N%Q%$%W=hM}$G;R%W%m%;%9$,0[>o=*N;$9$kE@$r=$@5!#(B
-		$BF|K\8l%G%#%l%/%H%j$+$i$N5/F0;~$K0[>o=*N;$9$kE@$r=$@5!#(B
-		fdsh $B$G%&%#%s%I%&J,3d$N$^$^(B fd $B$rH4$1$k$H0[>o=*N;$9$kE@$r=$@5!#(B
-		$B;R%W%m%;%9<B9TCf$N2hLL%5%$%:JQ99$KBP1~$7$F$$$J$+$C$?E@$r=$@5!#(B
+Ver. 2.06d	/etc/fd2rc のインストール先をコンパイル時に指定可能に。
+ (05/10/05)	フロッピードライブの禁止ファイル名に COM5-COM9 を追加。
+		関数内にヒアドキュメントを記述できなかった点を修正。
+		ファイル名補完時に画面が崩れることがある点を修正。
+		組込みコマンドのパイプ処理で子プロセスが異常終了する点を修正。
+		日本語ディレクトリからの起動時に異常終了する点を修正。
+		fdsh でウィンドウ分割のまま fd を抜けると異常終了する点を修正。
+		子プロセス実行中の画面サイズ変更に対応していなかった点を修正。
 
-Ver. 2.06c	$B%+%9%?%^%$%6$KJQ?tDj5A$N:o=|5!G=$rDI2C!#(B
- (02/23/05)	$B%a%?J8;z$r4^$`%U%!%$%kL>$r<}$a$?%"!<%+%$%V$NE83+%_%9$r=$@5!#(B
+Ver. 2.06c	カスタマイザに変数定義の削除機能を追加。
+ (02/23/05)	メタ文字を含むファイル名を収めたアーカイブの展開ミスを修正。
 
-Ver. 2.06b	UTF-8 $B%3!<%I$K$h$k%-!<F~NO$KBP1~!#(B
- (12/14/04)	$BA4$F$N%U%!%$%k%5%$%:$r(B 0 $B$HI=<($7$F$7$^$&(B OS $B4D6-$KBP1~!#(B
-		Cygwin $B4D6-$G(B FDD $B$X$NL5BL$J%"%/%;%9$rM^@)!#(B
-		ShiftJIS $B4D6-$G0lIt4A;z$,F~NO$G$-$J$$E@$r=$@5!#(B
+Ver. 2.06b	UTF-8 コードによるキー入力に対応。
+ (12/14/04)	全てのファイルサイズを 0 と表示してしまう OS 環境に対応。
+		Cygwin 環境で FDD への無駄なアクセスを抑制。
+		ShiftJIS 環境で一部漢字が入力できない点を修正。
 
-Ver. 2.06a	$B%^!<%/%U%!%$%k$X$N=hM}$G@_LdCf$N(B interrupt $B%-!<$rM-8z$K!#(B
- (09/08/04)	$B%j%s%/<BBN$,F1$8%U%!%$%k$X$N%3%T!<$,<:GT$7$F$$$?E@$r=$@5!#(B
-		$B%7%s%\%j%C%/%j%s%/$N>e=q$-%3%T!<$,$G$-$J$+$C$?E@$r=$@5!#(B
-		$BF|K\8lJ8;zNs$r4^$`%^%/%mE83+$K<:GT$7$F$$$?E@$r=$@5!#(B
-		$B<BBN$NL5$$%7%s%\%j%C%/%j%s%/L>Jd40$K<:GT$7$F$$$?E@$r=$@5!#(B
-		$B%U%!%$%k0\F0$N%-%c%s%;%k;~$K%+!<%=%k0LCV$,0\F0$9$kE@$r=$@5!#(B
+Ver. 2.06a	マークファイルへの処理で設問中の interrupt キーを有効に。
+ (09/08/04)	リンク実体が同じファイルへのコピーが失敗していた点を修正。
+		シンボリックリンクの上書きコピーができなかった点を修正。
+		日本語文字列を含むマクロ展開に失敗していた点を修正。
+		実体の無いシンボリックリンク名補完に失敗していた点を修正。
+		ファイル移動のキャンセル時にカーソル位置が移動する点を修正。
 
-Ver. 2.06	$B5/F0;~$NBh(B 2 $B0z?t$K$h$kBh(B 2 $B2hLL$N%G%#%l%/%H%j;XDj$rDI2C!#(B
- (08/10/04)	$BJ8;zNsF~NO;~$NMzNr%$%s%/%j%a%s%?%k%5!<%A$rDI2C!#(B
-		$BAH9~$_%3%^%s%I(B builtin, enable $B$rDI2C!#(B
-		$B5/F0%*%W%7%g%s(B -l, -N $B$NDI2C!#(B
-		$BFbB"%7%'%k$G(B "" $B$NCf$K(B `` $B$rF~$l;R$K$G$-$k$h$&5!G=3HD%!#(B
+Ver. 2.06	起動時の第 2 引数による第 2 画面のディレクトリ指定を追加。
+ (08/10/04)	文字列入力時の履歴インクリメンタルサーチを追加。
+		組込みコマンド builtin, enable を追加。
+		起動オプション -l, -N の追加。
+		内蔵シェルで "" の中に `` を入れ子にできるよう機能拡張。
 
-Ver. 2.05h	fdsh $B$+$i0z?tIU$G(B fd $B$r5/F0$7$?;~$K%U%j!<%:$7$F$$$?E@$r=$@5!#(B
- (07/27/04)	./.. $B$r%Q%9L>$K4^$`%U%!%$%k$rG<$a$?%"!<%+%$%V$NE83+%_%9$r=$@5!#(B
-		$BF|K\8l%U%!%$%kL>$X$N%7%s%\%j%C%/%j%s%/I=<($NJ8;z2=$1$r=$@5!#(B
-		$BF~NOJ8;zNs$NBgJ8;z>.J8;zJQ995!G=$N%+!<%=%k0LCV;XDj%_%9$r=$@5!#(B
-		$B%U%!%$%kL>%$%s%/%j%a%s%?%k%5!<%A$N%+!<%=%k0LCV;XDj%_%9$r=$@5!#(B
+Ver. 2.05h	fdsh から引数付で fd を起動した時にフリーズしていた点を修正。
+ (07/27/04)	./.. をパス名に含むファイルを納めたアーカイブの展開ミスを修正。
+		日本語ファイル名へのシンボリックリンク表示の文字化けを修正。
+		入力文字列の大文字小文字変更機能のカーソル位置指定ミスを修正。
+		ファイル名インクリメンタルサーチのカーソル位置指定ミスを修正。
 
-Ver. 2.05g	$B%G%#%l%/%H%j;XDj;~$N5/F0%*%W%7%g%s$,8z$$$F$$$J$+$C$?E@$r=$@5!#(B
- (07/07/04)	$B%U%!%$%kL>Jd40;~$N%=!<%H=g$,$*$+$7$+$C$?E@$r=$@5!#(B
-		UNIX $BHG$+$iAH9~$_%3%^%s%I(B mkdir/rmdir $B$r:o=|!#(B
-		SIGSTOP/SIGCONT $B$rFH<+$KA`:n$9$k(B kernel $B$KBP1~!#(B
+Ver. 2.05g	ディレクトリ指定時の起動オプションが効いていなかった点を修正。
+ (07/07/04)	ファイル名補完時のソート順がおかしかった点を修正。
+		UNIX 版から組込みコマンド mkdir/rmdir を削除。
+		SIGSTOP/SIGCONT を独自に操作する kernel に対応。
 
-Ver. 2.05f	$B!V(B\$B!W$G=*$o$k%3%^%s%I9T$r@5$7$/=hM}$G$-$J$$E@$r=$@5!#(B
- (06/23/04)	$B%"!<%+%$%V%V%i%&%6$G%^!<%/$,$"$k;~$N%i%s%A%c5/F0%_%9$r=$@5!#(B
-		USEGETCURSOR $B$,5!G=$7$F$$$J$+$C$?E@$r=$@5!#(B
-		$B5/F0%*%W%7%g%s(B -r $B$,8z$$$F$$$J$+$C$?E@$r=$@5!#(B
-		vi $B%b!<%I$N9TJT=8$r2~A1!#(B
-		$B?7C<Kv%i%$%s%G%#%7%W%j%sHsBP1~$N%(%i!<$rL5;k$9$k$h$&=$@5!#(B
+Ver. 2.05f	「\」で終わるコマンド行を正しく処理できない点を修正。
+ (06/23/04)	アーカイブブラウザでマークがある時のランチャ起動ミスを修正。
+		USEGETCURSOR が機能していなかった点を修正。
+		起動オプション -r が効いていなかった点を修正。
+		vi モードの行編集を改善。
+		新端末ラインディシプリン非対応のエラーを無視するよう修正。
 
-Ver. 2.05e	$B%3%T!<@h;XDj;~$K(B / $B$G=*$o$C$F$$$k$H%3%T!<$K<:GT$9$kE@$r=$@5!#(B
- (06/09/04)	$B0zMQId$N30$K$"$k(B wild card $B$,E83+$5$l$J$+$C$?E@$r=$@5!#(B
-		$B%G%#%l%/%H%j%R%9%H%j$N%a%?J8;z$r%(%9%1!<%W$9$k$h$&$K=$@5!#(B
-		$B%U%!%$%kL>Jd40$,%U%!%$%kL>$HL54X78$JF~NO$GM-8z$@$C$?E@$r=$@5!#(B
-		$B%^!<%/%U%!%$%k$X$N(B ATTR_FILE $B;~$K(B chflags() $B$7$F$$$?E@$r=$@5!#(B
-		$B%G%#%l%/%H%j=q9~$_5!G=$r(B ext3 file system $B$K$b5v2D!#(B
+Ver. 2.05e	コピー先指定時に / で終わっているとコピーに失敗する点を修正。
+ (06/09/04)	引用符の外にある wild card が展開されなかった点を修正。
+		ディレクトリヒストリのメタ文字をエスケープするように修正。
+		ファイル名補完がファイル名と無関係な入力で有効だった点を修正。
+		マークファイルへの ATTR_FILE 時に chflags() していた点を修正。
+		ディレクトリ書込み機能を ext3 file system にも許可。
 
-Ver. 2.05d	PS1 $B$N(B \$ $B$,5!G=$7$F$$$J$+$C$?E@$r=$@5!#(B
- (05/12/04)	PS1 $B$N(B \~ $B$,@5$7$/E83+$5$l$J$$$3$H$,$"$C$?E@$r=$@5!#(B
-		fdsh $B$+$i(B fd $B5/F0;~$K%+%l%s%H%G%#%l%/%H%j$,La$i$J$$E@$r=$@5!#(B
-		$B05=L%U%!%$%kE83+@h$K0l;~%G%#%l%/%H%j$rA*$s$@;~$N7Y9p$rDI2C!#(B
+Ver. 2.05d	PS1 の \$ が機能していなかった点を修正。
+ (05/12/04)	PS1 の \~ が正しく展開されないことがあった点を修正。
+		fdsh から fd 起動時にカレントディレクトリが戻らない点を修正。
+		圧縮ファイル展開先に一時ディレクトリを選んだ時の警告を追加。
 
-Ver. 2.05c	bind $B$G%^%/%m:F3dEv$F;~$KB>$N%^%/%m$,3dEv$F$i$l$F$$$?E@$r=$@5!#(B
- (02/04/04)	Cygwin $B$G(B make install $B$G$-$J$+$C$?E@$r=$@5!#(B
+Ver. 2.05c	bind でマクロ再割当て時に他のマクロが割当てられていた点を修正。
+ (02/04/04)	Cygwin で make install できなかった点を修正。
 
-Ver. 2.05b	$BJ8;zNsF~NO;~$K(B InsLine $B%-!<$G0[>o=*N;$7$F$$$?E@$r=$@5!#(B
- (01/14/04)	getopt $B$N%*%W%7%g%sJ8;z$K1Q>.J8;z$7$+;H$($J$+$C$?E@$r=$@5!#(B
-		EUC $B4D6-$GJR2>L>%-!<$K%-!<3dEv$F$G$-$J$+$C$?E@$r=$@5!#(B
-		16bit OS $B$G=i4|@_Dj%U%!%$%k%(%i!<I=<($,$*$+$7$+$C$?E@$r=$@5!#(B
-		CODEEUC $BL$;XDj;~$KJ8;zNsF~NO$G%+!<%=%k$rLa$;$J$+$C$?E@$r=$@5!#(B
-		terminfo $B4D6-$GC<KvI=<($,$*$+$7$/$J$k$3$H$,$"$kE@$r=$@5!#(B
+Ver. 2.05b	文字列入力時に InsLine キーで異常終了していた点を修正。
+ (01/14/04)	getopt のオプション文字に英小文字しか使えなかった点を修正。
+		EUC 環境で片仮名キーにキー割当てできなかった点を修正。
+		16bit OS で初期設定ファイルエラー表示がおかしかった点を修正。
+		CODEEUC 未指定時に文字列入力でカーソルを戻せなかった点を修正。
+		terminfo 環境で端末表示がおかしくなることがある点を修正。
 
-Ver. 2.05a	$BAH9~$_%3%^%s%I(B checkid $B$N=PNO$,4V0c$C$F$$$?E@$r=$@5!#(B
+Ver. 2.05a	組込みコマンド checkid の出力が間違っていた点を修正。
  (12/10/03)
 
-Ver. 2.05	$BBP1~4A;z%3!<%I$K(B utf8-mac $B$rDI2C!#(B
- (12/03/03)	$BFbItJQ?t(B LOOPCURSOR, TRADLAYOUT $B$NDI2C!#(B
-		$BFbItJQ?t(B UNICODEBUFFER $B$NDI2C!#(B
-		UNIX $BHG$K$b(B COMMAND.COM $BFbB"%3%^%s%I$rDI2C!#(B
-		$B%0%k!<%W$N0[$J$k%U%!%$%k$,:.:_$9$k$H0[>o=*N;$7$F$$$?E@$r=$@5!#(B
-		$B%+%9%?%^%$%6$G@5$7$/%-!<3dEv$F$G$-$J$+$C$?E@$r=$@5!#(B
-		$B%+%9%?%^%$%6$G@5$7$/>e=q$-J]B8$G$-$J$$$3$H$,$"$C$?E@$r=$@5!#(B
+Ver. 2.05	対応漢字コードに utf8-mac を追加。
+ (12/03/03)	内部変数 LOOPCURSOR, TRADLAYOUT の追加。
+		内部変数 UNICODEBUFFER の追加。
+		UNIX 版にも COMMAND.COM 内蔵コマンドを追加。
+		グループの異なるファイルが混在すると異常終了していた点を修正。
+		カスタマイザで正しくキー割当てできなかった点を修正。
+		カスタマイザで正しく上書き保存できないことがあった点を修正。
 
-Ver. 2.04c	Cygwin $BBP1~!#(B
- (10/15/03)	$BI8=`F~NO%j%@%$%l%/%H;~$K5sF0$,$*$+$7$+$C$?E@$r=$@5!#(B
-		PRECEDEPATH $B;XDj;~$K>pJsI=<($5$l$J$+$C$?E@$r=$@5!#(B(MS-DOS $BHG(B)
-		IRIX $B$G%"!<%+%$%V%V%i%&%6$NI=<(FbMF$,$*$+$7$+$C$?E@$r=$@5!#(B
-		$B%"!<%+%$%V%V%i%&%6$,%U%j!<%:$9$k$3$H$,$"$C$?E@$r=$@5!#(B
-		$BFbIt%3%^%s%I(B exec $B$G%j%@%$%l%/%H;~$K%U%j!<%:$7$F$$$?E@$r=$@5!#(B
+Ver. 2.04c	Cygwin 対応。
+ (10/15/03)	標準入力リダイレクト時に挙動がおかしかった点を修正。
+		PRECEDEPATH 指定時に情報表示されなかった点を修正。(MS-DOS 版)
+		IRIX でアーカイブブラウザの表示内容がおかしかった点を修正。
+		アーカイブブラウザがフリーズすることがあった点を修正。
+		内部コマンド exec でリダイレクト時にフリーズしていた点を修正。
 
-Ver. 2.04b	$BC<Kv$r;}$?$J$$4D6-$G(B fdsh $B$,<B9T$G$-$J$+$C$?E@$r=$@5!#(B
- (09/17/03)	fdsh $B$N(B -c $B%*%W%7%g%s$GMzNr$r07$&$H%U%j!<%:$7$F$$$?E@$r=$@5!#(B
+Ver. 2.04b	端末を持たない環境で fdsh が実行できなかった点を修正。
+ (09/17/03)	fdsh の -c オプションで履歴を扱うとフリーズしていた点を修正。
 
-Ver. 2.04a	varargs $B$rMQ$$$k4D6-$G(B compile $B$K<:GT$7$F$$$?E@$r=$@5!#(B
- (07/24/03)	FreeBSD 5.x $B$G(B compile $B$G$-$J$+$C$?E@$r=$@5!#(B
-		Linux/Alpha $B$G(B file system $BMFNLI=<($,$*$+$7$+$C$?E@$r=$@5!#(B
-		$BFbIt%3%^%s%I(B dir $B$N%?%$%`%9%?%s%WI=5-%_%9$r=$@5!#(B(MS-DOS $BHG(B)
+Ver. 2.04a	varargs を用いる環境で compile に失敗していた点を修正。
+ (07/24/03)	FreeBSD 5.x で compile できなかった点を修正。
+		Linux/Alpha で file system 容量表示がおかしかった点を修正。
+		内部コマンド dir のタイムスタンプ表記ミスを修正。(MS-DOS 版)
 
-Ver. 2.04	$BFbItJQ?t(B DUMBSHELL, HISTFILE $B$NDI2C!#(B
- (06/25/03)	POSIX $B$K9g$;$FFbItJQ?t(B ENV, LINENO, PPID, PS4 $B$NDI2C!#(B
-		$BC<KvL>MQFbItJQ?t(B TERM $B$NF0E*JQ99$KBP1~!#(B
-		$B%+%l%s%H%G%#%l%/%H%jMQFbItJQ?t(B PWD $B$N;2>H$KBP1~!#(B
-		$BJ8;zNsF~NO;~$N(B Tab $B$K$h$kFbItJQ?tL>Jd40$KBP1~!#(B
-		$B0lIt$N(B OS $B8~$1$K(B Large File Summit (2GB $BD6%U%!%$%k(B) $BBP1~!#(B
-		$B%U%!%$%k%5%$%:$NI=<(7e?t@)8B$r3HD%!#(B
-		System V $BMQ$KCV49$(4X?t$rMQ0U!#(B
-		$B0lIt(B System V $B$G;R%W%m%;%9<B9T$,$G$-$J$+$C$?E@$r=$@5!#(B
-		GNU Emacs $B$+$i$N5/F0;~$KA`:nITG=$K4Y$C$F$$$?E@$r=$@5!#(B
-		$B%+%9%?%^%$%6$NF0:n$K0lIt;Y>c$,$"$C$?E@$r=$@5!#(B
-		$B%7%s%\%j%C%/%j%s%/$r@5$7$/C)$l$J$$>l9g$,$"$C$?E@$r=$@5!#(B
-		fdsh $B$G$N%U%m%C%T!<%I%i%$%V4A;z%3!<%I$N07$$%_%9$r=$@5!#(B
-		$B0lIt$N4D6-$G$N%G%#%l%/%H%j=q9~$_ITNI$r=$@5!#(B
+Ver. 2.04	内部変数 DUMBSHELL, HISTFILE の追加。
+ (06/25/03)	POSIX に合せて内部変数 ENV, LINENO, PPID, PS4 の追加。
+		端末名用内部変数 TERM の動的変更に対応。
+		カレントディレクトリ用内部変数 PWD の参照に対応。
+		文字列入力時の Tab による内部変数名補完に対応。
+		一部の OS 向けに Large File Summit (2GB 超ファイル) 対応。
+		ファイルサイズの表示桁数制限を拡張。
+		System V 用に置換え関数を用意。
+		一部 System V で子プロセス実行ができなかった点を修正。
+		GNU Emacs からの起動時に操作不能に陥っていた点を修正。
+		カスタマイザの動作に一部支障があった点を修正。
+		シンボリックリンクを正しく辿れない場合があった点を修正。
+		fdsh でのフロッピードライブ漢字コードの扱いミスを修正。
+		一部の環境でのディレクトリ書込み不良を修正。
 
-Ver. 2.03b	$B%3%^%s%I0z?t0J30$N2U=j$K(B %T, %M $B%^%/%m$r;H$($J$+$C$?E@$r=$@5!#(B
- (05/15/03)	$B%U%m%C%T!<%I%i%$%V$NF|K\8l%U%!%$%kL>$,FI$a$J$+$C$?E@$r=$@5!#(B
-		$B%U%m%C%T!<%I%i%$%V$N%G%#%l%/%H%j=q9~$_$,$G$-$J$+$C$?E@$r=$@5!#(B
-		directory $BFb$K(B symbolic link $B$,$"$k$H0[>o=*N;$7$F$$$?E@$r=$@5!#(B
-		System V $B$N?.Mj@-$N$J$$(B signal() $B$KBP=h!#(B
-		$B6uJQ?t$KBP$7(B ${%}, ${#} $B$,$*$+$7$JCM$rJV$7$F$$$?E@$r=$@5!#(B
+Ver. 2.03b	コマンド引数以外の箇所に %T, %M マクロを使えなかった点を修正。
+ (05/15/03)	フロッピードライブの日本語ファイル名が読めなかった点を修正。
+		フロッピードライブのディレクトリ書込みができなかった点を修正。
+		directory 内に symbolic link があると異常終了していた点を修正。
+		System V の信頼性のない signal() に対処。
+		空変数に対し ${%}, ${#} がおかしな値を返していた点を修正。
 
-Ver. 2.03a	$B%+%i!<I=<(;~$N=i4|@_DjG[?'$,JQ$o$C$F$$$?$N$r=$@5!#(B
- (04/15/03)	$B4X?tL>$K1Q?t;z0J30$r;H$($F$7$^$C$F$$$?E@$r=$@5!#(B
-		$B%+%l%s%H%G%#%l%/%H%jAS<:;~$N;Y>c$r=$@5!#(B
+Ver. 2.03a	カラー表示時の初期設定配色が変わっていたのを修正。
+ (04/15/03)	関数名に英数字以外を使えてしまっていた点を修正。
+		カレントディレクトリ喪失時の支障を修正。
 
-Ver. 2.03	$BAH9~$_%3%^%s%I(B browse $B$NDI2C!#(B
- (03/26/03)	$BAH9~$_%3%^%s%I(B readline, yesno $B$NDI2C!#(B
-		$BFbItJQ?t(B ANSIPALETTE $B$NDI2C!#(B
-		$BFbItJQ?t(B TMPUMASK $B$NDI2C!#(B
-		$BAH9~$_%3%^%s%I(B launch $B$K(B -f, -i, -e, -t, -b $B%*%W%7%g%s$NDI2C!#(B
-		$B%"!<%+%$%V%V%i%&%6EPO?%U%)!<%^%C%H$K(B %l, * $B$rDI2C!#(B
-		%T, %M $B%^%/%m$r%9%F!<%H%a%s%HCf$G;HMQ2DG=$J$h$&$K2~NI!#(B
-		$B%3%^%s%I%^%/%mE83+8e$N%5%$%:@)8B(B (1023 $BJ8;z(B) $B$rE1GQ!#(B
-		$BJ8;zNsF~NO;~$N%5%$%:@)8B(B (255 $BJ8;z(B) $B$rE1GQ!#(B
-		$B%"!<%+%$%V%V%i%&%6$,(B FNAMEKCODE $B$K=>$&$h$&$K2~NI!#(B
-		'/' $B$G;O$a$k%U%!%$%k8!:w$,8z$+$J$$>l9g$,$"$kE@$r=$@5!#(B
-		32 $BJ8;z0J>e$N(B wild card $B$r;H$&$H0[>o=*N;$7$F$$$?E@$r=$@5!#(B
-		$B%Q%$%W$,0BA4$K=*N;$G$-$J$$$3$H$,$"$kE@$r=$@5!#(B
-		$B0l;~%G%#%l%/%H%j$,;D$C$F$7$^$&$3$H$,$"$k%P%0$r=$@5!#(B
-		$BC<Kv@)8f$NIT40A4$J?F%7%'%k$+$i$N5/F0$KBP1~!#(B
-		$B:F5"E*$K%G%#%l%/%H%j$rC)$k:n6H$,CfCG$9$k$3$H$,$"$kE@$r=$@5!#(B
-		$B:G>.2hLL9=@.$G(B EDIT_CONFIG $B$,0[>o=*N;$7$F$$$?E@$r=$@5!#(B
-		$B:G>.2hLL9=@.$G3F<oA*Br%a%K%e!<$,Jx$l$F$$$?E@$r=$@5!#(B
-		MS-DOS $BHG$G(B % $B$K$h$j%a%?%-%c%i%/%?$r;&$;$F$$$J$+$C$?E@$r=$@5!#(B
+Ver. 2.03	組込みコマンド browse の追加。
+ (03/26/03)	組込みコマンド readline, yesno の追加。
+		内部変数 ANSIPALETTE の追加。
+		内部変数 TMPUMASK の追加。
+		組込みコマンド launch に -f, -i, -e, -t, -b オプションの追加。
+		アーカイブブラウザ登録フォーマットに %l, * を追加。
+		%T, %M マクロをステートメント中で使用可能なように改良。
+		コマンドマクロ展開後のサイズ制限 (1023 文字) を撤廃。
+		文字列入力時のサイズ制限 (255 文字) を撤廃。
+		アーカイブブラウザが FNAMEKCODE に従うように改良。
+		'/' で始めるファイル検索が効かない場合がある点を修正。
+		32 文字以上の wild card を使うと異常終了していた点を修正。
+		パイプが安全に終了できないことがある点を修正。
+		一時ディレクトリが残ってしまうことがあるバグを修正。
+		端末制御の不完全な親シェルからの起動に対応。
+		再帰的にディレクトリを辿る作業が中断することがある点を修正。
+		最小画面構成で EDIT_CONFIG が異常終了していた点を修正。
+		最小画面構成で各種選択メニューが崩れていた点を修正。
+		MS-DOS 版で % によりメタキャラクタを殺せていなかった点を修正。
 
-Ver. 2.02b	$B%/%m%9%3%s%Q%$%k4D6-$KBP1~!#(B
- (02/26/03)	64bit OS $BMQ$NBP1~!#(B
-		$BC<Kv$NI,MW:G>.%+%i%`?t$r(B 34 $B$K4KOB!#(B
-		$BC<Kv(B erase $BJ8;z$r(B BS $B%-!<$H$7$F;H$($k$h$&$K2~NI!#(B
-		$B%"!<%+%$%V%U%!%$%kCf$N%7%s%\%j%C%/%j%s%/$N=hM}%_%9$r=$@5!#(B
-		$B5?;w(B RockRidge $B3HD%5!G=$N%7%s%\%j%C%/%j%s%/$N=hM}%_%9$r=$@5!#(B
-		$B%G%#%l%/%H%j0\F0<:GT;~$K0[>o=*N;$7$F$$$?E@$r=$@5!#(B
-		$BO@M}%G%#%l%/%H%j0\F0$,@5$7$/5!G=$7$F$$$J$+$C$?E@$r=$@5!#(B
-		$B%7%'%k$N%5%9%Z%s%I;~$NC<Kv@)8f$r$h$jCzG+$K2~NI!#(B
-		wild card $B$N%a%?J8;z$r!V(B\$B!W$GL58z2=$G$-$J$+$C$?%P%0$r=$@5!#(B
-		&& $B$H(B || $B$NI>2A%_%9$r=$@5!#(B
-		$BJQ?tL>$K?t;z$r;H$($J$+$C$?E@$r=$@5!#(B
-		${##} $B$,@5$7$/5!G=$7$F$$$J$+$C$?%P%0$r=$@5!#(B
-		$(()) $B$N1i;;;R(B | $B$,(B ^ $B$H$7$F07$o$l$F$$$?%P%0$r=$@5!#(B
-		$(()) $B$,Ii?t$r07$($J$+$C$?%P%0$r=$@5!#(B
-		$(()) $B$G(B 8 $B?J?t5Z$S(B 16 $B?J?t$r;H$($J$+$C$?%P%0$r=$@5!#(B
+Ver. 2.02b	クロスコンパイル環境に対応。
+ (02/26/03)	64bit OS 用の対応。
+		端末の必要最小カラム数を 34 に緩和。
+		端末 erase 文字を BS キーとして使えるように改良。
+		アーカイブファイル中のシンボリックリンクの処理ミスを修正。
+		疑似 RockRidge 拡張機能のシンボリックリンクの処理ミスを修正。
+		ディレクトリ移動失敗時に異常終了していた点を修正。
+		論理ディレクトリ移動が正しく機能していなかった点を修正。
+		シェルのサスペンド時の端末制御をより丁寧に改良。
+		wild card のメタ文字を「\」で無効化できなかったバグを修正。
+		&& と || の評価ミスを修正。
+		変数名に数字を使えなかった点を修正。
+		${##} が正しく機能していなかったバグを修正。
+		$(()) の演算子 | が ^ として扱われていたバグを修正。
+		$(()) が負数を扱えなかったバグを修正。
+		$(()) で 8 進数及び 16 進数を使えなかったバグを修正。
 
-Ver. 2.02a	$B%U%m%C%T!<%I%i%$%V$X$N%"!<%+%$%V%U%!%$%k05=L?-D9$r2DG=$K!#(B
- (12/25/02)	$B0l;~%U%!%$%k$N%G%#%l%/%H%jL>$rMp?t$G@8@.$9$k$h$&2~NI!#(B
-		EXECUTE_SH $B$G0lIt$NFbIt%3%^%s%I<B9T;~$KCfCG$7$F$7$^$&E@$r=$@5!#(B
-		$B:F5"E*$K%G%#%l%/%H%j$rC)$k:n6H$K$h$j0[>o=*N;$9$kE@$r=$@5!#(B
-		$B%U%!%$%kB0@-JQ99;~$K0lIt$N(B OS $B$G0[>o=*N;$7$F$$$?E@$r=$@5!#(B
+Ver. 2.02a	フロッピードライブへのアーカイブファイル圧縮伸長を可能に。
+ (12/25/02)	一時ファイルのディレクトリ名を乱数で生成するよう改良。
+		EXECUTE_SH で一部の内部コマンド実行時に中断してしまう点を修正。
+		再帰的にディレクトリを辿る作業により異常終了する点を修正。
+		ファイル属性変更時に一部の OS で異常終了していた点を修正。
 
-Ver. 2.02	$BAH9~$_%3%^%s%I(B pushd, popd, dirs $B$NDI2C!#(B
- (11/26/02)	$BAH9~$_%3%^%s%I(B cd, pwd $B$K(B -L, -P $B%*%W%7%g%s$NDI2C!#(B
-		$BAH9~$_%3%^%s%I(B set $B$K(B -o physical $B%*%W%7%g%s$NDI2C!#(B
-		%JA $B%^%/%m$NDI2C!#(B
-		$BFbItJQ?t(B MAIL, MAILPATH, MAILCHECK $B$NDI2C!#(B
-		POSIX $B$K9g$;$FCV49(B ${#foo}, ${foo%bar}, ${foo#bar} $B$NDI2C!#(B
-		POSIX $B$K9g$;$FE83+I=8=(B $(command), $((expression)) $B$NDI2C!#(B
-		$BAH9~$_%3%^%s%I(B dtype $B$NDI2C!#(B(MS-DOS $BHG(B)
-		$BAH9~$_%3%^%s%I(B dir $B$K(B /S, /4 $B%*%W%7%g%s$NDI2C!#(B(MS-DOS $BHG(B)
-		fdsh $B$N%3%^%s%I%i%$%sF~NOD9$r(B 2 $B9T$+$i(B 255 $BJ8;z$K3HBg!#(B
-		$B%;%-%e%j%F%#$N$?$a0l;~%U%!%$%kL>$rMp?t$G@8@.$9$k$h$&$K2~NI!#(B
-		$B%U%m%C%T!<%I%i%$%V>e$K!V(B.$B!W!V(B..$B!W$,8=$l$J$$%P%0$r=$@5!#(B
-		$B%R%"%I%-%e%a%s%H(B(<<) $B$,%9%F!<%H%a%s%HFb$G;H$($J$$%P%0$r=$@5!#(B
-		$B%U%m%C%T!<%I%i%$%V$r0z?t$K$7$F5/F0$9$k$H%Q%9$,2u$l$kE@$r=$@5!#(B
-		$B@h9T%U%!%$%kI=<(;~$K0lIt$N%3%^%s%I$,8mF0:n$9$kE@$r=$@5!#(B
-		$B%7%'%k$N%3%^%s%I%i%$%s0z?t$NI>2A$r$h$j87L)$K!#(B
-		RRPATH $B$H(B FNAMEKCODE $B$,=EJ#$7$F5!G=$7$J$+$C$?E@$r=$@5!#(B
-		DJGPP $B$H(B Borland C++ $B4D6-$G$N(B CON $B$N%j%@%$%l%/%H$N;Y>c$r=$@5!#(B
-		$B%U%m%C%T!<%I%i%$%V$N6u$-MFNL7W;;%_%9$r=$@5!#(B
-		$B%+%9%?%^%$%6$N@_DjJ]B85!G=$,@5$7$/F/$$$F$$$J$+$C$?E@$r=$@5!#(B
-		$B@8(B MS-DOS $B4D6-$G%G%#%l%/%H%j=q9~$_$G$-$J$$$3$H$,$"$kE@$r=$@5!#(B
+Ver. 2.02	組込みコマンド pushd, popd, dirs の追加。
+ (11/26/02)	組込みコマンド cd, pwd に -L, -P オプションの追加。
+		組込みコマンド set に -o physical オプションの追加。
+		%JA マクロの追加。
+		内部変数 MAIL, MAILPATH, MAILCHECK の追加。
+		POSIX に合せて置換 ${#foo}, ${foo%bar}, ${foo#bar} の追加。
+		POSIX に合せて展開表現 $(command), $((expression)) の追加。
+		組込みコマンド dtype の追加。(MS-DOS 版)
+		組込みコマンド dir に /S, /4 オプションの追加。(MS-DOS 版)
+		fdsh のコマンドライン入力長を 2 行から 255 文字に拡大。
+		セキュリティのため一時ファイル名を乱数で生成するように改良。
+		フロッピードライブ上に「.」「..」が現れないバグを修正。
+		ヒアドキュメント(<<) がステートメント内で使えないバグを修正。
+		フロッピードライブを引数にして起動するとパスが壊れる点を修正。
+		先行ファイル表示時に一部のコマンドが誤動作する点を修正。
+		シェルのコマンドライン引数の評価をより厳密に。
+		RRPATH と FNAMEKCODE が重複して機能しなかった点を修正。
+		DJGPP と Borland C++ 環境での CON のリダイレクトの支障を修正。
+		フロッピードライブの空き容量計算ミスを修正。
+		カスタマイザの設定保存機能が正しく働いていなかった点を修正。
+		生 MS-DOS 環境でディレクトリ書込みできないことがある点を修正。
 
-Ver. 2.01c	symbolic link $B$N%U%!%$%kL>I=<(HO0O$NJQ99$r3HD%!#(B
- (10/01/02)	. $B$r%Q%9L>$K4^$`%U%!%$%k$rG<$a$?%"!<%+%$%V$NE83+%_%9$r=$@5!#(B
-		$B%U%!%$%kL>Jd40$K4X$9$k<c43$N=$@5!#(B
-		%T $B%^%/%m$ND>A0D>8e$N6h@Z$j;R$,7+JV$7E83+$5$l$F$7$^$&E@$r=$@5!#(B
-		$B%U%!%$%kL>JQ99;~$K%a%?J8;z$rI>2A$7$J$$$h$&$KJQ99!#(B
-		$B%"!<%+%$%PEPO?$N4{DjCM$K(B .taz, .tgz $B$rDI2C!#(B
-		.zip, .zoo $BMQ$N(B format $BJ8;zNs$N8m$j$r=$@5!#(B
+Ver. 2.01c	symbolic link のファイル名表示範囲の変更を拡張。
+ (10/01/02)	. をパス名に含むファイルを納めたアーカイブの展開ミスを修正。
+		ファイル名補完に関する若干の修正。
+		%T マクロの直前直後の区切り子が繰返し展開されてしまう点を修正。
+		ファイル名変更時にメタ文字を評価しないように変更。
+		アーカイバ登録の既定値に .taz, .tgz を追加。
+		.zip, .zoo 用の format 文字列の誤りを修正。
 
-Ver. 2.01b	$B%"!<%+%$%V%V%i%&%6Fb$G$b(B LOG_DIR $B$r2DG=$K$7$?!#(B
- (07/10/02)	$BEPO?%U%)!<%^%C%HITE,9g;~$N%"!<%+%$%V%V%i%&%60[>o=*N;$r=$@5!#(B
-		$B%"!<%+%$%V%V%i%&%6Fb$G%G%#%l%/%H%j$r?-D9$G$-$J$+$C$?E@$r=$@5!#(B
-		$B%U%!%$%kL>Jd40$K4X$9$k<c43$N=$@5!#(B
+Ver. 2.01b	アーカイブブラウザ内でも LOG_DIR を可能にした。
+ (07/10/02)	登録フォーマット不適合時のアーカイブブラウザ異常終了を修正。
+		アーカイブブラウザ内でディレクトリを伸長できなかった点を修正。
+		ファイル名補完に関する若干の修正。
 
-Ver. 2.01a	$B!V(Ba:$B!W7A<0$N%U%!%$%kL>$r07$&$H0[>o=*N;$7$F$$$?E@$r=$@5!#(B
- (06/10/02)	case $B$N9=J8%(%i!<;~$K(B freeze $B$7$F$$$?E@$r=$@5!#(B
+Ver. 2.01a	「a:」形式のファイル名を扱うと異常終了していた点を修正。
+ (06/10/02)	case の構文エラー時に freeze していた点を修正。
 
-Ver. 2.01	POSIX $B$K9g$;$F(B true/false/command/getopts/newgrp/fc $B$NDI2C!#(B
- (05/08/02)	POSIX $B$K9g$;$F(B set $B$K(B -o, -b, -C option $B$NDI2C!#(B
-		-C option $B$KH<$$%j%@%$%l%/%H5-=R;R(B >|, &>| $B$NDI2C!#(B
-		$B%j%@%$%l%/%H5-=R;R(B &>> $B$NDI2C!#(B
-		$BAH9~$_%3%^%s%I(B login, logout, disown $B$NDI2C!#(B
-		$B%3%^%s%I6h@Z$j;R(B &| $B$NDI2C!#(B
-		$B=>Mh$N%Q%$%W5-=R;R(B &| $B$r(B |& $B$KJQ99!#(B
-		$BC<Kv7e?t;XDj$H6%9g$9$kJQ?tL>(B COLUMNS $B$r(B DEFCOLUMNS $B$K2~L>!#(B
-		ANSI.SYS $B$K0MB8$;$:F0:n2DG=$K$7$?!#(B(MS-DOS $BHG(B)
-		Windows NT $B$G(B .. $B$,I=<($5$l$J$$E@$r=$@5!#(B(MS-DOS $BHG(B)
-		Windows 2000/XP $B$G(B LFN $B$,I=<($G$-$J$$E@$r=$@5!#(B(MS-DOS $BHG(B)
-		$B%R%9%H%jHV9f$N;2>H%_%9$r=$@5!#(B
-		$BAH9~$_%3%^%s%I(B evalmacro $B$,@5>o=*N;$7$J$$E@$r=$@5!#(B
-		%J $B%^%/%m$G0O$^$l$?Cf$K(B %M $B%^%/%m$r5-=R$G$-$J$+$C$?E@$r=$@5!#(B
-		%T $B%^%/%m$ND>A0D>8e$N5-=R$,7+JV$7E83+$5$l$J$+$C$?E@$r=$@5!#(B
-		trap 0 $B$,=*N;;~0J30$K5/F0$7$F$7$^$&$3$H$,$"$kE@$r=$@5!#(B
-		$B;R%W%m%;%9$N=*N;%9%F!<%?%9$r<h$jB;$M$k$3$H$,$"$kE@$r=$@5!#(B
-		$B%U%!%$%kL>Jd40;~$K0[>o=*N;$9$k$3$H$,$"$kE@$r=$@5!#(B
-		[] $B$,%I%C%H%U%!%$%k$K%^%C%A$7$F$$$?E@$r=$@5!#(B
-		case $B%j%9%H=*C<$N(B ;; $B$,>JN,$G$-$J$+$C$?E@$r=$@5!#(B
-		alias $B$K;H$($kJ8;z<o$K@)8B$,$"$C$?E@$r=$@5!#(B
-		Linux/ia64 $BBP1~!#(B
+Ver. 2.01	POSIX に合せて true/false/command/getopts/newgrp/fc の追加。
+ (05/08/02)	POSIX に合せて set に -o, -b, -C option の追加。
+		-C option に伴いリダイレクト記述子 >|, &>| の追加。
+		リダイレクト記述子 &>> の追加。
+		組込みコマンド login, logout, disown の追加。
+		コマンド区切り子 &| の追加。
+		従来のパイプ記述子 &| を |& に変更。
+		端末桁数指定と競合する変数名 COLUMNS を DEFCOLUMNS に改名。
+		ANSI.SYS に依存せず動作可能にした。(MS-DOS 版)
+		Windows NT で .. が表示されない点を修正。(MS-DOS 版)
+		Windows 2000/XP で LFN が表示できない点を修正。(MS-DOS 版)
+		ヒストリ番号の参照ミスを修正。
+		組込みコマンド evalmacro が正常終了しない点を修正。
+		%J マクロで囲まれた中に %M マクロを記述できなかった点を修正。
+		%T マクロの直前直後の記述が繰返し展開されなかった点を修正。
+		trap 0 が終了時以外に起動してしまうことがある点を修正。
+		子プロセスの終了ステータスを取り損ねることがある点を修正。
+		ファイル名補完時に異常終了することがある点を修正。
+		[] がドットファイルにマッチしていた点を修正。
+		case リスト終端の ;; が省略できなかった点を修正。
+		alias に使える文字種に制限があった点を修正。
+		Linux/ia64 対応。
 
-Ver. 2.00b	JIS $B7O(B encoding $B$N(B decode $B;~$K[#Kf@-$r5vMF!#(B
- (03/27/02)	ISO-2022-JP-3 encoding $B$N(B decode $B$KBP1~!#(B
-		Windows $B$H0[$J$k(B LFN $B@8@.%k!<%k$r=$@5!#(B
-		shell $BJQ?t$NI>2A%_%9$r=$@5!#(B
-		ADJTTY $B$,>o$KM-8z$K$J$C$F$7$^$C$F$$$?E@$r=$@5!#(B
-		mount option $B$N(B readonly $BB0@-8!CN%_%9$r=$@5!#(B
-		$BO"B3$9$k(B wild card $B$NE83+%_%9$r=$@5!#(B
+Ver. 2.00b	JIS 系 encoding の decode 時に曖昧性を許容。
+ (03/27/02)	ISO-2022-JP-3 encoding の decode に対応。
+		Windows と異なる LFN 生成ルールを修正。
+		shell 変数の評価ミスを修正。
+		ADJTTY が常に有効になってしまっていた点を修正。
+		mount option の readonly 属性検知ミスを修正。
+		連続する wild card の展開ミスを修正。
 
-Ver. 2.00a	HP-UX $BMQ$K<c43$ND4@0!#(B
- (02/06/02)	terminfo(5) library $B$KBP1~!#(B
-		fdsh $B$+$i(B fd $B$r5/F0$7$?;~$N@)8B%_%9$r=$@5!#(B
-		fdsh $B$N(B redirect $B$G%U%m%C%T!<%I%i%$%V$b07$($k$h$&$KBP1~!#(B
-		fdsh $B$N%U%!%$%kL>Jd408uJd0lMw$NI=<(0LCV$,$*$+$7$$E@$r=$@5!#(B
-		$B%+%i%`?t$,(B 255 $B$r1[$($kC<Kv$KBP1~!#(B
-		shell $B<BAuLL$G$N(B sub shell $B$K4X$9$k5sF0$rD4@0!#(B
-		sub shell $B$G$N(B $$ $B$NCM<hF@%_%9$r=$@5!#(B
-		$B4v$D$+$N(B wild card $BE83+%_%9$r=$@5!#(B
-		HELP_MESSGAGE $B$G$N0lIt$NFC<l%-!<$N5-=R%_%9$r=$@5!#(B
-		$B%+%9%?%^%$%6$NL$<BAu9`L\A*Br;~$N8mF0:n$r=$@5!#(B
-		$B%+%9%?%^%$%6$G$N(B INPUTKCODE $B@_Dj;~$N8mF0:n$r=$@5!#(B
-		install $B;~$K>e=q$-$G$-$J$$E@$r=$@5!#(B
-		$B3F<o%I%-%e%a%s%H$N%_%9%9%Z%k$r=$@5!#(B
-		$B0BA4$N$?$a(B _fdrc $B$N5-=R$rA4$F%3%a%s%H%"%&%H!#(B
+Ver. 2.00a	HP-UX 用に若干の調整。
+ (02/06/02)	terminfo(5) library に対応。
+		fdsh から fd を起動した時の制限ミスを修正。
+		fdsh の redirect でフロッピードライブも扱えるように対応。
+		fdsh のファイル名補完候補一覧の表示位置がおかしい点を修正。
+		カラム数が 255 を越える端末に対応。
+		shell 実装面での sub shell に関する挙動を調整。
+		sub shell での $$ の値取得ミスを修正。
+		幾つかの wild card 展開ミスを修正。
+		HELP_MESSGAGE での一部の特殊キーの記述ミスを修正。
+		カスタマイザの未実装項目選択時の誤動作を修正。
+		カスタマイザでの INPUTKCODE 設定時の誤動作を修正。
+		install 時に上書きできない点を修正。
+		各種ドキュメントのミススペルを修正。
+		安全のため _fdrc の記述を全てコメントアウト。
 
-Ver. 2.00	shell $B5!G=$rFbB"!#$=$l$KH<$$%^%/%mEy$N;EMMJQ99!#(B
- (01/11/02)	$B%&%#%s%I%&J,3d5!G=$rDI2C!#(B
-		$B%+%9%?%^%$%65!G=$rDI2C!#(B
-		$B%U%!%$%kL>4A;z%3!<%I$NF0E*JQ99$r(B FNAMEKCODE $B$K$h$j2DG=$K!#(B
-		$B@h9T%U%!%$%kI=<(5!G=$r(B PRECEDEPATH $B$K$h$j2DG=$K!#(B
-		$BAH9~$_%3%^%s%I(B checkid, kconv, evalmacro $B$NDI2C!#(B
-		$B%"!<%+%$%V%V%i%&%6EPO?%U%)!<%^%C%H$r%^%/%mJ8;zNs2=!#(B
-		$B%U%!%$%k%3%T!<!&0\F0;~$K!VE>Aw!W%b!<%I$rDI2C!#(B
-		$B%U%!%$%kL>Hf3S;~$NBgJ8;z>.J8;z$r(B IGNORECASE $B$GA*Br2DG=$K!#(B
-		$B%3%T!<;~$N%?%$%`%9%?%s%W7Q>5$r(B INHERITTIME $B$GA*Br2DG=$K!#(B
-		$B0[$J$k%U%!%$%k%7%9%F%`4V$N%G%#%l%/%H%j0\F0$r2DG=$K!#(B
-		$B%+%l%s%H%G%#%l%/%H%j$X$N%G%#%l%/%H%j%3%T!<$r2DG=$K!#(B
-		VT100 $B8_49$NC<Kv%5%$%:<hF@$r(B USEGETSURSOR $B$GA*Br2DG=$K!#(B
-		PUSH_FILE, POP_FILE $B$r%"!<%+%$%V%V%i%&%6Fb$G;HMQ2DG=$K!#(B
-		$BJ8;zNsF~NO$K>e=q%b!<%I$rDI2C!#(B
-		$BJ8;zNsF~NO$KBgJ8;z>.J8;zJQ995!G=$rDI2C!#(B
-		$B1QJ8%I%-%e%a%s%H$rF1:-!#(B
-		RRPATH $BEy$N(B delimiter $B$r(B ';' $B$+$i(B ':' $B$KJQ99!#(B
-		alias $B%3%^%s%I$N=q<0;EMMJQ99!#(B
-		bind $B%3%^%s%I$N%3%a%s%H<1JL;R$r(B ';' $B$+$i(B ':' $B$KJQ99!#(B
-		setdrv $B%3%^%s%I$N6h@Z$j;R(B ',' $B$rGQ;_!#(B
-		shell $B4X?t$N<BAu$K$h$j(B function $B%3%^%s%I$rGQ;_!#(B
-		$B=i4|@_Dj%U%!%$%k$X$N(B TERM $B4D6-JQ?tJ8;zNsDI2C$rGQ;_!#(B
+Ver. 2.00	shell 機能を内蔵。それに伴いマクロ等の仕様変更。
+ (01/11/02)	ウィンドウ分割機能を追加。
+		カスタマイザ機能を追加。
+		ファイル名漢字コードの動的変更を FNAMEKCODE により可能に。
+		先行ファイル表示機能を PRECEDEPATH により可能に。
+		組込みコマンド checkid, kconv, evalmacro の追加。
+		アーカイブブラウザ登録フォーマットをマクロ文字列化。
+		ファイルコピー・移動時に「転送」モードを追加。
+		ファイル名比較時の大文字小文字を IGNORECASE で選択可能に。
+		コピー時のタイムスタンプ継承を INHERITTIME で選択可能に。
+		異なるファイルシステム間のディレクトリ移動を可能に。
+		カレントディレクトリへのディレクトリコピーを可能に。
+		VT100 互換の端末サイズ取得を USEGETSURSOR で選択可能に。
+		PUSH_FILE, POP_FILE をアーカイブブラウザ内で使用可能に。
+		文字列入力に上書モードを追加。
+		文字列入力に大文字小文字変更機能を追加。
+		英文ドキュメントを同梱。
+		RRPATH 等の delimiter を ';' から ':' に変更。
+		alias コマンドの書式仕様変更。
+		bind コマンドのコメント識別子を ';' から ':' に変更。
+		setdrv コマンドの区切り子 ',' を廃止。
+		shell 関数の実装により function コマンドを廃止。
+		初期設定ファイルへの TERM 環境変数文字列追加を廃止。
 
-Ver. 1.03u	$B%"!<%+%$%V%V%i%&%6EPO?%_%9;~$K0[>o=*N;$9$k$3$H$,$"$kE@$r=$@5!#(B
- (12/18/01)	\ $B$r4^$`J8;zNs$N=hM}%_%9$r=$@5!#(B
-		$BC<Kv@)8f$N=hM}%_%9$r=$@5!#(B
-		INPUTKCODE $B$,L58z$K$J$C$F$$$?E@$r=$@5!#(B
-		$BJ8;zNsF~NO;~$K(B Alt $BJ8;z$NF~NO$,J8;z2=$1$7$F$$$?E@$r=$@5!#(B
-		Darwin (Mac OS X) $BBP1~!#(B
-		Linux libc5 $BBP1~!#(B
+Ver. 1.03u	アーカイブブラウザ登録ミス時に異常終了することがある点を修正。
+ (12/18/01)	\ を含む文字列の処理ミスを修正。
+		端末制御の処理ミスを修正。
+		INPUTKCODE が無効になっていた点を修正。
+		文字列入力時に Alt 文字の入力が文字化けしていた点を修正。
+		Darwin (Mac OS X) 対応。
+		Linux libc5 対応。
 
-Ver. 1.03t	$B%R%9%H%j5!G=$N2~A1!#(B
- (08/23/01)	$BAH9~$_%3%^%s%I<:GT;~$N%(%i!<%a%C%;!<%8DI2C!#(B
-		$B%"!<%+%$%V%V%i%&%6Fb$GHs%U%k%Q%9;XDj$N05=L$KBP1~!#(B
-		$B%-!<%Q%C%IE>Aw%b!<%IHs8_494D6-$KBP1~!#(B
-		$BFbIt%3%^%s%I$r%U%!%$%kL>Jd40BP>]$KDI2C!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.03t	ヒストリ機能の改善。
+ (08/23/01)	組込みコマンド失敗時のエラーメッセージ追加。
+		アーカイブブラウザ内で非フルパス指定の圧縮に対応。
+		キーパッド転送モード非互換環境に対応。
+		内部コマンドをファイル名補完対象に追加。
+		その他 Bugfix。
 
-Ver. 1.03s	$B%G%#%l%/%H%j0\F0;~$K0[>o=*N;$9$k$3$H$,$"$k;Y>c$r=$@5!#(B
- (05/22/01)	$B%3%^%s%IF~NO9T$N0zMQId$N07$$$,$*$+$7$$E@$r=$@5!#(B
+Ver. 1.03s	ディレクトリ移動時に異常終了することがある支障を修正。
+ (05/22/01)	コマンド入力行の引用符の扱いがおかしい点を修正。
 
-Ver. 1.03r	ANSICOLOR=2 $B$N;~$K2hLL$,Mp$l$k;Y>c$r=$@5!#(B
- (04/03/01)	$B5/F0;~;XDj%G%#%l%/%H%j$,L5$$>l9g$K0[>o=*N;$9$k;Y>c$r=$@5!#(B
-		$B%U%k%Q%9$GG<$a$i$l$?%"!<%+%$%V%U%!%$%k$N=hM}%_%9$r=$@5!#(B
-		Solaris 8 $B$N(B compiler $B;EMM$NMI$l$KBP1~!#(B
+Ver. 1.03r	ANSICOLOR=2 の時に画面が乱れる支障を修正。
+ (04/03/01)	起動時指定ディレクトリが無い場合に異常終了する支障を修正。
+		フルパスで納められたアーカイブファイルの処理ミスを修正。
+		Solaris 8 の compiler 仕様の揺れに対応。
 
-Ver. 1.03q	$B=hM}9bB.2=$N$?$a4A;z%3!<%IJQ49$r(B table $B2=!#(B
- (02/28/01)	Linux/Alpha $BBP1~!#(B
-		$B%3%T!<@hMFNLITB-;~$N:F;n9T$rA*Br2DG=$K!#(B
-		$B%+!<%=%k0LCV$N4IM}$r87L)$K!#(B
-		$B3HD%;R=g%=!<%H$NHf3S%k!<%k$N2~NI!#(B
-		$B%U%!%$%k:o=|3NG'$K$D$$$F$N;Y>c$r=$@5!#(B
-		$B%3%T!<;~$N(B timestamp $BJ]B8$r$h$j87L)$K(B (MS-DOS $BHG(B)$B!#(B
+Ver. 1.03q	処理高速化のため漢字コード変換を table 化。
+ (02/28/01)	Linux/Alpha 対応。
+		コピー先容量不足時の再試行を選択可能に。
+		カーソル位置の管理を厳密に。
+		拡張子順ソートの比較ルールの改良。
+		ファイル削除確認についての支障を修正。
+		コピー時の timestamp 保存をより厳密に (MS-DOS 版)。
 
-Ver. 1.03p	HDD $B%U%m%C%T!<%I%i%$%V5!G=$N(B Solaris for Intel $BBP1~!#(B
- (11/11/00)	LSI C-86 $BBP1~$NBP>]$r(B 3.30 $B$+$i(B 3.5 $B$KJQ99(B (MS-DOS $BHG(B)$B!#(B
-		$B%U%m%C%T!<%I%i%$%V>pJs<hF@$N8zN(2=!#(B
-		$B%+%l%s%H%G%#%l%/%H%jAS<:;~$NBP=h$rDI2C!#(B
-		symbolic link $BK\BN>pJs;2>H%b!<%I$NI=<(%_%9$r=$@5!#(B
-		$B4X?tFb$N(B $1, $2, ... $B$NE83+%_%9$r=$@5!#(B
-		$B%9%F!<%?%99T$N(B symbolic link $BCMI=<(%_%9$r=$@5!#(B
-		$B6uGr$r4^$`J8;zNs$N=hM}%_%9$r=$@5!#(B
-		%M $B%^%/%m$NE83+$K<:GT$7$F$$$?E@$r=$@5!#(B
+Ver. 1.03p	HDD フロッピードライブ機能の Solaris for Intel 対応。
+ (11/11/00)	LSI C-86 対応の対象を 3.30 から 3.5 に変更 (MS-DOS 版)。
+		フロッピードライブ情報取得の効率化。
+		カレントディレクトリ喪失時の対処を追加。
+		symbolic link 本体情報参照モードの表示ミスを修正。
+		関数内の $1, $2, ... の展開ミスを修正。
+		ステータス行の symbolic link 値表示ミスを修正。
+		空白を含む文字列の処理ミスを修正。
+		%M マクロの展開に失敗していた点を修正。
 
-Ver. 1.03o	$B%U%m%C%T!<%I%i%$%V$N3HD%NN0h<1JL%_%9$r=$@5!#(B
- (10/12/00)	$B%G%#%l%/%H%j$r4^$`%"!<%+%$%V$N=hM}%_%9$r=$@5!#(B
-		$B%U%m%C%T!<%I%i%$%V>pJs<hF@$N8zN(2=!#(B
-		$B%U%!%$%k%3%T!<$K<:GT$7$F$$$?E@$r=$@5(B (MS-DOS $BHG(B)$B!#(B
+Ver. 1.03o	フロッピードライブの拡張領域識別ミスを修正。
+ (10/12/00)	ディレクトリを含むアーカイブの処理ミスを修正。
+		フロッピードライブ情報取得の効率化。
+		ファイルコピーに失敗していた点を修正 (MS-DOS 版)。
 
-Ver. 1.03n	OpenBSD $BBP1~!#(B
- (09/30/00)	$B%U%m%C%T!<%I%i%$%V$N%5%$%:<hF@Cf$N%-!<3d9~$rM-8z$K!#(B
-		QUIT_SYSTEM $B$r4X?tFb$G$bM-8z$K!#(B
-		$BJ8;z%3!<%I@_Dj$,$&$^$/5!G=$7$J$+$C$?E@$r=$@5!#(B
-		$B%3%^%s%I9T$K=EJ#$7$?(B / $B$r5-=R$G$-$J$$E@$r=$@5!#(B
+Ver. 1.03n	OpenBSD 対応。
+ (09/30/00)	フロッピードライブのサイズ取得中のキー割込を有効に。
+		QUIT_SYSTEM を関数内でも有効に。
+		文字コード設定がうまく機能しなかった点を修正。
+		コマンド行に重複した / を記述できない点を修正。
 
-Ver. 1.03m	$B4D6-JQ?t(B PATH $B$K4^$^$l$kAjBP%Q%9$r@55,2=$7$F$$$?E@$r=$@5!#(B
- (09/15/00)	symbolic link $B@h$X$N2>A[(B chdir $B$,<:GT$7$F$$$?E@$r=$@5!#(B
-		symbolic link $B$NF|K\8lI=<(BP1~!#(BLinux ReiserFS $BBP1~!#(B
-		$B5/F0Cf$K%U%m%C%T!<%I%i%$%V$rA^H4$7$F;Y>c$J$$$h$&$K=$@5!#(B
-		$B%D%j!<I=<(2hLL$G6[5^;~:FIA2h$,$G$-$J$+$C$?E@$r=$@5!#(B
-		$B%D%j!<I=<(2hLL$K=[4D%G%#%l%/%H%jBP:v$rDI2C!#(B
-		$B%H%C%W%G%#%l%/%H%j;~$N%D%j!<I=<($,$*$+$7$+$C$?E@$r=$@5!#(B
-		$B0z?t$D$-FbIt%3%^%s%I$,%-!<3dEv$F$G$-$J$+$C$?E@$r=$@5!#(B
-		Mata key $B$N%-!<3dEvI=<($,$*$+$7$+$C$?E@$r=$@5!#(B
-		$B%G%#%l%/%H%j%3%T!<;~$N%?%$%`%9%?%s%WHs7Q>5$r=$@5(B (MS-DOS $BHG(B)$B!#(B
-		$B%G%#%l%/%H%j$r4^$`%"!<%+%$%VA`:n;~$N;Y>c$r=$@5(B (MS-DOS $BHG(B)$B!#(B
-		$B%3%T!<@hMFNLITB-$r4XCN$7$F$$$J$+$C$?E@$r=$@5(B (MS-DOS $BHG(B)$B!#(B
+Ver. 1.03m	環境変数 PATH に含まれる相対パスを正規化していた点を修正。
+ (09/15/00)	symbolic link 先への仮想 chdir が失敗していた点を修正。
+		symbolic link の日本語表示対応。Linux ReiserFS 対応。
+		起動中にフロッピードライブを挿抜して支障ないように修正。
+		ツリー表示画面で緊急時再描画ができなかった点を修正。
+		ツリー表示画面に循環ディレクトリ対策を追加。
+		トップディレクトリ時のツリー表示がおかしかった点を修正。
+		引数つき内部コマンドがキー割当てできなかった点を修正。
+		Mata key のキー割当表示がおかしかった点を修正。
+		ディレクトリコピー時のタイムスタンプ非継承を修正 (MS-DOS 版)。
+		ディレクトリを含むアーカイブ操作時の支障を修正 (MS-DOS 版)。
+		コピー先容量不足を関知していなかった点を修正 (MS-DOS 版)。
 
-Ver. 1.03l	$B%U%m%C%T!<%I%i%$%V$KBP$75!<o0MB8J8;zBP1~!#(B
- (11/05/99)	$BAjBP%Q%9I=5-$N(B symbolic link $B$rC)$l$J$$E@$r=$@5!#(B
-		$B0lHL$N%U%m%C%T!<%I%i%$%V$,(B unsetdrv $B$G$-$J$$E@$r=$@5!#(B
-		$B%D%j!<2hLL!V"*!W%-!<$G0[>o=*N;$9$k$3$H$,$"$kE@$r=$@5!#(B
-		REREAD_DIR $B$K%U%m%C%T!<%I%i%$%V$NF14|5!G=$rDI2C!#(B
-		$B%U%m%C%T!<%I%i%$%V5!G=$N(B Linux kernel $B0MB8@-$r2r>C!#(B
-		HDD $B%U%m%C%T!<%I%i%$%V5!G=$r(B i386 $B4D6-0J30$G6X;_!#(B
-		$B%U%m%C%T!<%I%i%$%V>e$G(B MS-DOS $B6X;_%U%!%$%kL>$r:n@.IT2D$K!#(B
-		$HOME $B$,%k!<%H%G%#%l%/%H%j$@$C$?;~$NIT6q9g$r2r>C!#(B
-		$B%3%^%s%I%i%$%s$G$N(B ~ $B$N07$$$,$*$+$7$+$C$?E@$r=$@5!#(B
-		EXECUTE_FILE $B;~$K%+%l%s%H%G%#%l%/%H%j%Q%9$rDI2C!#(B
-		$B%U%m%C%T!<%I%i%$%V$NF14|LdBj$r(B FAQ, TECHKNOW $B$KDI2C!#(B
-		$B6u%G%#%l%/%H%j$G(B WRITE_DIR $B$,0[>o=*N;$7$F$$$?E@$r=$@5!#(B
-		$B%3%^%s%I%i%$%s9TKv$NF|K\8lJ8;z=hM}$NLdBj$r=$@5!#(B
+Ver. 1.03l	フロッピードライブに対し機種依存文字対応。
+ (11/05/99)	相対パス表記の symbolic link を辿れない点を修正。
+		一般のフロッピードライブが unsetdrv できない点を修正。
+		ツリー画面「→」キーで異常終了することがある点を修正。
+		REREAD_DIR にフロッピードライブの同期機能を追加。
+		フロッピードライブ機能の Linux kernel 依存性を解消。
+		HDD フロッピードライブ機能を i386 環境以外で禁止。
+		フロッピードライブ上で MS-DOS 禁止ファイル名を作成不可に。
+		$HOME がルートディレクトリだった時の不具合を解消。
+		コマンドラインでの ~ の扱いがおかしかった点を修正。
+		EXECUTE_FILE 時にカレントディレクトリパスを追加。
+		フロッピードライブの同期問題を FAQ, TECHKNOW に追加。
+		空ディレクトリで WRITE_DIR が異常終了していた点を修正。
+		コマンドライン行末の日本語文字処理の問題を修正。
 
-Ver. 1.03k	Linux $B$G(B HDD $B%U%m%C%T!<%I%i%$%V5!G=$,8z$+$J$$E@$r=$@5!#(B
- (09/01/99)	SunOS $B$G(B compile $B$G$-$J$$E@$r=$@5!#(B
-		$B%U%!%$%k0\F0;~$K(B file flags $B$,7Q>5$5$l$J$$E@$r=$@5!#(B
-		$B%3%^%s%I9T$K=EJ#$7$?(B / $B$r5-=R$G$-$J$$E@$r=$@5!#(B
-		BACKUP_TAPE $B%3%^%s%I$,;H$($J$+$C$?E@$r=$@5!#(B
-		PACK_FILE $B$,%U%m%C%T!<%I%i%$%V>e$G;H$($J$+$C$?E@$r=$@5!#(B
-		PACK_FILE $B$r%"!<%+%$%V%V%i%&%6>e$G$b;HMQ2DG=$K!#(B
-		$B5l(B DOS $B$G(B LFN $B%3%T!<$G$-$J$$$3$H$,$"$kE@$r=$@5(B (MS-DOS $BHG(B)$B!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.03k	Linux で HDD フロッピードライブ機能が効かない点を修正。
+ (09/01/99)	SunOS で compile できない点を修正。
+		ファイル移動時に file flags が継承されない点を修正。
+		コマンド行に重複した / を記述できない点を修正。
+		BACKUP_TAPE コマンドが使えなかった点を修正。
+		PACK_FILE がフロッピードライブ上で使えなかった点を修正。
+		PACK_FILE をアーカイブブラウザ上でも使用可能に。
+		旧 DOS で LFN コピーできないことがある点を修正 (MS-DOS 版)。
+		その他 Bugfix。
 
-Ver. 1.03j	$B%U%m%C%T!<%I%i%$%V5!G=$N(B file system $BGK2u%P%0$r=$@5!#(B
- (03/17/99)	$B0lIt4D6-$G(B DEL $B%-!<$,8z$+$J$$E@$r=$@5!#(B
-		$B%U%m%C%T!<%I%i%$%V$N%D%j!<I=<($,$G$-$J$$E@$r=$@5!#(B
-		$B0lIt4D6-$G(B PC-9801 $BMQ%U%m%C%T!<$r07$($J$$E@$r=$@5!#(B
-		4GB $BD6(B HDD $B$G(B printdrv $BI=<($,$*$+$7$/$J$kE@$r=$@5!#(B
-		$B%U%!%$%k%5%$%:>pJs9T$NI=<($,$*$+$7$/$J$kE@$r=$@5!#(B
-		$B5l(B DOS $B$G(B LFN $B:o=|;~$K%4%_$,;D$kE@$r=$@5(B (MS-DOS $BHG(B)$B!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.03j	フロッピードライブ機能の file system 破壊バグを修正。
+ (03/17/99)	一部環境で DEL キーが効かない点を修正。
+		フロッピードライブのツリー表示ができない点を修正。
+		一部環境で PC-9801 用フロッピーを扱えない点を修正。
+		4GB 超 HDD で printdrv 表示がおかしくなる点を修正。
+		ファイルサイズ情報行の表示がおかしくなる点を修正。
+		旧 DOS で LFN 削除時にゴミが残る点を修正 (MS-DOS 版)。
+		その他 Bugfix。
 
-Ver. 1.03i	$B%U%m%C%T!<%I%i%$%V5!G=$N(B HDD $BBP1~!#(B
- (03/03/99)	$B%U%m%C%T!<%I%i%$%V5!G=$N%Q%U%)!<%^%s%98~>e!#(B
-		file mode $BI=<($K(B 'S', 'T' $B$rDI2C!#(B($B@_Dj$OIT2D(B)
-		file flags $BBP1~!#(B($B0lIt(B OS $BMQ(B)
-		Meta key $B$X$N%3%^%s%I3dEv$r2DG=$K!#(B
-		keymap $BJ8;zNs$K(B ^@ $B$r5-=R2DG=$K!#(B
-		.fdrc.$TERM $B$NL58B:F5"FI9~$_$rKI;_!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.03i	フロッピードライブ機能の HDD 対応。
+ (03/03/99)	フロッピードライブ機能のパフォーマンス向上。
+		file mode 表示に 'S', 'T' を追加。(設定は不可)
+		file flags 対応。(一部 OS 用)
+		Meta key へのコマンド割当を可能に。
+		keymap 文字列に ^@ を記述可能に。
+		.fdrc.$TERM の無限再帰読込みを防止。
+		その他 Bugfix。
 
-Ver. 1.03h	$B%a%b%j4IM}$N8zN(2=5Z$S(B Bugfix$B!#(B
- (08/28/98)	FAT32 file system $B%"%/%;%9$K;CDjBP1~!#(B
-		SORTTYPE >= 100 $B$N5!G=$r%"!<%+%$%V%V%i%&%6$G$bM-8z$K!#(B
-		$B%U%m%C%T!<%I%i%$%V>e$K(B . $B$d(B .. $B$r:n$l$F$7$^$&IT6q9g$r=$@5!#(B
-		%ST, %STA, %SM $B%^%/%m$NDI2C(B (MS-DOS $BHG(B)$B!#(B
-		$B%-!<%\!<%I(B BIOS $B$r2p$5$J$$<jK!$rMQ0U(B (MS-DOS $BHG(B)$B!#(B
-		$BCWL?E*%(%i!<$K$h$k(B OS $B$X$N(B resume $B$r2sHr(B (MS-DOS $BHG(B)$B!#(B
-		PC-DOS 7.0 $B0J9_$X$NBP1~(B (MS-DOS $BHG(B)$B!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.03h	メモリ管理の効率化及び Bugfix。
+ (08/28/98)	FAT32 file system アクセスに暫定対応。
+		SORTTYPE >= 100 の機能をアーカイブブラウザでも有効に。
+		フロッピードライブ上に . や .. を作れてしまう不具合を修正。
+		%ST, %STA, %SM マクロの追加 (MS-DOS 版)。
+		キーボード BIOS を介さない手法を用意 (MS-DOS 版)。
+		致命的エラーによる OS への resume を回避 (MS-DOS 版)。
+		PC-DOS 7.0 以降への対応 (MS-DOS 版)。
+		その他 Bugfix。
 
-Ver. 1.03g	$B%"!<%+%$%VFb%U%!%$%kL>8!:w5!G=$NDI2C!#(B
- (02/04/98)	%JJ, %JE, %JS $B%^%/%m$NDI2C!#(B
-		$B%9%/%m!<%kHO0O%j%;%C%H$NIT6q9g$r=$@5!#(B
-		$B%$%s%/%j%a%s%?%k%5!<%A$NIT6q9g$r=$@5!#(B
-		ATTR_FILE $B$N0lItF0:nITNI$r2r>C!#(B
-		$B%+%i%`?t$,(B 99 $BJ8;z$r1[$($k2hLL$KBP1~(B (MS-DOS $BHG(B)$B!#(B
+Ver. 1.03g	アーカイブ内ファイル名検索機能の追加。
+ (02/04/98)	%JJ, %JE, %JS マクロの追加。
+		スクロール範囲リセットの不具合を修正。
+		インクリメンタルサーチの不具合を修正。
+		ATTR_FILE の一部動作不良を解消。
+		カラム数が 99 文字を越える画面に対応 (MS-DOS 版)。
 
-Ver. 1.03f	$B5/F0;~$K%9%/%m!<%kHO0O$r%j%;%C%H$9$k$h$&=$@5!#(B
- (11/25/97)	$B%G%#%l%/%H%jL>KvHx$K(B '\' $B$r5-=R$G$-$k$h$&=$@5(B (MS-DOS $BHG(B)$B!#(B
-		HELP_MESSAGE $B=PNO$KMp$l$,@8$8$k%1!<%9$,$"$C$?$N$r=$@5!#(B
-		UXP/DS $B$KBP$9$kBP=h!#(B
+Ver. 1.03f	起動時にスクロール範囲をリセットするよう修正。
+ (11/25/97)	ディレクトリ名末尾に '\' を記述できるよう修正 (MS-DOS 版)。
+		HELP_MESSAGE 出力に乱れが生じるケースがあったのを修正。
+		UXP/DS に対する対処。
 
-Ver. 1.03e	$B%G%#%l%/%H%j$N:F5"E*%3%T!<!&0\F0$NH=Dj$r87$7$/=$@5!#(B
- (10/22/97)	'\' $B$r4A;z(B 2byte $BL\$K4^$`%U%!%$%kL>$X$NBP1~(B (MS-DOS $BHG(B)$B!#(B
-		DOS7 $B5/F0%G%#%9%/$G(B LFN $B%"%/%;%9$G$-$J$$E@$r=$@5(B (MS-DOS $BHG(B)$B!#(B
+Ver. 1.03e	ディレクトリの再帰的コピー・移動の判定を厳しく修正。
+ (10/22/97)	'\' を漢字 2byte 目に含むファイル名への対応 (MS-DOS 版)。
+		DOS7 起動ディスクで LFN アクセスできない点を修正 (MS-DOS 版)。
 
-Ver. 1.03d	$BG/$H;~4V$r6&MQ$9$k%"!<%+%$%P=PNO$G8=:_G/$r;2>H$9$k$h$&=$@5!#(B
- (10/16/97)	PROMPT $B$K(B \~ $B$,4^$^$l$k>l9g$N0l;~E83+$NIT6q9g$r=$@5!#(B
-		$B<B9T%U%!%$%k$rG'<1$G$-$F$$$J$+$C$?E@$r=$@5(B (MS-DOS $BHG(B)$B!#(B
+Ver. 1.03d	年と時間を共用するアーカイバ出力で現在年を参照するよう修正。
+ (10/16/97)	PROMPT に \~ が含まれる場合の一時展開の不具合を修正。
+		実行ファイルを認識できていなかった点を修正 (MS-DOS 版)。
 
-Ver. 1.03c	$B%R%9%H%j%;!<%V%U%!%$%k$K(B \n $B$,H?1G$5$l$J$$E@$r=$@5!#(B
- (09/30/97)	$B0l3g(B ATTR_FILE $B$GJQ99BP>]$NA*Br$,L58z2=$7$F$$$?E@$r=$@5!#(B
-		$B$=$NB>(B TYPO $BE*=$@5!#(B
+Ver. 1.03c	ヒストリセーブファイルに \n が反映されない点を修正。
+ (09/30/97)	一括 ATTR_FILE で変更対象の選択が無効化していた点を修正。
+		その他 TYPO 的修正。
 
-Ver. 1.03b	CODEEUC $B;XDj;~$K(B JIS X0201 $B%+%JI=<($,Mp$l$kE@$r=$@5!#(B
- (09/26/97)	$B;`$s$@C<Kv$KBP$9$k%"%/%;%9$G9ED>$9$k(B OS $BMQ$K=$@5!#(B
-		$B=q9~$_8"$N$J$$%G%P%$%9$b%U%m%C%T!<%I%i%$%V2=2DG=$K!#(B
-		opendir() $B$N:F5"<B9T$rM^@)$7%a%b%j$r@aLs2=!#(B
-		$BJ8;zNsF~NO;~$K4A;z%U%!%$%kL>$,<h9~$a$J$+$C$?E@$r=$@5!#(B
-		$BJ8;zNs:G8eHx$G$N>e2<%+!<%=%k0\F0$NITHw$r=$@5!#(B
-		$B$=$NB>(B OS $B0MB8$NIT6q9g$r=$@5!#(B
+Ver. 1.03b	CODEEUC 指定時に JIS X0201 カナ表示が乱れる点を修正。
+ (09/26/97)	死んだ端末に対するアクセスで硬直する OS 用に修正。
+		書込み権のないデバイスもフロッピードライブ化可能に。
+		opendir() の再帰実行を抑制しメモリを節約化。
+		文字列入力時に漢字ファイル名が取込めなかった点を修正。
+		文字列最後尾での上下カーソル移動の不備を修正。
+		その他 OS 依存の不具合を修正。
 
-Ver. 1.03a	%R $B%^%/%mE83+;~$K0zMQId$,DI2C$5$l$F$7$^$&E@$r=$@5!#(B
- (09/18/97)	$B%^!<%/%U%!%$%k$X$N(B ATTR_FILE $B;~$N=i4|CM$N%_%9$r=$@5!#(B
-		$B%+!<%=%k0LCVJs9pJ8;zNs$N%P!<%8%g%s:90[$r5[<}(B (MS-DOS $BHG(B)$B!#(B
-		PC-9801 $BMQ$GFC<l%-!<$,;H$($J$+$C$?E@$r=$@5(B (MS-DOS $BHG(B)$B!#(B
+Ver. 1.03a	%R マクロ展開時に引用符が追加されてしまう点を修正。
+ (09/18/97)	マークファイルへの ATTR_FILE 時の初期値のミスを修正。
+		カーソル位置報告文字列のバージョン差異を吸収 (MS-DOS 版)。
+		PC-9801 用で特殊キーが使えなかった点を修正 (MS-DOS 版)。
 
-Ver. 1.03	$B@5<08x3+%P!<%8%g%s!#(B
- (09/16/97)	$B%I%-%e%a%s%H$K<c43$N<jD>$7!#(B
-		POSIX $BMQ(B termios $BC<Kv@)8f$K<c43$N<jD>$7!#(B
-		$B%\%j%e!<%`%i%Y%k$N=hM}$K<c43$N<jD>$7(B (MS-DOS $BHG(B)$B!#(B
+Ver. 1.03	正式公開バージョン。
+ (09/16/97)	ドキュメントに若干の手直し。
+		POSIX 用 termios 端末制御に若干の手直し。
+		ボリュームラベルの処理に若干の手直し (MS-DOS 版)。
 
-Ver. 1.03-bf	$B%U%!%$%kL>$K4^$^$l$kFC<lJ8;z$NI>2A$r8+D>$7!#(B
- (09/03/97)	EXECUTE_SH $B$G$N(B LFN $B<+F0JQ495!G=$rDI2C(B (MS-DOS $BHG(B)$B!#(B
-		PROMPT $BJ8;zNs$KHs0u;zJ8;z$r4^$`$3$H$r5v2D!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.03-bf	ファイル名に含まれる特殊文字の評価を見直し。
+ (09/03/97)	EXECUTE_SH での LFN 自動変換機能を追加 (MS-DOS 版)。
+		PROMPT 文字列に非印字文字を含むことを許可。
+		その他 Bugfix。
 
-Ver. 1.03-be	$B6uJ8;z$J$IFC<lJ8;z$r4^$`%U%!%$%kL>$NJd40$KBP1~!#(B
- (08/26/97)	$B0zMQId$NI>2A4p=`$r8+D>$7!#(B
-		_fdrc $B$N%5%s%W%k$r=$@5!#(B
+Ver. 1.03-be	空文字など特殊文字を含むファイル名の補完に対応。
+ (08/26/97)	引用符の評価基準を見直し。
+		_fdrc のサンプルを修正。
 
-Ver. 1.03-bd	$BJ8;zNsF~NO;~$N(B ^L $B$N5sF0%_%9$r=$@5!#(B
- (08/07/97)	DOS/V $BMQ$K(B ^@(Ctrl+'2') $B$NF~NO$r2DG=$K!#(B
-		$B3F(B OS $BMQ$N:Y$+$JD4@0!#(B
+Ver. 1.03-bd	文字列入力時の ^L の挙動ミスを修正。
+ (08/07/97)	DOS/V 用に ^@(Ctrl+'2') の入力を可能に。
+		各 OS 用の細かな調整。
 
-Ver. 1.03-bc	$B%U%k%Q%9$GG<$a$i$l$?%"!<%+%$%V%U%!%$%kMQ$N=hM}$rDI2C!#(B
- (07/31/97)	$B3F(B OS $BMQ$N:Y$+$JD4@0!#(B
+Ver. 1.03-bc	フルパスで納められたアーカイブファイル用の処理を追加。
+ (07/31/97)	各 OS 用の細かな調整。
 
-Ver. 1.03-bb	keymap $B%3%^%s%I$K%^%C%T%s%02r=|5!G=$rDI2C!#(B
- (07/23/97)	FIND_DIR $BEy$N:GCf$K(B interrupt $B%-!<$K$h$kCfCG$r%5%]!<%H!#(B
-		${} $BI=5-$N4D6-JQ?tE83+$K<:GT$7$F$$$?E@$r=$@5!#(B
-		Borland C++ $BHG$G(B RAW $B%b!<%I$K$J$C$F$$$J$+$C$?E@$r=$@5!#(B
-		$B3F(B OS $BMQ$N@_Dj5-=R$r6/2=!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.03-bb	keymap コマンドにマッピング解除機能を追加。
+ (07/23/97)	FIND_DIR 等の最中に interrupt キーによる中断をサポート。
+		${} 表記の環境変数展開に失敗していた点を修正。
+		Borland C++ 版で RAW モードになっていなかった点を修正。
+		各 OS 用の設定記述を強化。
+		その他 Bugfix。
 
-Ver. 1.03-ba	mkfuncno.c $B$,(B cpp $B$r;H$o$J$$$h$&$K;EMMJQ99!#(B
- (07/07/97)	$B>e5-$HF1;~$K(B functabl.c $B$N:o=|!#(B
-		.fdrc $B$rC<KvKh$KMQ0U$G$-$k$h$&$K;EMMJQ99!#(B
-		putenv() $B8_494X?t$N;EMMJQ99!#(B
-		ANSICOLOR=2 $B$N;~$NI=<($r$h$j8+0W$/$J$k$h$&=$@5!#(B
-		DOS/V $BMQ$N%-!<%P%C%U%!%/%j%"$r(B BIOS $B%l%Y%k$KJQ99!#(B
-		$B3F(B OS $B$K9g$o$;$?@_DjMQ<1JL;R$ND4@0!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.03-ba	mkfuncno.c が cpp を使わないように仕様変更。
+ (07/07/97)	上記と同時に functabl.c の削除。
+		.fdrc を端末毎に用意できるように仕様変更。
+		putenv() 互換関数の仕様変更。
+		ANSICOLOR=2 の時の表示をより見易くなるよう修正。
+		DOS/V 用のキーバッファクリアを BIOS レベルに変更。
+		各 OS に合わせた設定用識別子の調整。
+		その他 Bugfix。
 
-Ver. 1.03-b9	$B5l(B DOS $B$G$N(B LFN $B%"%/%;%9$r%5%]!<%H(B (MS-DOS $BHG(B)$B!#(B
- (05/06/97)	Borland C++ 5.00 $B$KBP1~(B (MS-DOS $BHG(B)$B!#(B
-		$B0zMQId$N=hM}$r87L)$K$7$?!#(B
-		$B%U%m%C%T!<%I%i%$%V$N4A;z%U%!%$%kL>(B UNICODE $BJQ49$r%5%]!<%H!#(B
-		$B%U%m%C%T!<%I%i%$%V$N(B BPB $B$N%;%/%?%5%$%:$r2DJQ$K!#(B
-		ANSICOLOR=3 $B$N;EMM$rDI2C!#(B
-		^@ $B$N%3%^%s%I%i%$%sF~NO$r6X;_!#(B
-		$B2hLL%5%$%:$N2DJQ2=$KBP1~(B (MS-DOS $BHG(B)$B!#(B
-		$B%\%j%e!<%`%i%Y%k$r@5$7$/I=<($G$-$k$h$&=$@5(B (MS-DOS $BHG(B)$B!#(B
-		$B%j!<%I%*%s%j!<%U%!%$%k$N07$$$K4X$9$k=$@5(B (MS-DOS $BHG(B)$B!#(B
-		$B%3%s%Q%$%k;~$N(B warning $B$r6KNOGS=|!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.03-b9	旧 DOS での LFN アクセスをサポート (MS-DOS 版)。
+ (05/06/97)	Borland C++ 5.00 に対応 (MS-DOS 版)。
+		引用符の処理を厳密にした。
+		フロッピードライブの漢字ファイル名 UNICODE 変換をサポート。
+		フロッピードライブの BPB のセクタサイズを可変に。
+		ANSICOLOR=3 の仕様を追加。
+		^@ のコマンドライン入力を禁止。
+		画面サイズの可変化に対応 (MS-DOS 版)。
+		ボリュームラベルを正しく表示できるよう修正 (MS-DOS 版)。
+		リードオンリーファイルの扱いに関する修正 (MS-DOS 版)。
+		コンパイル時の warning を極力排除。
+		その他 Bugfix。
 
-Ver. 1.03-b8	ANSI $B7A<0$N%W%m%H%?%$%W@k8@$rDI2C!#(B
- (03/24/97)	NO FILE $B>uBV$+$i$N(B directory $B0\F0$G$N%O%s%0%"%C%W$r=$@5!#(B
-		$B%Q%9L>%G%j%_%?$N=EJ#Hs=EJ#$,:.:_$9$k%"!<%+%$%P=PNO$KBP1~!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.03-b8	ANSI 形式のプロトタイプ宣言を追加。
+ (03/24/97)	NO FILE 状態からの directory 移動でのハングアップを修正。
+		パス名デリミタの重複非重複が混在するアーカイバ出力に対応。
+		その他 Bugfix。
 
-Ver. 1.03-b7	$BF~NO%i%$%s$N@^JV$70LCV$rJQ99!#(B
- (03/12/97)	djgpp v1.xx $B$G(B LFN $B$r07$($J$+$C$?E@$r=$@5(B (MS-DOS $BHG(B)$B!#(B
-		$B%@%_!<%U%!%$%k(B functabl.c $B$NDI2C!#(B
-		$B%P%$%J%jHRI[$N>l9g!"HRI[<T$,<1JL2DG=$H$J$k$h$&BP1~!#(B
-		$B%Q%9L>%G%j%_%?$r=EJ#I=5-$9$k$h$&$J%"!<%+%$%P=PNO$KBP1~!#(B
-		$B%F%s%]%i%j%G%#%l%/%H%j$r%G%#%l%/%H%j%R%9%H%j$+$i=|30!#(B
-		64bit OS $BMQ$NBP1~!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.03-b7	入力ラインの折返し位置を変更。
+ (03/12/97)	djgpp v1.xx で LFN を扱えなかった点を修正 (MS-DOS 版)。
+		ダミーファイル functabl.c の追加。
+		バイナリ頒布の場合、頒布者が識別可能となるよう対応。
+		パス名デリミタを重複表記するようなアーカイバ出力に対応。
+		テンポラリディレクトリをディレクトリヒストリから除外。
+		64bit OS 用の対応。
+		その他 Bugfix。
 
-Ver. 1.03-b6	termios $B%$%s%?%U%'!<%9BP1~!#(B
- (12/18/96)	$B%-!<%3!<%IJ8;zNsCf$K(B "^A" $B7A<0$N5-=R$r5v$9!#(B
-		keymap $BBP>]$K%F%s%-!<$N3F%-!<$rDI2C!#(B
-		getkey $BAH9~$_%3%^%s%I$K%k!<%W2s?t0z?t$rDI2C!#(B
-		make $B;~$N%3%s%Q%$%k4D6-@_Dj$N@0Hw!#(B
-		MARK_REVERSE, MARK_FIND $B;~$NA*Br%5%$%:9g7W$N(B Bugfix$B!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.03-b6	termios インタフェース対応。
+ (12/18/96)	キーコード文字列中に "^A" 形式の記述を許す。
+		keymap 対象にテンキーの各キーを追加。
+		getkey 組込みコマンドにループ回数引数を追加。
+		make 時のコンパイル環境設定の整備。
+		MARK_REVERSE, MARK_FIND 時の選択サイズ合計の Bugfix。
+		その他 Bugfix。
 
-Ver. 1.03-b5	$B%U%!%$%kL>$N%$%s%/%j%a%s%?%k%5!<%A%3%^%s%I$rDI2C!#(B
- (12/06/96)	"!$BJ8;zNs(B" $B7A<0$N%R%9%H%j;2>HK!$rDI2C!#(B
-		LFN $BMQ$K(B %S $B%^%/%m$NDI2C(B (MS-DOS $BHG(B)$B!#(B
-		$BBg>.J8;zF10l;k$r87L)$KE0Dl(B (MS-DOS $BHG(B)$B!#(B
-		keymap $BAH9~$_%3%^%s%I$K0lMwI=<(5!G=DI2C!#(B
-		$B<g$K(B djgpp v2.xx $B$K5/0x$9$k(B LFN $BMm$_$N=$@5!#(B
-		$B%Z!<%8%c$d%(%G%#%?5/F0$G%^!<%/?t$,(B 0 $B$K$J$kE@$r=$@5!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.03-b5	ファイル名のインクリメンタルサーチコマンドを追加。
+ (12/06/96)	"!文字列" 形式のヒストリ参照法を追加。
+		LFN 用に %S マクロの追加 (MS-DOS 版)。
+		大小文字同一視を厳密に徹底 (MS-DOS 版)。
+		keymap 組込みコマンドに一覧表示機能追加。
+		主に djgpp v2.xx に起因する LFN 絡みの修正。
+		ページャやエディタ起動でマーク数が 0 になる点を修正。
+		その他 Bugfix。
 
-Ver. 1.03-b4	$B%G%#%l%/%H%j%R%9%H%j$NDI2C!#(B
- (12/02/96)	$BJd408uJdA*Br;~$K%+!<%=%k%-!<$rM-8z$K!#(B
-		djgpp v2.xx $B$KBP1~(B (MS-DOS $BHG(B)$B!#(B
-		.fdrc $B$NFI9~$_;~$K%(%i!<%a%C%;!<%8$rI=<($9$k$h$&$K$7$?!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.03-b4	ディレクトリヒストリの追加。
+ (12/02/96)	補完候補選択時にカーソルキーを有効に。
+		djgpp v2.xx に対応 (MS-DOS 版)。
+		.fdrc の読込み時にエラーメッセージを表示するようにした。
+		その他 Bugfix。
 
-Ver. 1.03-b3	$BAH9~$_%3%^%s%I<B9T;~$N(B '!' $B$rGQ;_!#(B
- (11/28/96)	keymap, getkey $BAH9~$_%3%^%s%I$NDI2C!#(B
-		$BFbItJQ?t(B PROMPT $B$NDI2C!#(B
-		$B0lIt$NAH9~$_%3%^%s%I$rL>>NJQ99!#(B
-		$BI=<(7O$NAH9~$_%3%^%s%I$r0z?t;XDj2DG=$K!#(B
-		$B%R%9%H%jHV9f$N@8@.5,B'$rJQ99!#(B
-		mkmf.sed $B$N@8@.%U%#%k%?$r%W%m%0%i%`2=!#(B
-		$BFC<l%-!<$N%-!<%3!<%I<hF@%k!<%A%s$r(B Bugfix$B!#(B
-		$B$=$NB>(B OS $B0MB8@-$K$h$k(B Bugfix$B!#(B
+Ver. 1.03-b3	組込みコマンド実行時の '!' を廃止。
+ (11/28/96)	keymap, getkey 組込みコマンドの追加。
+		内部変数 PROMPT の追加。
+		一部の組込みコマンドを名称変更。
+		表示系の組込みコマンドを引数指定可能に。
+		ヒストリ番号の生成規則を変更。
+		mkmf.sed の生成フィルタをプログラム化。
+		特殊キーのキーコード取得ルーチンを Bugfix。
+		その他 OS 依存性による Bugfix。
 
-Ver. 1.03-b2	$B%=!<%H<o$K!V%U%!%$%kL>D9=g!W$rDI2C!#(B
- (11/20/96)	djgpp v2.xx $B$KBP$9$kG[N8(B (MS-DOS $BHG(B)$B!#(B
-		$B%+%i!<2=$N:]$KGX7J?'$rJQ99$7$J$$;EMM$K!#(B
-		OS $B4D6-0MB8$K$h$k(B mkfuncno.c $B$ND4@0!#(B
-		"@#" $B$G;O$^$k%3%^%s%I9T$r=hM}$G$-$J$$(B make $B$X$NBP1~!#(B
-		$B$=$NB>(B TYPO $BE*$J(B Bugfix$B!#(B
+Ver. 1.03-b2	ソート種に「ファイル名長順」を追加。
+ (11/20/96)	djgpp v2.xx に対する配慮 (MS-DOS 版)。
+		カラー化の際に背景色を変更しない仕様に。
+		OS 環境依存による mkfuncno.c の調整。
+		"@#" で始まるコマンド行を処理できない make への対応。
+		その他 TYPO 的な Bugfix。
 
-Ver. 1.03-b1	MS-DOS $B$X$N0\?"5Z$S(B DOS7 $B$N(B LFN $BBP1~!#(B
- (07/02/96)	$BI,MWEY$NDc$$5!G=$r%3%s%Q%$%k;~$K<h<NA*Br2DG=$K!#(B
-		$B%U%!%$%kL>I=<(%+%i!<2=5!G=$NDI2C!#(B
-		$B%"!<%+%$%P$N0lMwI=<($,J#?t9T$KJ,3d$5$l$k%1!<%9$KBP1~!#(B
-		$B%D%j!<2hLL$GE83+$5$l$?%G%#%l%/%H%j$N0l3g2=5!G=$rDI2C!#(B
-		"~FD" $B$G%$%s%9%H!<%k%G%#%l%/%H%j$N;2>H$r2DG=$K!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.03-b1	MS-DOS への移植及び DOS7 の LFN 対応。
+ (07/02/96)	必要度の低い機能をコンパイル時に取捨選択可能に。
+		ファイル名表示カラー化機能の追加。
+		アーカイバの一覧表示が複数行に分割されるケースに対応。
+		ツリー画面で展開されたディレクトリの一括化機能を追加。
+		"~FD" でインストールディレクトリの参照を可能に。
+		その他 Bugfix。
 
-Ver. 1.02-b2	timelocal(), mktime() $B$K4X$9$k0z?t@_Dj%_%9$r(B Bugfix$B!#(B
+Ver. 1.02-b2	timelocal(), mktime() に関する引数設定ミスを Bugfix。
  (04/30/96)
 
-Ver. 1.02-b1	RockRidge $BL$BP1~(B OS $BMQ$K5?;w(B RockRidge $B3HD%!#(B
- (04/23/96)	$BAH9~$_%3%^%s%I(B "!function" $B$rDI2C!#(B
-		$B%U%!%$%k%5%$%:>pJs9T$NI=<($rA*Br2DG=$K!#(B
-		$BA4$F$NFbIt%3%^%s%I$rAH9~$_%3%^%s%I$H$7$F5/F02DG=$K!#(B
-		DOS7 $BMQ(B floppy $B$N(B LFN $B$rFI=q$-2DG=$K(B ($B1Q?t;z$N$_(B)$B!#(B
-		$B=i4|@_Dj%U%!%$%k$N%3%^%s%IJ#?t9TJ,3d$r2DG=$K!#(B
+Ver. 1.02-b1	RockRidge 未対応 OS 用に疑似 RockRidge 拡張。
+ (04/23/96)	組込みコマンド "!function" を追加。
+		ファイルサイズ情報行の表示を選択可能に。
+		全ての内部コマンドを組込みコマンドとして起動可能に。
+		DOS7 用 floppy の LFN を読書き可能に (英数字のみ)。
+		初期設定ファイルのコマンド複数行分割を可能に。
 
-Ver. 1.01h	timelocal(), mktime() $B$K4X$9$k0z?t@_Dj%_%9$r(B Bugfix$B!#(B
+Ver. 1.01h	timelocal(), mktime() に関する引数設定ミスを Bugfix。
  (04/30/96)
 
-Ver. 1.01g	$B=i4|@_Dj%U%!%$%kFI9~$_;~$N%H!<%/%s<hF@$r87L)$K!#(B
- (04/22/96)	$B%Q%9L>Jd40$N:]$K=EJ#%U%!%$%kL>$rF10l;k$5$;$?!#(B
-		%M, %XM $B%^%/%m$NF0:nITNI$r(B Bugfix$B!#(B
-		MARK_FIND $B$N=EJ#F0:n$K4X$9$k(B Bugfix$B!#(B
-		$BFbItJQ?t$N:o=|$N5sF0$K4X$9$k(B Bugfix$B!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.01g	初期設定ファイル読込み時のトークン取得を厳密に。
+ (04/22/96)	パス名補完の際に重複ファイル名を同一視させた。
+		%M, %XM マクロの動作不良を Bugfix。
+		MARK_FIND の重複動作に関する Bugfix。
+		内部変数の削除の挙動に関する Bugfix。
+		その他 Bugfix。
 
-Ver. 1.01f	$B3F<o%(%i!<=hM}$N6/2=!#(B
- (04/09/96)	timezone $B<hF@K!$N:90[$r(B Configure, machine.h $B$KH?1G!#(B
+Ver. 1.01f	各種エラー処理の強化。
+ (04/09/96)	timezone 取得法の差異を Configure, machine.h に反映。
 
-Ver. 1.01e	timezone $B<hF@K!$N5!<o0MB8@-$KBP$9$kA<CV!#(B
+Ver. 1.01e	timezone 取得法の機種依存性に対する措置。
  (03/28/96)
 
-Ver. 1.01d	timezone $B7W;;%_%9$K$h$k%?%$%`%9%?%s%W$NIT6q9g$r=$@5!#(B
- (03/25/96)	$B%U%m%C%T!<%I%i%$%V$N%Q%9L>Jd40$,$G$-$J$+$C$?E@$r=$@5!#(B
+Ver. 1.01d	timezone 計算ミスによるタイムスタンプの不具合を修正。
+ (03/25/96)	フロッピードライブのパス名補完ができなかった点を修正。
 
-Ver. 1.01c	$B%U%m%C%T!<%Q%9L>$r(B MS-DOS $B;EMM$N(B 255 $BJ8;z$^$G$K@)8B$7$?!#(B
- (03/11/96)	$B%U%m%C%T!<%I%i%$%V$N%-%c%C%7%e$K4X$9$k(B Bugfix$B!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.01c	フロッピーパス名を MS-DOS 仕様の 255 文字までに制限した。
+ (03/11/96)	フロッピードライブのキャッシュに関する Bugfix。
+		その他 Bugfix。
 
-Ver. 1.01b	$B%U%m%C%T!<%I%i%$%V>e$G%U%!%$%kL>$N=*C<(B '.' $BJ8;z$rL5;k$5$;$?!#(B
- (03/01/96)	$B4D6-JQ?t(B LANG $BL$@_Dj;~$N%O%s%0%"%C%W$r(B Bugfix$B!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.01b	フロッピードライブ上でファイル名の終端 '.' 文字を無視させた。
+ (03/01/96)	環境変数 LANG 未設定時のハングアップを Bugfix。
+		その他 Bugfix。
 
-Ver. 1.01a	DOS7 $BMQ(B floppy $B$K;CDjBP1~!#(B
- (02/19/96)	strstr(3) $B$N;HMQ$r$d$a!"FH<+$KMQ0U$9$k$3$H$K$7$?!#(B
-		$B%G%#%l%/%H%j%3%T!<$NL58B%k!<%W$rKI;_!#(B
-		$B%+%l%s%H%G%#%l%/%H%j$X$N%G%#%l%/%H%j%3%T!<$r6X;_!#(B
-		$B%U%m%C%T!<%I%i%$%V>e$G$N(B mkdir $B$K4X$9$k(B Bugfix$B!#(B
-		NEXTSTEP $B$KBP$9$kBP=h!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.01a	DOS7 用 floppy に暫定対応。
+ (02/19/96)	strstr(3) の使用をやめ、独自に用意することにした。
+		ディレクトリコピーの無限ループを防止。
+		カレントディレクトリへのディレクトリコピーを禁止。
+		フロッピードライブ上での mkdir に関する Bugfix。
+		NEXTSTEP に対する対処。
+		その他 Bugfix。
 
-Ver. 1.01	$B@5<08x3+%P!<%8%g%s!#(B
- (02/02/96)	$B%I%-%e%a%s%H$K<c43$N<jD>$7!#(B
+Ver. 1.01	正式公開バージョン。
+ (02/02/96)	ドキュメントに若干の手直し。
 
-Ver. 1.01-09	1.01-08 $B$N=$@5ItJ,$N5!<o0MB8@-$KBP$9$kA<CV!#(B
+Ver. 1.01-09	1.01-08 の修正部分の機種依存性に対する措置。
  (12/20/95)
 
-Ver. 1.01-08	$B%U%m%C%T!<%I%i%$%V$N4A;z%U%!%$%kL>$KBP$9$k(B Bugfix$B!#(B
- (12/18/95)	$BF1:-%I%-%e%a%s%H$H$7$F(B ToAdmin $B$NDI2C!#(B
+Ver. 1.01-08	フロッピードライブの漢字ファイル名に対する Bugfix。
+ (12/18/95)	同梱ドキュメントとして ToAdmin の追加。
 
-Ver. 1.01-07	'col -b' $B$N5!G=$r(B kanjicnv $B$KFbB"!#(B
- (12/11/95)	$B%U%m%C%T!<%I%i%$%V$N(B timestamp $B$K4X$9$k(B Bugfix$B!#(B
+Ver. 1.01-07	'col -b' の機能を kanjicnv に内蔵。
+ (12/11/95)	フロッピードライブの timestamp に関する Bugfix。
 
-Ver. 1.01-06	timezone $B>pJs<hF@$N5!<o0MB8@-$KBP$9$kA<CV!#(B
- (11/13/95)	$B@5<0%j%j!<%9$K9g$o$;$F(B fd.cat, .fdrc.diff $B$rF1:-!#(B
+Ver. 1.01-06	timezone 情報取得の機種依存性に対する措置。
+ (11/13/95)	正式リリースに合わせて fd.cat, .fdrc.diff を同梱。
 
-Ver. 1.01-05	$B%U%m%C%T!<%I%i%$%V$NEPO?Ku>C5!G=$rDI2C!#(B
- (11/07/95)	$BF~NO9TKv$N6uGrJ8;z$K4X$9$k=hM}$rDI2C!#(B
-		$B%"!<%+%$%V%U%!%$%k0l;~E83+;~$N%-!<CfCG$K4X$9$k(B Bugfix$B!#(B
+Ver. 1.01-05	フロッピードライブの登録抹消機能を追加。
+ (11/07/95)	入力行末の空白文字に関する処理を追加。
+		アーカイブファイル一時展開時のキー中断に関する Bugfix。
 
-Ver. 1.01-04	$B%U%m%C%T!<%I%i%$%V>e$N%3%T!<$K4X$9$k(B Bugfix$B!#(B
- (10/20/95)	$B$=$NB>3F<o(B OS $B$K4X$9$k:Y$+$JBP1~!#(B
+Ver. 1.01-04	フロッピードライブ上のコピーに関する Bugfix。
+ (10/20/95)	その他各種 OS に関する細かな対応。
 
-Ver. 1.01-03	$B%U%m%C%T!<%I%i%$%V>e$N%"!<%+%$%V%V%i%&%6$K4X$9$k(B Bugfix$B!#(B
- (10/09/95)	$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.01-03	フロッピードライブ上のアーカイブブラウザに関する Bugfix。
+ (10/09/95)	その他 Bugfix。
 
-Ver. 1.01-02	MARK_REVERSE, MARK_FILE3 $B$N(B 2 $B%3%^%s%IDI2C!#(B
- (09/29/95)	$B%U%m%C%T!<%I%i%$%V>e$N%U%!%$%kJT=8$r2DG=$K!#(B
-		$B%U%m%C%T!<%"%/%;%9$N%P%C%U%!%j%s%0$r9gM}2=!#(B
-		$B<+F08!=P7?(B FDD $B$G$N%a%G%#%"H=JL$N9gM}2=!#(B
-		$B6uGrJ8;z$r4^$`%U%!%$%kL>I=<($K4X$9$kBP1~!#(B
-		$B%^%&%s%H>pJs$NF@$i$l$J$$(B OS $BMQ$NBP=h!#(B
+Ver. 1.01-02	MARK_REVERSE, MARK_FILE3 の 2 コマンド追加。
+ (09/29/95)	フロッピードライブ上のファイル編集を可能に。
+		フロッピーアクセスのバッファリングを合理化。
+		自動検出型 FDD でのメディア判別の合理化。
+		空白文字を含むファイル名表示に関する対応。
+		マウント情報の得られない OS 用の対処。
 
-Ver. 1.01-01	$BF~NO4A;z%3!<%I$NF0E*JQ99$r2DG=$K!#(B
- (09/22/95)	$B%U%m%C%T!<%I%i%$%V5!G=$N3F(B OS $BBP1~!#(B
-		%TA $B$NO"B3<B9T$,L58B%k!<%W$K4Y$kE@$r(B Bugfix$B!#(B
-		$B0lIt$NC<Kv$G%U%!%s%/%7%g%s9T$N=P$J$$E@$r(B Bugfix$B!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.01-01	入力漢字コードの動的変更を可能に。
+ (09/22/95)	フロッピードライブ機能の各 OS 対応。
+		%TA の連続実行が無限ループに陥る点を Bugfix。
+		一部の端末でファンクション行の出ない点を Bugfix。
+		その他 Bugfix。
 
-Ver. 1.01-00	MS-DOS $B%U%m%C%T!<$N%"%/%;%9$r2DG=$K$7$?!#(B
- (09/19/95)	$B%U%!%$%kL>Jd40;~$KA*Br8uJd%j%9%H$r=P$9$h$&$K$7$?!#(B
-		$B%"!<%+%$%V%V%i%&%6$NFI9~$_$N%P%C%U%!%j%s%0$r9T$J$C$?!#(B
-		$BJ8;zNsF~NO$G$N(B quoting $B5!G=$r$D$1$?!#(B
-		$BJ8;zNsF~NO$G$N%+!<%=%k0LCV%U%!%$%kL>A^F~5!G=$r$D$1$?!#(B
-		$B;~7W$NICI=<(%*%W%7%g%s(B SECOND $B$r@_$1$?!#(B
-		$B%3%s%H%m!<%kJ8;z$NF~NO%b!<%I@ZBX5!G=$r@_$1$?!#(B
-		"*" $B$K%I%C%H%U%!%$%k$,(B match $B$7$F$7$^$&E@$r(B Bugfix$B!#(B
+Ver. 1.01-00	MS-DOS フロッピーのアクセスを可能にした。
+ (09/19/95)	ファイル名補完時に選択候補リストを出すようにした。
+		アーカイブブラウザの読込みのバッファリングを行なった。
+		文字列入力での quoting 機能をつけた。
+		文字列入力でのカーソル位置ファイル名挿入機能をつけた。
+		時計の秒表示オプション SECOND を設けた。
+		コントロール文字の入力モード切替機能を設けた。
+		"*" にドットファイルが match してしまう点を Bugfix。
 
-Ver. 1.00g	1.00d $B$N3d9~<BAu$r(B System V $B7O$N(B signal() $B$KBP1~!#(B
- (09/13/95)	1.00 $B$N%*%U%#%7%c%k%P%0%U%#%/%9(B patch $B$H$7$F8x3+!#(B
+Ver. 1.00g	1.00d の割込実装を System V 系の signal() に対応。
+ (09/13/95)	1.00 のオフィシャルバグフィクス patch として公開。
 
-Ver. 1.00f	ENOTEMPTY $B$N$J$$4D6-$X$NBP1~!#(B
- (09/12/95)	$B%U%!%$%k0\F0;~$K(B . $B$d(B .. $B$rA*Br$G$-$J$$$h$&$K$7$?!#(B
-		$BC<Kv@_Dj4XO"$N%_%9$r=$@5!#(B
+Ver. 1.00f	ENOTEMPTY のない環境への対応。
+ (09/12/95)	ファイル移動時に . や .. を選択できないようにした。
+		端末設定関連のミスを修正。
 
-Ver. 1.00e	1.00d $B$G=$@5$7$-$l$J$+$C$?3d9~=hM}4XO"$N(B Bugfix$B!#(B
- (09/11/95)	$B%G%#%l%/%H%j:o=|$K4X$9$k(B Bugfix$B!#(B
+Ver. 1.00e	1.00d で修正しきれなかった割込処理関連の Bugfix。
+ (09/11/95)	ディレクトリ削除に関する Bugfix。
 
-Ver. 1.00d	1.00a $B$G$N3d9~=hM}$G$N%(%s%P%0$r=$@5!#(B
- (09/08/95)	%K $B%^%/%m$K4X$7$F!"<BAu$H%^%K%e%"%k5-=R$N[#Kf$5$rE}0l!#(B
+Ver. 1.00d	1.00a での割込処理でのエンバグを修正。
+ (09/08/95)	%K マクロに関して、実装とマニュアル記述の曖昧さを統一。
 
-Ver. 1.00c	$B%G%#%l%/%H%j0\F0;~$N%"%/%;%98"%A%'%C%/$N6/2=!#(B
- (09/07/95)	$B%U%!%s%/%7%g%s9T:FIA2h$NL5BL$r:o8:!#(B
+Ver. 1.00c	ディレクトリ移動時のアクセス権チェックの強化。
+ (09/07/95)	ファンクション行再描画の無駄を削減。
 
-Ver. 1.00b	1.00a $B$K$*$1$k5!<o0MB8%(%s%P%0$N(B Bugfix$B!#(B
- (09/06/95)	$B%7%9%F%`6&DL@_Dj%U%!%$%k$N%G%U%)%k%H%$%s%9%H!<%k$r$d$a$?!#(B
-		$B3F<o%I%-%e%a%s%H$NA}Jd!#(B
+Ver. 1.00b	1.00a における機種依存エンバグの Bugfix。
+ (09/06/95)	システム共通設定ファイルのデフォルトインストールをやめた。
+		各種ドキュメントの増補。
 
-Ver. 1.00a	$B:F5"E*%3%T!<$d0\F0$G!"%G%#%l%/%H%jI=<($r;}B3$5$;$?!#(B
- (09/01/95)	$B=hM}BT$A$N4V$K%U%!%s%/%7%g%s9T$rI=<($5$;$k$h$&$K$7$?!#(B
-		$B%j%j!<%98e$NLd$$9g$o$;$KBP1~$7$F(B FAQ $B$N9`L\$rDI2C!#(B
-		$B0BA4$N$?$a6/@)=*N;;~$N8e=hM}$rDI2C!#(B
-		$B%G%#%l%/%H%j=q9~$_3NG'$N>iD9@-$r=|$$$?!#(B
-		HP-UX $B$N(B CDF $B$r9MN8$7$?5sF0JQ99!#(B
-		$B%^%&%s%H%?%$%W$N<hF@$K(B f_fstypename $B$r;H$&J}<0$r:NMQ!#(B
-		$B%"!<%+%$%VE83+<:GT;~$K(B abort $B$7$J$$$h$&$K$7$?!#(B
-		$BI8=`F~=PNO$r%j%@%$%l%/%H$5$l$?>l9g$KBP1~$7$?!#(B
-		$B%"!<%+%$%V%V%i%&%6Fb$G$N%G%#%l%/%H%j0\F0$K4X$9$k(B Bugfix$B!#(B
-		$B%3%^%s%I%i%$%s0z?t$K%U%!%$%kL>$r;XDj$7$?>l9g$N(B Bugfix$B!#(B
-		$BJ8;zNsF~NO;~$NB?%P%$%HA^F~:o=|$K$D$$$F(B Bugfix$B!#(B
-		$B%U%!%$%kL>Jd40;~$N%G%#%l%/%H%j$N07$$$K$D$$$F(B Bugfix$B!#(B
-		%R $B%^%/%m;HMQ;~$N%R%9%H%j;2>H$K$D$$$F(B Bugfix$B!#(B
-		$B%^%/%mE83+;~$K6uJ8;z$rIU2C$9$k(B cpp $B$KBP1~!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 1.00a	再帰的コピーや移動で、ディレクトリ表示を持続させた。
+ (09/01/95)	処理待ちの間にファンクション行を表示させるようにした。
+		リリース後の問い合わせに対応して FAQ の項目を追加。
+		安全のため強制終了時の後処理を追加。
+		ディレクトリ書込み確認の冗長性を除いた。
+		HP-UX の CDF を考慮した挙動変更。
+		マウントタイプの取得に f_fstypename を使う方式を採用。
+		アーカイブ展開失敗時に abort しないようにした。
+		標準入出力をリダイレクトされた場合に対応した。
+		アーカイブブラウザ内でのディレクトリ移動に関する Bugfix。
+		コマンドライン引数にファイル名を指定した場合の Bugfix。
+		文字列入力時の多バイト挿入削除について Bugfix。
+		ファイル名補完時のディレクトリの扱いについて Bugfix。
+		%R マクロ使用時のヒストリ参照について Bugfix。
+		マクロ展開時に空文字を付加する cpp に対応。
+		その他 Bugfix。
 
-Ver. 1.00	$B@5<08x3+%P!<%8%g%s!#(B
- (08/07/95)	$B%I%-%e%a%s%H$d%3%a%s%H$K<c43$N<jD>$7!#(B
+Ver. 1.00	正式公開バージョン。
+ (08/07/95)	ドキュメントやコメントに若干の手直し。
 
-Ver. 0.99q	off_t $B$N7?$K0MB8$7$J$$$h$&$K%-%c%9%H$rDI2C!#(B
- (08/03/95)	$BI=<($N%0%k!<%WL>$N8e$m$K6uGr$rDI2C!#(B
-		$B9TKv$N(B %X $B$N07$$$K4X$9$k(B Bugfix$B!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 0.99q	off_t の型に依存しないようにキャストを追加。
+ (08/03/95)	表示のグループ名の後ろに空白を追加。
+		行末の %X の扱いに関する Bugfix。
+		その他 Bugfix。
 
-Ver. 0.99p	$B%G%P%$%9%U%!%$%k$N%5%$%:%U%#!<%k%I$r(B ls(1) $B$K9g$o$;$?!#(B
- (08/02/95)	EINTR $B$G5"$C$F$-$?4X?t$N=hM}$rDI2C!#(B
+Ver. 0.99p	デバイスファイルのサイズフィールドを ls(1) に合わせた。
+ (08/02/95)	EINTR で帰ってきた関数の処理を追加。
 
-Ver. 0.99o	$B%U%!%s%/%7%g%s%-!<I=<(JQ995!G=$,;`$s$G$$$?$N$r(B Bugfix$B!#(B
- (07/31/95)	Configure $B$N6/2=!#(B
+Ver. 0.99o	ファンクションキー表示変更機能が死んでいたのを Bugfix。
+ (07/31/95)	Configure の強化。
 
-Ver. 0.99n	vsprintf() $B$N$J$$(B OS $B$KBP1~!#(B
- (07/27/95)	NoExecMe $B$NL>A0$,:.Mp$N85$J$N$G(B Configure $B$K2~L>!#(B
-		Configure $B$N6/2=!#(B
+Ver. 0.99n	vsprintf() のない OS に対応。
+ (07/27/95)	NoExecMe の名前が混乱の元なので Configure に改名。
+		Configure の強化。
 
-Ver. 0.99m	NoExecMe $B$N(B Bugfix$B!#(B
- (07/25/95)	expfunc.c $B$G%5%V%7%'%k$G<B8=$7$F$$$?2U=j$r(B {} $B$KJQ99!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 0.99m	NoExecMe の Bugfix。
+ (07/25/95)	expfunc.c でサブシェルで実現していた箇所を {} に変更。
+		その他 Bugfix。
 
-Ver. 0.99l	NoExecMe $B$N6/2=!#(B
- (07/20/95)	$B$=$NB>(B Bugfix$B!#(B
+Ver. 0.99l	NoExecMe の強化。
+ (07/20/95)	その他 Bugfix。
 
-Ver. 0.99k	$B=q9~$_6X;_%U%!%$%k$N:o=|$KBP$9$k5sF0A*Br$r:Y$+$/$7$?!#(B
- (07/19/95)	$B$=$NB>(B Bugfix$B!#(B
+Ver. 0.99k	書込み禁止ファイルの削除に対する挙動選択を細かくした。
+ (07/19/95)	その他 Bugfix。
 
-Ver. 0.99j	$B%+%l%s%H%G%#%l%/%H%j$X$N(B COPY_FILE, MOVE_FILE $B$NBP1~!#(B
- (07/14/95)	$B%^%&%s%H>uBV$N<hF@$K(B getfsstat() $B$r;H$&J}<0$r:NMQ!#(B
-		$B%-!<3dEv$F$N%^%/%m:FDj5A;~$N(B Bugfix$B!#(B
-		NoExecMe $B$N6/2=!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 0.99j	カレントディレクトリへの COPY_FILE, MOVE_FILE の対応。
+ (07/14/95)	マウント状態の取得に getfsstat() を使う方式を採用。
+		キー割当てのマクロ再定義時の Bugfix。
+		NoExecMe の強化。
+		その他 Bugfix。
 
-Ver. 0.99i	$B%D%j!<I=<($N%G%#%l%/%H%jC5:w$N?<$5$r8BDj$7$?!#(B
- (07/06/95)	configure $B$r>!<j$K<B9T$5$l$J$$$h$&$K(B NoExecMe $B$H2~L>!#(B
-		$B<+F04D6-@_Dj$NH=Dj>r7o$N6/2=!#(B
-		sh $B4X?t$N;H$($J$$(B /bin/sh $BMQ$K4X?tE83+%W%m%0%i%`$rDI2C!#(B
-		$BF1:-%I%-%e%a%s%H$NDI2C!#(BTECHKNOW $B$H(B FAQ$B!#(BTODO $B$O:o=|!#(B
-		UID, GID $B$NJ8;zNs$rEG$/(B tar(1) $B$KBP1~!#(B
-		$B%3%^%s%I9T$N(B "" $BFb$r%^%/%mE83+$7$F$7$^$&E@$r(B Bugfix$B!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 0.99i	ツリー表示のディレクトリ探索の深さを限定した。
+ (07/06/95)	configure を勝手に実行されないように NoExecMe と改名。
+		自動環境設定の判定条件の強化。
+		sh 関数の使えない /bin/sh 用に関数展開プログラムを追加。
+		同梱ドキュメントの追加。TECHKNOW と FAQ。TODO は削除。
+		UID, GID の文字列を吐く tar(1) に対応。
+		コマンド行の "" 内をマクロ展開してしまう点を Bugfix。
+		その他 Bugfix。
 
-Ver. 0.99h	$B%3%^%s%I9TF,$G$N%U%!%$%kL>Jd40$r<B9T%U%!%$%k$K8BDj!#(B
- (06/29/95)	.fdrc $B$G$b(B "" $B$H(B '' $B$N6hJL$r$9$k$h$&$K$7$?!#(B
-		$B%Q%9L>%R%9%H%j5!G=$NKu>C!#(B
-		$B<+F04D6-@_Dj$N$?$a!"(Bconfigure $B$NDI2C!#(B
-		$B%U%!%s%/%7%g%s%-!<$N%-!<3dEv$F$r2DG=$K!#(B
-		$B0BA4$N$?$a!"(BESC $B$N%-!<3dEv$F$r6X;_!#(B
-		"!cd" $B$H(B LOG_DIR $B$N5sF0$rEy$7$/$7$?!#(B
-		"-" $B$,D>A0$N%G%#%l%/%H%j$K<($95!G=$rDI2C!#(B
-		FS $B$NMFNL$rI=$9C10L$r(B OS $BKh$K:F8!>Z!#(B
-		$B3HD%;R$K$h$k3FEPO?$G$N%I%C%H%U%!%$%k$N07$$$r(B Bugfix$B!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 0.99h	コマンド行頭でのファイル名補完を実行ファイルに限定。
+ (06/29/95)	.fdrc でも "" と '' の区別をするようにした。
+		パス名ヒストリ機能の抹消。
+		自動環境設定のため、configure の追加。
+		ファンクションキーのキー割当てを可能に。
+		安全のため、ESC のキー割当てを禁止。
+		"!cd" と LOG_DIR の挙動を等しくした。
+		"-" が直前のディレクトリに示す機能を追加。
+		FS の容量を表す単位を OS 毎に再検証。
+		拡張子による各登録でのドットファイルの扱いを Bugfix。
+		その他 Bugfix。
 
-Ver. 0.99g	UXP/M $B$KBP$9$kBP=h!#(B
- (06/21/95)	$BAH9~$_%3%^%s%I(B "!cd" $B$rDI2C!#(B
-		$BAH9~$_%3%^%s%I(B "!alias" $B$H(B "!unalias" $B$rDI2C!#(B
-		$BAH9~$_%3%^%s%I(B "!source" $B$rDI2C!#(B
-		$BAH9~$_%3%^%s%I(B "!history" $B$H(B "!!" $B5Z$S(B "!$B?tCM(B" $B$rDI2C!#(B
-		$BAH9~$_%3%^%s%I$N%-!<%^%/%m2=$r2DG=$K$7$?!#(B
-		$B3FEPO?MQAH9~$_%3%^%s%I$KEPO?:o=|5!G=$r@_$1$?!#(B
-		%R $B%^%/%m$G%+!<%=%k0LCV$r;XDj$G$-$k$h$&$K$7$?!#(B
-		%N $B%^%/%m$rDI2C!#(B
-		$B%D%j!<I=<(2hLL$K%=!<%H5!G=DI2C!#(B
-		$B%D%j!<I=<(2hLL$NA*Br7k2L$r%Q%9L>%R%9%H%j$KH?1G!#(B
-		printf() $B7O$N(B "-*.*s" $B$,4A;zBP1~$G$-$J$$(B OS $BMQ$KJQ99!#(B
-		'#' $BEy$N%a%?J8;z$r4^$`%U%!%$%kL>$N=hM}$rDI2C!#(B
-		BSD $B7O$N(B timezone $B<hF@J}K!$r(B gettimeofday() $B$KJQ99!#(B
-		char $B$N%G%U%)%k%H$,(B unsigned $B$N>l9g$r9MN8$7$FJQ99!#(B
-		$B%3%^%s%I9T$N(B "~%K" $B$J$I$,E83+$G$-$J$$E@$r(B Bugfix$B!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 0.99g	UXP/M に対する対処。
+ (06/21/95)	組込みコマンド "!cd" を追加。
+		組込みコマンド "!alias" と "!unalias" を追加。
+		組込みコマンド "!source" を追加。
+		組込みコマンド "!history" と "!!" 及び "!数値" を追加。
+		組込みコマンドのキーマクロ化を可能にした。
+		各登録用組込みコマンドに登録削除機能を設けた。
+		%R マクロでカーソル位置を指定できるようにした。
+		%N マクロを追加。
+		ツリー表示画面にソート機能追加。
+		ツリー表示画面の選択結果をパス名ヒストリに反映。
+		printf() 系の "-*.*s" が漢字対応できない OS 用に変更。
+		'#' 等のメタ文字を含むファイル名の処理を追加。
+		BSD 系の timezone 取得方法を gettimeofday() に変更。
+		char のデフォルトが unsigned の場合を考慮して変更。
+		コマンド行の "~%K" などが展開できない点を Bugfix。
+		その他 Bugfix。
 
-Ver. 0.99f	DG/UX, RISC/os, BSD/OS $B$KBP$9$kBP=h!#(B
- (06/09/95)	$B%U%!%$%k%?%$%W%7%s%\%kI=<(%b!<%IDI2C!#(B
-		$B%I%C%H%U%!%$%kHsI=<(%b!<%IDI2C!#(B
-		$B3F<o%U%!%$%kI=<(%b!<%I$N=i4|CM$r%f!<%6Dj5A2DG=$K!#(B
-		$B%U%!%$%kI=<(Ns$N=i4|CM$r%f!<%6Dj5A2DG=$K!#(B
-		$B%U%!%$%kL>$N:G>.I=<(J8;z?t$r%f!<%6Dj5A$GJ]>Z2DG=$K!#(B
-		$B%G%U%)%k%H$N%=!<%H%?%$%W$K!VA0$N%?%$%W$rJ];}!W$rDI2C!#(B
-		$B%k!<%H%G%#%l%/%H%j$X$N0\F0%3%^%s%I(B [\] $B$rDI2C!#(B
-		$B%Z!<%8@ZBX$(%3%^%s%I$N%+!<%=%k0LCV$K4X$9$k;EMMJQ99!#(B
-		PATH $B$NFbMF$rE83+$7$F$+$i(B /bin/sh $B$KEO$9;EMM$K!#(B
-		$B5?;w4D6-JQ?t$r%0%m!<%P%kJQ?t$KJ]B8$7;2>H$r8:$i$7$?!#(B
-		$B4D6-JQ?t(B PWD $B$NCM$rF0E*$KJQ99$9$k;EMM$K!#(B(for emacs)
-		$B%U%!%$%k8!:w$N(B "*" $B$K%I%C%H%U%!%$%k$r%^%C%A$5$;$J$$!#(B
-		$B%"!<%+%$%V%V%i%&%6$r%5%V%G%#%l%/%H%jHsJ]B8$N>l9g$KBP1~!#(B
-		FS $B$N%5%$%:I=<($N7e0n$l$KBP$9$k(B Bugfix$B!#(B
-		$B%R%9%H%j%5%$%:$NF0E*JQ99$KBP$9$k(B Bugfix$B!#(B
-		2000 $BG/0J9_$N@>NqI=<($KBP$9$k(B Bugfix$B!#(B
+Ver. 0.99f	DG/UX, RISC/os, BSD/OS に対する対処。
+ (06/09/95)	ファイルタイプシンボル表示モード追加。
+		ドットファイル非表示モード追加。
+		各種ファイル表示モードの初期値をユーザ定義可能に。
+		ファイル表示列の初期値をユーザ定義可能に。
+		ファイル名の最小表示文字数をユーザ定義で保証可能に。
+		デフォルトのソートタイプに「前のタイプを保持」を追加。
+		ルートディレクトリへの移動コマンド [\] を追加。
+		ページ切替えコマンドのカーソル位置に関する仕様変更。
+		PATH の内容を展開してから /bin/sh に渡す仕様に。
+		疑似環境変数をグローバル変数に保存し参照を減らした。
+		環境変数 PWD の値を動的に変更する仕様に。(for emacs)
+		ファイル検索の "*" にドットファイルをマッチさせない。
+		アーカイブブラウザをサブディレクトリ非保存の場合に対応。
+		FS のサイズ表示の桁溢れに対する Bugfix。
+		ヒストリサイズの動的変更に対する Bugfix。
+		2000 年以降の西暦表示に対する Bugfix。
 
-Ver. 0.99e	$B%3%^%s%IF~NO9T$N(B '\' $B$K$h$k(B prefix $B$rM-8z$K!#(B
- (05/29/95)	$B%"!<%+%$%V%V%i%&%6$N:F5"5/F0$r2DG=$K!#(B
-		IRIX $B$N(B FS $B$KBP$9$k=hM}$rKd9~$_$G$J$/F0E*$K!#(B
-		"*.Z", "*.gz" $B$KBP$9$k%i%s%A%c$rKd9~$_$+$i:o=|!#(B
-		putenv() $B$r40A4$K<+A0$N$b$N$GBeBX$K!#(B
-		$B%"!<%+%$%V%V%i%&%6$N:G=*9T:o=|5!G=$r(B Bugfix$B!#(B
-		$B%k!<%H%G%#%l%/%H%j$N(B FS $B>pJs<hF@$KBP$7$F(B Bugfix$B!#(B
-		$B$=$NB>(B Bugfix$B!#(B
+Ver. 0.99e	コマンド入力行の '\' による prefix を有効に。
+ (05/29/95)	アーカイブブラウザの再帰起動を可能に。
+		IRIX の FS に対する処理を埋込みでなく動的に。
+		"*.Z", "*.gz" に対するランチャを埋込みから削除。
+		putenv() を完全に自前のもので代替に。
+		アーカイブブラウザの最終行削除機能を Bugfix。
+		ルートディレクトリの FS 情報取得に対して Bugfix。
+		その他 Bugfix。
 
-Ver. 0.99d	A/UX, NetBSD $B$KBP$9$kBP=h!#(B
- (05/22/95)	$B30It%3%^%s%I<B9T;~$K3d9~$_$rCf;_!#(B
-		$B%G%#%l%/%H%j=q9~$_$G$-$k(B FS $B$rL@<(E*$K5v2D@)!#(B
-		<nfs/vfs.h> $B$r;H$&J}<0$rGQ;_!#(B
-		FS $B>uBV$N<hF@$K(B struct fs_data $B$r;H$&J}<0$r:NMQ!#(B
-		$B%^%&%s%H>uBV$N<hF@$K(B mntctl() $B$r;H$&J}<0$r:NMQ!#(B
-		$B%^%&%s%H>uBV$N<hF@$K(B getmntinfo_r() $B$r;H$&J}<0$r:NMQ!#(B
-		$B%^%&%s%H>uBV$N<hF@$K(B getmnt() $B$r;H$&J}<0$r:NMQ!#(B
-		$B%G%#%l%/%H%j$N%V%m%C%/C10L$N<BB,J}<0:NMQ!#(B
-		xterm $BMQ$N2hLL%5%$%:<hF@%k!<%A%s$r(B xterm $B7OC<Kv8BDj$K!#(B
-		putenv() $B$KEO$9%Q%i%a!<%?=hM}$N(B Bugfix$B!#(B
+Ver. 0.99d	A/UX, NetBSD に対する対処。
+ (05/22/95)	外部コマンド実行時に割込みを中止。
+		ディレクトリ書込みできる FS を明示的に許可制。
+		<nfs/vfs.h> を使う方式を廃止。
+		FS 状態の取得に struct fs_data を使う方式を採用。
+		マウント状態の取得に mntctl() を使う方式を採用。
+		マウント状態の取得に getmntinfo_r() を使う方式を採用。
+		マウント状態の取得に getmnt() を使う方式を採用。
+		ディレクトリのブロック単位の実測方式採用。
+		xterm 用の画面サイズ取得ルーチンを xterm 系端末限定に。
+		putenv() に渡すパラメータ処理の Bugfix。
 
-Ver. 0.99c	$B=PNO4A;z%3!<%I$NF0E*JQ99$r2DG=$K!#(B
- (05/02/95)	$B!V$7$P$i$/$*BT$A2<$5$$!WI=<($r?o=j$KDI2C!#(B
-		$B%U%!%$%k$,B8:_$7$J$$>l9g$N=hM}$rDI2C!#(B
-		DIRBLKSIZ $B$N;HMQ$rGQ;_!#(B
-		$BEPO?%i%s%A%c0lMw$K!"%"!<%+%$%V%V%i%&%6<1JL;R$rDI2C!#(B
-		$B0lIt$N(B FS(rfs,tmp) $B$r%G%#%l%/%H%j=q9~$_6X;_$K!#(B
-		termcap $B$N(B xn, xs $B%(%s%H%j$KBP1~!#(B
-		$B5?;w4D6-JQ?tL>$K>.J8;z$b5v2D$9$k!#(B
-		$BJ8;zNsF~NO9T$N(B 2 $B9T$KEO$k2U=j$N=hM}$r(B Bugfix$B!#(B
+Ver. 0.99c	出力漢字コードの動的変更を可能に。
+ (05/02/95)	「しばらくお待ち下さい」表示を随所に追加。
+		ファイルが存在しない場合の処理を追加。
+		DIRBLKSIZ の使用を廃止。
+		登録ランチャ一覧に、アーカイブブラウザ識別子を追加。
+		一部の FS(rfs,tmp) をディレクトリ書込み禁止に。
+		termcap の xn, xs エントリに対応。
+		疑似環境変数名に小文字も許可する。
+		文字列入力行の 2 行に渡る箇所の処理を Bugfix。
 
-Ver. 0.99b	NEWS-OS 3.3, Luna/Mach, AIX $B$KBP$9$kBP=h!#(B
- (04/28/95)	$B%"!<%+%$%V%V%i%&%6Fb$G$N%U%!%$%k<B9T$r2DG=$K!#(B
-		$B%Q%9L>F~NO9T$N%R%9%H%j5!G=DI2C!#(B
-		FS $B>uBV$N<hF@$K(B <nfs/vfs.h> $B$r;H$&J}<0$r:NMQ!#(B
-		$B%G%#%l%/%H%j$N%V%m%C%/C10L$H$7$F(B DIRBLKSIZ $B$bDI2C!#(B
-		$BA*Br%a%K%e!<$KF,J8;z%8%c%s%W5!G=$rDI2C!#(B
-		$B%Z!<%8%c!"%(%G%#%?$N5/F0;~$K2hLL$r%/%j%"$9$k$h$&$K!#(B
-		PageUp, PageDown $B$N5!G=$,5U$K$J$C$F$$$?E@$r(B Bugfix$B!#(B
-		$BI=<(NsJQ99;~$K%Z!<%8?t$,JQ99$5$l$J$$E@$r(B Bugfix$B!#(B
-		$B%R%9%H%j;2>H;~$KF~NO9T$,Mp$l$kE@$r(B Bugfix$B!#(B
-		$B$=$NB>(B Bugfix$B!#(B
-		$B%P!<%8%g%s%3%s%H%m!<%i(B ver.sh $B$rGQ;_!#(B
+Ver. 0.99b	NEWS-OS 3.3, Luna/Mach, AIX に対する対処。
+ (04/28/95)	アーカイブブラウザ内でのファイル実行を可能に。
+		パス名入力行のヒストリ機能追加。
+		FS 状態の取得に <nfs/vfs.h> を使う方式を採用。
+		ディレクトリのブロック単位として DIRBLKSIZ も追加。
+		選択メニューに頭文字ジャンプ機能を追加。
+		ページャ、エディタの起動時に画面をクリアするように。
+		PageUp, PageDown の機能が逆になっていた点を Bugfix。
+		表示列変更時にページ数が変更されない点を Bugfix。
+		ヒストリ参照時に入力行が乱れる点を Bugfix。
+		その他 Bugfix。
+		バージョンコントローラ ver.sh を廃止。
 
-Ver. 0.99a	$B3F5!<o$KBP1~$7$F:Y$+$JD4@0!#(B
+Ver. 0.99a	各機種に対応して細かな調整。
  (04/27/95)	 (EWS-UX, Uni-OS, OSF/1, Ulirix, Lunux, FreeBSD)
-		FS $B>uBV$N<hF@$K(B <sys/mnttab.h> $B$r;H$&J}<0$r:NMQ!#(B
-		FS $B>uBV$N<hF@$K(B <sys/statfs.h> $B$r;H$&J}<0$r:NMQ!#(B
-		$B%G%#%l%/%H%j$N%V%m%C%/C10L$H$7$F(B DEV_BSIZE $B;HMQ!#(B
+		FS 状態の取得に <sys/mnttab.h> を使う方式を採用。
+		FS 状態の取得に <sys/statfs.h> を使う方式を採用。
+		ディレクトリのブロック単位として DEV_BSIZE 使用。
 
-Ver. 0.99	$B&B%F%9%HMQ$N8BDjHG%j%j!<%9!#(B
- (04/24/95)	$B%F%9%H4D6-$G$N;HMQ$K8BDj$9$k$H$$$&>r7o$D$-$G8x3+!#(B
-		$B%F%9%HMQ$N%W%m%0%i%`$r4v$D$+%Q%C%1!<%8$KF1:-!#(B
+Ver. 0.99	βテスト用の限定版リリース。
+ (04/24/95)	テスト環境での使用に限定するという条件つきで公開。
+		テスト用のプログラムを幾つかパッケージに同梱。

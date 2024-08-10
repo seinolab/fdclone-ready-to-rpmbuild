@@ -1,584 +1,584 @@
-[FDclone3 $B$K4X$9$k%F%/%K%+%k%N%&%O%&=8(B]
+[FDclone3 に関するテクニカルノウハウ集]
 
 
-1.$B5!<o0MB8@-5[<}$N$?$a$KMQ0U$5$l$F$$$k<1JL;R(B
+1.機種依存性吸収のために用意されている識別子
 
-$B!!(Bmachine.h $B$NCf$d!"(Bmake config $B$G@8@.$5$l$k(B config.h $B$NCf$G(B
-$B$O!"3F<o$N<1JL;R$,Dj5A$5$l$F$$$^$9!#$3$l$i$N<1JL;R$O!"(BOS $B$N(B
-$B0c$$$r5[<}$9$k$?$a$K@_$1$i$l$F$$$^$9!#(B
-$B!!<+J,$N4D6-$G!"$&$^$/%3%s%Q%$%k$G$-$J$$!"$I$&$b$*$+$7$J5sF0(B
-$B$r<($9$H$$$&$h$&$J>l9g$K$O!"$3$l$i$N<1JL;R$rDj5A$7$?$j!"Dj5A(B
-$B$r<h$j>C$7$?$j$7$FD4@0$7$F2<$5$$!#(B
-$B!!3F<1JL;R$N0UL#$r0J2<$KNs5s$7$^$9!#(B
+　machine.h の中や、make config で生成される config.h の中で
+は、各種の識別子が定義されています。これらの識別子は、OS の
+違いを吸収するために設けられています。
+　自分の環境で、うまくコンパイルできない、どうもおかしな挙動
+を示すというような場合には、これらの識別子を定義したり、定義
+を取り消したりして調整して下さい。
+　各識別子の意味を以下に列挙します。
 
 SYSV
 SVR4
 BSD4
 BSD43
-	$B3F<o(B OS $B$N85$H$J$k%?%$%W$r<($7$^$9!#(BSYSV, SVR4 $B$O!"(B
-	machine.h $B$N8eH>$G!"(BOS $BFCM-$NDj5A$N$?$a$K;2>H$5$l$F(B
-	$B$$$^$9$,!"(BBSD4, BSD43 $B$O!";29M$H$7$FDj5A$5$l$F$$$k$@(B
-	$B$1$J$N$G!"<B:]$K$O%=!<%9Cf$G;2>H$5$l$F$$$^$;$s!#(B
+	各種 OS の元となるタイプを示します。SYSV, SVR4 は、
+	machine.h の後半で、OS 特有の定義のために参照されて
+	いますが、BSD4, BSD43 は、参考として定義されているだ
+	けなので、実際にはソース中で参照されていません。
 
 OSTYPE
-	$B3F(B OS $B$rI=$9<1JL;R$rDj5A$7$F$$$^$9!#%U%m%C%T!<%I%i%$(B
-	$B%V$N%G%U%)%k%H@_Dj$r(B OS $B$K1~$8$F9T$J$&$?$a$K;HMQ$5$l(B
-	$B$F$$$^$9!#(B
+	各 OS を表す識別子を定義しています。フロッピードライ
+	ブのデフォルト設定を OS に応じて行なうために使用され
+	ています。
 
 CODEEUC
-	$B4A;z%3!<%I$H$7$F!"(BEUC (Extended Unix Code) $B4A;z$rMQ(B
-	$B$$$^$9!#L$Dj5A$N>l9g$O(B Shift JIS $B$K$J$j$^$9!#%$%s%9(B
-	$B%H!<%k8e$N(B man $B%Z!<%8$d!"4A;z%3!<%IL$;XDj;~$N%G%U%)(B
-	$B%k%HCM$K1F6A$7$^$9!#(B
-	$BF~=PNO$d%U%!%$%kL>$KMQ$$$k4A;z%3!<%I$K4X$7$F$O!"%3%s(B
-	$B%Q%$%k8e$KF0E*$KJQ992DG=$G$9!#(B
+	漢字コードとして、EUC (Extended Unix Code) 漢字を用
+	います。未定義の場合は Shift JIS になります。インス
+	トール後の man ページや、漢字コード未指定時のデフォ
+	ルト値に影響します。
+	入出力やファイル名に用いる漢字コードに関しては、コン
+	パイル後に動的に変更可能です。
 DEFKCODE
-	OS $BI8=`$GMQ$$$k4A;z%3!<%I$r<($9J8;zNs$r;XDj$7$^$9!#(B
-	$BDj5A$5$l$?>l9g$K$O!"4A;z%3!<%I$K4X$9$k3F<oFbItJQ?t$N(B
-	$B=i4|CM$H$7$FMQ$$$i$l$^$9!#(B
+	OS 標準で用いる漢字コードを示す文字列を指定します。
+	定義された場合には、漢字コードに関する各種内部変数の
+	初期値として用いられます。
 UTF8DOC
-	$B%I%-%e%a%s%H$N4A;z%3!<%I$H$7$F(B UTF-8 $B$rMQ$$$^$9!#L$(B
-	$BDj5A$N>l9g$O(B CODEEUC $B$NDj5A$K=>$$$^$9!#(BDEFKCODE $B$NCM(B
-	$B$,!V(Butf8-mac$B!W$b$7$/$O!V(Butf8-iconv$B!W$N>l9g$O!"$=$N;X(B
-	$BDj$K$h$k(B UNICODE $B%^%C%T%s%0$rMQ$$$^$9!#(B
+	ドキュメントの漢字コードとして UTF-8 を用います。未
+	定義の場合は CODEEUC の定義に従います。DEFKCODE の値
+	が「utf8-mac」もしくは「utf8-iconv」の場合は、その指
+	定による UNICODE マッピングを用います。
 UTF8LANG
-	$B4D6-JQ?t(B LANG $B$K!V(BUTF$B!W$,4^$^$l$F$$$k>l9g$K!"(BOS $BI8=`(B
-	$B$GMQ$$$k4A;z%3!<%I5Z$S%I%-%e%a%s%H$N4A;z%3!<%I$H$7$F(B
-	$BMQ$$$kJ8;zNs$r;XDj$7$^$9!#(BLANG $B$,!V(BUTF$B!W$r4^$^$J$$>l(B
-	$B9g$K$O0UL#$r;}$A$^$;$s!#(B
+	環境変数 LANG に「UTF」が含まれている場合に、OS 標準
+	で用いる漢字コード及びドキュメントの漢字コードとして
+	用いる文字列を指定します。LANG が「UTF」を含まない場
+	合には意味を持ちません。
 NOMULTIKANJI
-	$BJ#?t$N4A;z%3!<%I$,6&B8$9$k4D6-$r9MN8$9$kI,MW$,$"$j$^(B
-	$B$;$s!#(B
+	複数の漢字コードが共存する環境を考慮する必要がありま
+	せん。
 PATHNOCASE
-	$B%Q%9L>$K4^$^$l$kBgJ8;z>.J8;z$N6hJL$,L5;k$5$l$^$9!#(B
+	パス名に含まれる大文字小文字の区別が無視されます。
 COMMNOCASE
-	$B%7%'%k%3%^%s%IL>$K4^$^$l$kBgJ8;z>.J8;z$N6hJL$,L5;k$5(B
-	$B$l$^$9!#(B
+	シェルコマンド名に含まれる大文字小文字の区別が無視さ
+	れます。
 ENVNOCASE
-	$B4D6-JQ?tL>$K4^$^$l$kBgJ8;z>.J8;z$N6hJL$,L5;k$5$l$^$9!#(B
+	環境変数名に含まれる大文字小文字の区別が無視されます。
 NOUID
-	$B%f!<%6(B ID $B$d%0%k!<%W(B ID $B$,$"$j$^$;$s!#(B
+	ユーザ ID やグループ ID がありません。
 NODIRLOOP
-	$B%G%#%l%/%H%j9=B$$,@dBP$K%k!<%W$7F@$^$;$s!#(B
+	ディレクトリ構造が絶対にループし得ません。
 NOSYMLINK
-	$B%7%s%\%j%C%/%j%s%/$,<BAu$5$l$F$$$^$;$s!#(B
+	シンボリックリンクが実装されていません。
 BSPATHDELIM
-	$B%Q%9L>6h@Z$j;R$,%P%C%/%9%i%C%7%eJ8;z$G$9!#(B
+	パス名区切り子がバックスラッシュ文字です。
 USECRNL
-	$B%F%-%9%H$N2~9TJ8;z$H$7$F(B CR-NL $B$rMQ$$$^$9!#(B
+	テキストの改行文字として CR-NL を用います。
 CWDINPATH
-	$B%3%^%s%I%5!<%A%Q%9$K0EL[$NN;2r$H$7$F%+%l%s%H%G%#%l%/(B
-	$B%H%j$,4^$^$l$F$$$^$9!#(B
+	コマンドサーチパスに暗黙の了解としてカレントディレク
+	トリが含まれています。
 DOUBLESLASH
-	// ($B$^$?$O(B \\) $B$G;O$^$k%Q%9L>$,!"FC<l$J0UL#$r;}$D%Q(B
-	$B%9L>(B ($B<BNc$H$7$F$O(B Cygwin $B$K1w$1$k6&M-%U%)%k%@(B) $B$H$7(B
-	$B$F5vMF$5$l$F$$$k!#(B
+	// (または \\) で始まるパス名が、特殊な意味を持つパ
+	ス名 (実例としては Cygwin に於ける共有フォルダ) とし
+	て許容されている。
 USEMANLANG
-	man(1) $B$N;2>H$9$k8!:w%Q%9L>$,!"(B/usr/man/ja_JP.SJIS/
-	$B$N$h$&$K4D6-JQ?t(B LANG $B$G<($5$l$kJ8;zNs$r4^$_!"B?9q8l(B
-	$BBP1~$5$l$F$$$^$9!#(B
+	man(1) の参照する検索パス名が、/usr/man/ja_JP.SJIS/
+	のように環境変数 LANG で示される文字列を含み、多国語
+	対応されています。
 LANGWIDTH
-	USEMANLANG $B$,@_Dj$5$l$F$$$k>l9g$K!"4D6-JQ?t(B LANG $B$G(B
-	$B<($5$l$kJ8;zNs$N@hF,$+$i(B man(1) $B$N8!:w%Q%9L>$KMQ$$$k(B
-	$BJ8;z?t$r;XDj$7$^$9!#0lHLE*$J(B NLS (Native Language
-	System) $B$G$O(B 2 $BJ8;z$^$?$O(B 5 $BJ8;z$K$J$j$^$9!#(B
+	USEMANLANG が設定されている場合に、環境変数 LANG で
+	示される文字列の先頭から man(1) の検索パス名に用いる
+	文字数を指定します。一般的な NLS (Native Language
+	System) では 2 文字または 5 文字になります。
 USEDATADIR
-	UNICODE $BJQ49%F!<%V%k(B fd-unicd.tbl $B$dF|K\8lF~NOMQ$+$J(B
-	$B4A;zJQ49%F!<%V%k(B fd-dict.tbl $B$r!"(Bfd $B$N5/F0%G%#%l%/%H(B
-	$B%j$G$J$/(B Makefile.in $B$N(B DATADIR $B$G;XDj$5$l$?%G%#%l%/(B
-	$B%H%j$KCV$-$^$9!#(B
+	UNICODE 変換テーブル fd-unicd.tbl や日本語入力用かな
+	漢字変換テーブル fd-dict.tbl を、fd の起動ディレクト
+	リでなく Makefile.in の DATADIR で指定されたディレク
+	トリに置きます。
 SUPPORTSJIS
-	cc(1) $B$d(B man(1) $B$,40A4$K(B Shift JIS $B$r@5$7$/07$($^$9!#(B
-	2 byte $BL\$K(B '\' $B$,Mh$k$h$&$J4A;z$KBP$7$F$b!"$3$N(B '\'
-	$B$r(B meta character $B$H$7$F07$$$^$;$s!#(B
+	cc(1) や man(1) が完全に Shift JIS を正しく扱えます。
+	2 byte 目に '\' が来るような漢字に対しても、この '\'
+	を meta character として扱いません。
 BSDINSTALL
-	BSD $B%i%$%/$J(B install(1) $B$,I8=`$N%3%^%s%I8!:w%Q%9>e$K(B
-	$B<BAu$5$l$F$*$j!"(B-c (copy) $B$d(B -s (strip) $B$H$$$C$?%*%W(B
-	$B%7%g%s$,;H$($^$9!#(B
+	BSD ライクな install(1) が標準のコマンド検索パス上に
+	実装されており、-c (copy) や -s (strip) といったオプ
+	ションが使えます。
 BSDINSTCMD
-	BSD $B%i%$%/$J(B install(1) $B$N%3%^%s%IL>$,(B "install" $B0J(B
-	$B30$N>l9g!"$=$N%3%^%s%IL>$rDj5A$7$^$9!#(BBSDINSTALL $B$r(B
-	$BDj5A$7$F$$$J$$>l9g$O0UL#$r;}$A$^$;$s!#(B
+	BSD ライクな install(1) のコマンド名が "install" 以
+	外の場合、そのコマンド名を定義します。BSDINSTALL を
+	定義していない場合は意味を持ちません。
 TARUSESPACE
-	tar(1) $B$N(B t $B%*%W%7%g%s$N=PNO$N:]$K!"3F9T$N%U%!%$%k%b(B
-	$B!<%IJ8;zNs(B (Ex:rw-rw-rw-) $B$ND>8e$KI,$:6uGr$,F~$C$F$$(B
-	$B$k>l9g$KDj5A$7$^$9!#(BBSD $B7O$N(B OS $B$G$O!"6uGr$,$J$/D>8e(B
-	$B$K(B UID/GID $B$,B3$/>l9g$,B?$$$h$&$G$9!#(BGNU tar $B$G$O6u(B
-	$BGr$,F~$j$^$9!#(B
-	$B$3$3$G2>$KDj5A$r4V0c$($?$H$7$F$b!"(B.fd2rc $B$d(B /etc/fd2rc
-	$B$N5-=R$GF0E*$KJQ99$9$k$3$H$O2DG=$G$9!#(B
+	tar(1) の t オプションの出力の際に、各行のファイルモ
+	ード文字列 (Ex:rw-rw-rw-) の直後に必ず空白が入ってい
+	る場合に定義します。BSD 系の OS では、空白がなく直後
+	に UID/GID が続く場合が多いようです。GNU tar では空
+	白が入ります。
+	ここで仮に定義を間違えたとしても、.fd2rc や /etc/fd2rc
+	の記述で動的に変更することは可能です。
 TARFROMPAX
-	tar(1) $B$N<BAu$,(B pax(1) $BM3Mh$N$b$N$G!"(Bt $B%*%W%7%g%s$N(B
-	$B=PNO$,(B pax(1) $B$G;H$o$l$F$$$k=q<0$K$J$C$F$$$k>l9g$KDj(B
-	$B5A$7$^$9!#(B
-	$B$3$3$G2>$KDj5A$r4V0c$($?$H$7$F$b!"(B.fd2rc $B$d(B /etc/fd2rc
-	$B$N5-=R$GF0E*$KJQ99$9$k$3$H$O2DG=$G$9!#(B
+	tar(1) の実装が pax(1) 由来のもので、t オプションの
+	出力が pax(1) で使われている書式になっている場合に定
+	義します。
+	ここで仮に定義を間違えたとしても、.fd2rc や /etc/fd2rc
+	の記述で動的に変更することは可能です。
 BUGGYMAKE
-	make(1) $B$,!"(B1 $BIC0JFb$KO"B3$7$F:n@.$5$l$?%U%!%$%k$N0M(B
-	$BB84X78$r@5$7$/H=CG$G$-$^$;$s!#(B
+	make(1) が、1 秒以内に連続して作成されたファイルの依
+	存関係を正しく判断できません。
 CPP7BIT
-	cpp(1) $B$,!"4A;z$J$I$N(B 8bit $BJ8;z$rDL$9$3$H$,$G$-$^$;(B
-	$B$s!#(B
+	cpp(1) が、漢字などの 8bit 文字を通すことができませ
+	ん。
 OLDARGINT
-	cc(1) $B$,!"8EE5%?%$%W$N4X?t0z?t$r(B int $B7?$H8+$J$7$^$9!#(B
+	cc(1) が、古典タイプの関数引数を int 型と見なします。
 CCCOMMAND
-	$BI8=`$H$7$FMQ$$$k$Y$-(B c $B%3%s%Q%$%i$N%U%k%Q%9$rDj5A$7(B
-	$B$^$9!#0lIt$N(B OS $B$G$O!"(BBSD $BHG(B cc $B$H(B SYSV $BHG(B cc $B$,:.:_(B
-	$B$9$k$3$H$,$"$j$^$9$N$G!"$I$A$i$+$KE}0l$7$F$*$-$^$7$g(B
-	$B$&!#L$Dj5A$N>l9g$K$O(B cc $B$,MQ$$$i$l$^$9!#(B
+	標準として用いるべき c コンパイラのフルパスを定義し
+	ます。一部の OS では、BSD 版 cc と SYSV 版 cc が混在
+	することがありますので、どちらかに統一しておきましょ
+	う。未定義の場合には cc が用いられます。
 EXTENDCCOPT
-	cc(1) $B$KM?$($k%*%W%7%g%s$rDj5A$7$^$9!#L$Dj5A$N>l9g$O(B
-	"-O" $B$,;XDj$5$l$^$9!#(B"-O"(Optimize) $B$KL$BP1~$N>l9g$K(B
-	$B$O!"%L%k$rDj5A$7$F$*$-$^$7$g$&!#(B
+	cc(1) に与えるオプションを定義します。未定義の場合は
+	"-O" が指定されます。"-O"(Optimize) に未対応の場合に
+	は、ヌルを定義しておきましょう。
 CCOUTOPT
-	$B%3%s%Q%$%k$N$_$G%j%s%/$r$7$J$$>l9g(B (-c $B%*%W%7%g%s;X(B
-	$BDj;~(B) $B$K!"=PNO%U%!%$%kL>$r(B cc(1) $B$KM?$($k%*%W%7%g%s(B
-	$B$r!"=PNO%U%!%$%kL>$N(B make(1) $B%^%/%mIU$GDj5A$7$^$9!#(B
-	$B%G%U%)%k%H$N(B "-o $@" $B0J30$rI,MW$H$9$k;~$K;XDj$7$F2<(B
-	$B$5$$!#(B
+	コンパイルのみでリンクをしない場合 (-c オプション指
+	定時) に、出力ファイル名を cc(1) に与えるオプション
+	を、出力ファイル名の make(1) マクロ付で定義します。
+	デフォルトの "-o $@" 以外を必要とする時に指定して下
+	さい。
 CCLNKOPT
-	$B<B9T%U%!%$%k$N%j%s%/$r$9$k>l9g(B (-c $B%*%W%7%g%sL5;XDj(B
-	$B;~(B) $B$K!"=PNO%U%!%$%kL>$r(B cc(1) $B$KM?$($k%*%W%7%g%s$r!"(B
-	$B=PNO%U%!%$%kL>$N(B make(1) $B%^%/%mIU$GDj5A$7$^$9!#%G%U(B
-	$B%)%k%H$N(B "-o $@" $B0J30$N;~$K;XDj$7$F2<$5$$!#(B
+	実行ファイルのリンクをする場合 (-c オプション無指定
+	時) に、出力ファイル名を cc(1) に与えるオプションを、
+	出力ファイル名の make(1) マクロ付で定義します。デフ
+	ォルトの "-o $@" 以外の時に指定して下さい。
 USETERMINFO
-	$BC<Kv%G!<%?%Y!<%9$H$7$F!"(Btermcap(5) library $B$NBe$o$j(B
-	$B$K(B terminfo(5) library $B$rMQ$$$^$9!#(B
+	端末データベースとして、termcap(5) library の代わり
+	に terminfo(5) library を用います。
 TERMCAPLIB
-	termcap(5) $B%i%$%V%i%j$H$7$F%j%s%/$7$J$/$F$O$J$i$J$$(B
-	$B%i%$%V%i%j$rDj5A$7$^$9!#L$Dj5A$N>l9g$O(B -ltermcap $B$,(B
-	$B;XDj$5$l$^$9!#(B
+	termcap(5) ライブラリとしてリンクしなくてはならない
+	ライブラリを定義します。未定義の場合は -ltermcap が
+	指定されます。
 REGEXPLIB
-	$B@55,I=8=%i%$%V%i%j$H$7$F%j%s%/$7$J$1$l$P$J$i$J$$%i%$(B
-	$B%V%i%j$,$"$k>l9gDj5A$7$^$9!#(B
+	正規表現ライブラリとしてリンクしなければならないライ
+	ブラリがある場合定義します。
 SOCKETLIB
-	$B%=%1%C%H%i%$%V%i%j$H$7$F%j%s%/$7$J$1$l$P$J$i$J$$%i%$(B
-	$B%V%i%j$,$"$k>l9gDj5A$7$^$9!#(B
+	ソケットライブラリとしてリンクしなければならないライ
+	ブラリがある場合定義します。
 EXTENDLIB
-	$B$=$NB>DI2C$G%j%s%/$7$J$/$F$O$J$i$J$$%i%$%V%i%j$,$"$k(B
-	$B>l9gDj5A$7$^$9!#(B
+	その他追加でリンクしなくてはならないライブラリがある
+	場合定義します。
 
 UNKNOWNFS
-	FDclone $B$,A[Dj$7$F$$$k0J30$N%U%!%$%k%7%9%F%`$r(B OS $B$,(B
-	$B:NMQ$7$F$$$^$9!#$=$NB>!"%G%#%l%/%H%j=q9~$_5!G=$,$&$^(B
-	$B$/<B8=$G$-$J$$>l9g$K$b!"0BA4$N$?$aDj5A$7$F$*$-$^$9!#(B
-	$B>\:Y$O(B 2. $B$N9`L\$r;2>H$7$F2<$5$$!#(B
+	FDclone が想定している以外のファイルシステムを OS が
+	採用しています。その他、ディレクトリ書込み機能がうま
+	く実現できない場合にも、安全のため定義しておきます。
+	詳細は 2. の項目を参照して下さい。
 
 NOFILEMACRO
-	cc(1) $B$,%^%/%m(B __FILE__ $B$rI>2A$G$-$^$;$s!#(B
+	cc(1) がマクロ __FILE__ を評価できません。
 NOFUNCMACRO
-	cc(1) $B$,%^%/%m(B __FUNCTION__ $B$rI>2A$G$-$^$;$s!#(B
+	cc(1) がマクロ __FUNCTION__ を評価できません。
 NOLINEMACRO
-	cc(1) $B$,%^%/%m(B __LINE__ $B$rI>2A$G$-$^$;$s!#(B
+	cc(1) がマクロ __LINE__ を評価できません。
 FORCEDSTDC
-	__STDC__ $B$,%W%j%G%U%!%$%s$5$l$F$$$J$$$1$l$I$b!"%W%m(B
-	$B%H%?%$%W@k8@Ey$K(B ANSI $BI8=`(B C $B$N=q<0$rMW5a$9$k;EMM$K(B
-	$B$J$C$F$$$k>l9g$KDj5A$7$^$9!#(BANSI $B=`5r$G$"$k$3$H$,J](B
-	$B>Z$5$l$F$$$k>l9g!"L5>r7o$K$3$l$rDj5A$7$F$7$^$C$F$bFC(B
-	$B$K;Y>c$"$j$^$;$s!#(B
+	__STDC__ がプリデファインされていないけれども、プロ
+	トタイプ宣言等に ANSI 標準 C の書式を要求する仕様に
+	なっている場合に定義します。ANSI 準拠であることが保
+	証されている場合、無条件にこれを定義してしまっても特
+	に支障ありません。
 STRICTSTDC
-	$B%b%@%s%?%$%W$N%W%m%H%?%$%W@k8@$H!"(BK&R $B$N5l<0$N4X?t@k(B
-	$B8@$H$N:.:_$r5v$5$J$$!"4h$J$J(B ANSI $BI8=`(B C $B;EMM$K$J$C(B
-	$B$F$$$k>l9g$KDj5A$7$^$9!#4X?t$N0z?t$N7?Mm$_$G%(%i!<$,(B
-	$BBgNL$K=P$k$H$-$KDj5A$7$F2<$5$$!#(B
+	モダンタイプのプロトタイプ宣言と、K&R の旧式の関数宣
+	言との混在を許さない、頑なな ANSI 標準 C 仕様になっ
+	ている場合に定義します。関数の引数の型絡みでエラーが
+	大量に出るときに定義して下さい。
 NOSTDC
-	__STDC__ $B$,%W%j%G%U%!%$%s$5$l$F$$$k$1$l$I$b!"(BK&R $B$N(B
-	$B5l<0$N(B C $B8@8l;EMM$,4|BT$5$l$F$$$k>l9g$KDj5A$7$^$9!#(B
+	__STDC__ がプリデファインされているけれども、K&R の
+	旧式の C 言語仕様が期待されている場合に定義します。
 NOCONST
-	__STDC__ $B$,%W%j%G%U%!%$%s$5$l$F$$$k$1$l$I$b!"=$>~;R(B
-	const $B$KBP1~$7$F$$$J$$>l9g$KDj5A$7$^$9!#(B
+	__STDC__ がプリデファインされているけれども、修飾子
+	const に対応していない場合に定義します。
 NOVOID
-	void $B7?$rMQ$$$k$3$H$,$G$-$^$;$s!#(B
+	void 型を用いることができません。
 NOUINT
-	u_int $B7?$rMQ$$$k$3$H$,$G$-$^$;$s!#(B
+	u_int 型を用いることができません。
 NOLONGLONG
-	long long $B7?$r;H$&$3$H$,$G$-$^$;$s!#(B
+	long long 型を使うことができません。
 HAVELONGLONG
-	long long $B7?$KBP1~$7$F$$$^$9!#(B
+	long long 型に対応しています。
 NOUID_T
-	uid_t, gid_t $B$,(B <sys/types.h> $B$GDj5A$5$l$F$$$^$;$s!#(B
+	uid_t, gid_t が <sys/types.h> で定義されていません。
 USEPID_T
-	fork(2) $B$d(B wait(2) $B$,%W%m%;%9(B ID $B$H$7$F(B pid_t $B7?$rMQ(B
-	$B$$$^$9!#(B
+	fork(2) や wait(2) がプロセス ID として pid_t 型を用
+	います。
 DECLSIGLIST
-	$BBg0hJQ?t(B sys_siglist[] $B$,(B <signal.h> $B$NCf$G@k8@$5$l(B
-	$B$F$*$j!"%=!<%9%j%9%HCf$G2~$a$F@k8@$9$kI,MW$,$"$j$^$;(B
-	$B$s!#(B
+	大域変数 sys_siglist[] が <signal.h> の中で宣言され
+	ており、ソースリスト中で改めて宣言する必要がありませ
+	ん。
 NOSIGLIST
-	$BBg0hJQ?t(B sys_siglist[] $B$,I8=`%i%$%V%i%j$NCf$KB8:_$7(B
-	$B$^$;$s!#(B
+	大域変数 sys_siglist[] が標準ライブラリの中に存在し
+	ません。
 DECLERRLIST
-	$BBg0hJQ?t(B sys_errlist[] $B$,(B <stdio.h> $B$^$?$O(B <errno.h>
-	$B$NCf$G@k8@$5$l$F$*$j!"%=!<%9%j%9%HCf$G2~$a$F@k8@$9$k(B
-	$BI,MW$,$"$j$^$;$s!#(B
+	大域変数 sys_errlist[] が <stdio.h> または <errno.h>
+	の中で宣言されており、ソースリスト中で改めて宣言する
+	必要がありません。
 PWNEEDERROR
-	/lib/libPW.a $B$r%j%s%/$9$k:]$K!"Bg0hJQ?t(B Error[] $B$r%=(B
-	$B!<%9Cf$KMQ0U$7$J$/$F$O$J$j$^$;$s!#(B
+	/lib/libPW.a をリンクする際に、大域変数 Error[] をソ
+	ース中に用意しなくてはなりません。
 NOERRNO
-	$BBg0hJQ?t(B errno $B$,(B <errno.h> $B$NCf$G@k8@$5$l$F$$$^$;$s!#(B
+	大域変数 errno が <errno.h> の中で宣言されていません。
 NOFILEMODE
-	$B%U%!%$%k%b!<%I$r<($9Dj?t(B S_IRUSR, S_IWUSR $BEy$,(B <sys/
-	stat.h> $B$NCf$GDj5A$5$l$F$$$^$;$s!#(B
+	ファイルモードを示す定数 S_IRUSR, S_IWUSR 等が <sys/
+	stat.h> の中で定義されていません。
 NOUNISTDH
-	<unistd.h> $B$,B8:_$7$^$;$s!#(B
+	<unistd.h> が存在しません。
 NOSTDLIBH
-	<stdlib.h> $B$,B8:_$7$^$;$s!#(B
+	<stdlib.h> が存在しません。
 NOTZFILEH
-	<tzfile.h> $B$,B8:_$7$^$;$s!#(B
+	<tzfile.h> が存在しません。
 USELEAPCNT
-	$B9=B$BN(B tzhead $B$,%a%s%P(B tzh_leapcnt $B$r;}$A$^$9!#(B
+	構造体 tzhead がメンバ tzh_leapcnt を持ちます。
 USESELECTH
-	$B4X?t(B select(2) $B$rMxMQ$9$k:]$KI,MW$J9=B$BN(B fd_set $B$,!"(B
-	<sys/select.h> $B$NCf$GDj5A$5$l$F$$$^$9!#(B
+	関数 select(2) を利用する際に必要な構造体 fd_set が、
+	<sys/select.h> の中で定義されています。
 USESYSDIRH
-	$B%G%#%l%/%H%j%U%!%$%k$N%V%m%C%/$r<($9Dj?t(B DEV_BSIZE
-	$B$,!"(B<sys/dir.h> $B$NCf$GDj5A$5$l$F$$$^$9!#(B
+	ディレクトリファイルのブロックを示す定数 DEV_BSIZE
+	が、<sys/dir.h> の中で定義されています。
 USETIMEH
-	$B9=B$BN(B tm $B$,!"(B<sys/types.h> $B$d(B <sys/time.h> $B$r;2>H$9(B
-	$B$k$@$1$G$ODj5A$5$l$:!"(B<time.h> $B$,I,MW$G$9!#(B
+	構造体 tm が、<sys/types.h> や <sys/time.h> を参照す
+	るだけでは定義されず、<time.h> が必要です。
 USESTDARGH
-	$B2DJQ0z?t$r07$&(B va_list $B7?$,(B <stdarg.h> $B$NCf$GDj5A$5(B
-	$B$l$F$$$^$9!#(B
+	可変引数を扱う va_list 型が <stdarg.h> の中で定義さ
+	れています。
 USEMKDEVH
-	$B%G%P%$%9HV9fMQ%^%/%m(B ($B$^$?$O4X?t(B) major()/minor() $B$,(B
-	<sys/mkdev.h> $B$NCf$GDj5A$5$l$F$$$^$9!#(B
+	デバイス番号用マクロ (または関数) major()/minor() が
+	<sys/mkdev.h> の中で定義されています。
 USEMKNODH
-	$B%G%P%$%9HV9fMQ%^%/%m(B ($B$^$?$O4X?t(B) major()/minor() $B$,(B
-	<sys/mknod.h> $B$NCf$GDj5A$5$l$F$$$^$9!#(B
+	デバイス番号用マクロ (または関数) major()/minor() が
+	<sys/mknod.h> の中で定義されています。
 USELOCKFH
-	$B%U%!%$%k%m%C%/4X?t(B lockf(2) $B$N%3%^%s%I$r<($93FDj?t$,(B
-	<sys/lockf.h> $B$NCf$GDj5A$5$l$F$$$^$9!#(B
+	ファイルロック関数 lockf(2) のコマンドを示す各定数が
+	<sys/lockf.h> の中で定義されています。
 USETERMIO
-	$BC<Kv%$%s%?%U%'!<%9$H$7$F!"(Btermio $B9=B$BN$rMQ$$$^$9!#(B
+	端末インタフェースとして、termio 構造体を用います。
 USETERMIOS
-	$BC<Kv%$%s%?%U%'!<%9$H$7$F!"(Btermios $B9=B$BN$rMQ$$$^$9!#(B
-	USETERMIO, USETERMIOS $B6&$KL$Dj5A$N>l9g$K$O(B sgttyb
-	$B9=B$BN$rMQ$$$^$9!#(B
+	端末インタフェースとして、termios 構造体を用います。
+	USETERMIO, USETERMIOS 共に未定義の場合には sgttyb
+	構造体を用います。
 HAVECLINE
-	$B9=B$BN(B termios $B$,%a%s%P(B c_line $B$r;}$A$^$9!#(B
+	構造体 termios がメンバ c_line を持ちます。
 USEDEVPTMX
-	$B5<;wC<KvMQ%G%P%$%9$H$7$F(B /dev/ptmx $B$H(B /dev/pts/? $B$r(B
-	$BMQ$$$^$9!#(B
+	擬似端末用デバイスとして /dev/ptmx と /dev/pts/? を
+	用います。
 USEDEVPTY
-	$B5<;wC<KvMQ%G%P%$%9$H$7$F(B /dev/ptyXX $B$H(B /dev/ttyXX $B$r(B
-	$BMQ$$$^$9!#(B
+	擬似端末用デバイスとして /dev/ptyXX と /dev/ttyXX を
+	用います。
 USEDIRECT
-	$B9=B$BN(B dirent $B$NBe$o$j$K(B direct $B$rMQ$$$^$9!#(B
+	構造体 dirent の代わりに direct を用います。
 SYSVDIRENT
-	$B9=B$BN(B dirent $B$,%a%s%P(B d_fileno $B$r;}$?$:(B d_ino $B$r;}(B
-	$B$A$^$9!#(B
+	構造体 dirent がメンバ d_fileno を持たず d_ino を持
+	ちます。
 NODNAMLEN
-	$B9=B$BN(B dirent $B$,%a%s%P(B d_namlen $B$r;}$A$^$;$s!#(B
+	構造体 dirent がメンバ d_namlen を持ちません。
 NODRECLEN
-	$B9=B$BN(B dirent $B$,%a%s%P(B d_reclen $B$r;}$A$^$;$s!#Be$o$j(B
-	$B$K%a%s%P(B d_fd $B$r;}$A$^$9!#(B
+	構造体 dirent がメンバ d_reclen を持ちません。代わり
+	にメンバ d_fd を持ちます。
 DNAMESIZE
-	$B9=B$BN(B dirent $B$N%a%s%P(B d_name $B$N%5%$%:$r<($7$^$9!#(B
+	構造体 dirent のメンバ d_name のサイズを示します。
 HAVETIMEZONE
-	$BBg0hJQ?t(B timezone $B$,(B GMT $B$+$i$N%*%U%;%C%HCM$rI=$7$^(B
-	$B$9!#(B
+	大域変数 timezone が GMT からのオフセット値を表しま
+	す。
 NOTMGMTOFF
-	$B9=B$BN(B tm $B$,%a%s%P(B tm_gmtoff $B$r;}$A$^$;$s!#(B
+	構造体 tm がメンバ tm_gmtoff を持ちません。
 NOSTBLKSIZE
-	$B9=B$BN(B stat $B$,%a%s%P(B st_blksize $B$r;}$A$^$;$s!#(B
+	構造体 stat がメンバ st_blksize を持ちません。
 NOFLAGS
-	$B9=B$BN(B stat $B$,%a%s%P(B st_flags $B$r;}$D$K$b94$i$:<B:]$K(B
-	$B$OBP1~$7$F$$$^$;$s!#(B
+	構造体 stat がメンバ st_flags を持つにも拘らず実際に
+	は対応していません。
 NOFTPH
-	<arpa/ftp.h> $B$,B8:_$7$^$;$s!#(B
+	<arpa/ftp.h> が存在しません。
 USEINSYSTMH
-	<netinet/in_systm.h> $B$,(B <netinet/ip.h> $B$r;HMQ$9$k$?(B
-	$B$a$KI,MW$G$9!#(B
+	<netinet/in_systm.h> が <netinet/ip.h> を使用するた
+	めに必要です。
 NOHADDRLIST
-	$B9=B$BN(B hostent $B$,%a%s%P(B h_addr_list $B$r;}$A$^$;$s!#(B
+	構造体 hostent がメンバ h_addr_list を持ちません。
 
-($B0J2<$N(B 5 $B8D$OGSB>E*$G$9!#F1;~$KJ#?tDj5A$G$-$^$;$s!#(B)
+(以下の 5 個は排他的です。同時に複数定義できません。)
 USESTATVFSH
-	$B%U%!%$%k%7%9%F%`>pJs$rF@$k$?$a$K!"(B<sys/statvfs.h> $B$G(B
-	$B@k8@$5$l$F$$$k4X?t72$rMQ$$$^$9!#(B
+	ファイルシステム情報を得るために、<sys/statvfs.h> で
+	宣言されている関数群を用います。
 USESTATFSH
-	$B%U%!%$%k%7%9%F%`>pJs$rF@$k$?$a$K!"(B<sys/statfs.h> $B$G(B
-	$B@k8@$5$l$F$$$k4X?t72$rMQ$$$^$9!#(B
+	ファイルシステム情報を得るために、<sys/statfs.h> で
+	宣言されている関数群を用います。
 USEVFSH
-	$B%U%!%$%k%7%9%F%`>pJs$rF@$k$?$a$K!"(B<sys/vfs.h> $B$G@k8@(B
-	$B$5$l$F$$$k4X?t72$rMQ$$$^$9!#(B
+	ファイルシステム情報を得るために、<sys/vfs.h> で宣言
+	されている関数群を用います。
 USEMOUNTH
-	$B%U%!%$%k%7%9%F%`>pJs$rF@$k$?$a$K!"(B<sys/mount.h> $B$G@k(B
-	$B8@$5$l$F$$$k4X?t72$rMQ$$$^$9!#(B
+	ファイルシステム情報を得るために、<sys/mount.h> で宣
+	言されている関数群を用います。
 USEFSDATA
-	$B%U%!%$%k%7%9%F%`>pJs$rF@$k$?$a$K!"9=B$BN(B fs_data $B$r(B
-	$BMQ$$$k4X?t72$rMQ$$$^$9!#(B
+	ファイルシステム情報を得るために、構造体 fs_data を
+	用いる関数群を用います。
 
 USEFFSIZE
-	$B9=B$BN(B statfs $B$N%a%s%P$NCf$G!"%U%!%$%k%7%9%F%`$N%V%m(B
-	$B%C%/%5%$%:$H$7$F(B f_fsize $B$r;2>H$7$^$9!#L$Dj5A$N>l9g(B
-	$B$O(B f_bsize $B$r;2>H$7$^$9!#(B
-	USESTATVFSH, USEFSDATA $B$rDj5A$7$?>l9g$O0UL#$r;}$A$^(B
-	$B$;$s!#(B
+	構造体 statfs のメンバの中で、ファイルシステムのブロ
+	ックサイズとして f_fsize を参照します。未定義の場合
+	は f_bsize を参照します。
+	USESTATVFSH, USEFSDATA を定義した場合は意味を持ちま
+	せん。
 NOFBLOCKS
-	$B9=B$BN(B statfs $B$,%a%s%P(B f_blocks $B$r;}$A$^$;$s!#(B
+	構造体 statfs がメンバ f_blocks を持ちません。
 NOFBFREE
-	$B9=B$BN(B statfs $B$,%a%s%P(B f_bfree $B$r;}$A$^$;$s!#(B
+	構造体 statfs がメンバ f_bfree を持ちません。
 NOFFILES
-	$B9=B$BN(B statfs $B$,%a%s%P(B f_files $B$r;}$A$^$;$s!#(B
+	構造体 statfs がメンバ f_files を持ちません。
 USESTATVFS_T
-	$B9=B$BN(B statvfs $B$NBe$o$j$K(B statvfs_t $B$rMQ$$$^$9!#(B
+	構造体 statvfs の代わりに statvfs_t を用います。
 STATFSARGS
-	$B4X?t(B statfs(2) $B$NMQ$$$k0z?t$N?t$rDj5A$7$^$9!#(B
-	USESTATVFSH, USEFSDATA $B$rDj5A$7$?>l9g$O0UL#$r;}$A$^(B
-	$B$;$s!#(B
+	関数 statfs(2) の用いる引数の数を定義します。
+	USESTATVFSH, USEFSDATA を定義した場合は意味を持ちま
+	せん。
 USEFSTATFS
-	$B%U%!%$%k%7%9%F%`>pJs<hF@4X?t$H$7$F(B statfs(2) $B$rMQ$$(B
-	$B$i$l$:!"Be$o$j$K(B fstatfs(2) $B$rMQ$$$^$9!#(B
+	ファイルシステム情報取得関数として statfs(2) を用い
+	られず、代わりに fstatfs(2) を用います。
 
-($B0J2<$N(B 10 $B8D$OGSB>E*$G$9!#F1;~$KJ#?tDj5A$G$-$^$;$s!#(B)
+(以下の 10 個は排他的です。同時に複数定義できません。)
 USEMNTENTH
-	$B%^%&%s%H>pJs$rF@$k$?$a$K!"(B<mntent.h> $B$G@k8@$5$l$F$$(B
-	$B$k4X?t72$rMQ$$$^$9!#(B
+	マウント情報を得るために、<mntent.h> で宣言されてい
+	る関数群を用います。
 USEMNTTABH
-	$B%^%&%s%H>pJs$rF@$k$?$a$K!"(B<sys/mnttab.h> $B$G@k8@$5$l(B
-	$B$F$$$k4X?t72$rMQ$$$^$9!#(B
+	マウント情報を得るために、<sys/mnttab.h> で宣言され
+	ている関数群を用います。
 USEGETFSSTAT
-	$B%^%&%s%H>pJs$rF@$k$?$a$K!"4X?t(B getfsstat(2) $B$rMQ$$$^(B
-	$B$9!#(B
+	マウント情報を得るために、関数 getfsstat(2) を用いま
+	す。
 USEGETVFSTAT
-	$B%^%&%s%H>pJs$rF@$k$?$a$K!"4X?t(B getvfsstat(2) $B$rMQ$$(B
-	$B$^$9!#(B
+	マウント情報を得るために、関数 getvfsstat(2) を用い
+	ます。
 USEMNTCTL
-	$B%^%&%s%H>pJs$rF@$k$?$a$K!"4X?t(B mntctl(3) $B$rMQ$$$^$9!#(B
+	マウント情報を得るために、関数 mntctl(3) を用います。
 USEMNTINFOR
-	$B%^%&%s%H>pJs$rF@$k$?$a$K!"4X?t(B getmntinfo_r(3) $B$rMQ(B
-	$B$$$^$9!#(B
+	マウント情報を得るために、関数 getmntinfo_r(3) を用
+	います。
 USEMNTINFO
-	$B%^%&%s%H>pJs$rF@$k$?$a$K!"4X?t(B getmntinfo(3) $B$rMQ$$(B
-	$B$^$9!#(B
+	マウント情報を得るために、関数 getmntinfo(3) を用い
+	ます。
 USEGETMNT
-	$B%^%&%s%H>pJs$rF@$k$?$a$K!"4X?t(B getmnt(3) $B$rMQ$$$^$9!#(B
+	マウント情報を得るために、関数 getmnt(3) を用います。
 USEGETFSENT
-	$B%^%&%s%H>pJs$rF@$k$?$a$K!"4X?t(B getfsent(3) $B$rMQ$$$^(B
-	$B$9!#(B
-	($B$3$N<jK!$O%^%&%s%HA0$N>pJs$r<hF@$7$F$7$^$&$N$G$*>)(B
-	$B$a$G$-$^$;$s!#5gM>$N:v$@$H;W$C$F2<$5$$!#(B)
+	マウント情報を得るために、関数 getfsent(3) を用いま
+	す。
+	(この手法はマウント前の情報を取得してしまうのでお奨
+	めできません。窮余の策だと思って下さい。)
 USEREADMTAB
-	$B%^%&%s%H>pJs$rF@$k$?$a$K!"(B/etc/mtab $B$rD>@\FI$_$^$9!#(B
+	マウント情報を得るために、/etc/mtab を直接読みます。
 
 USEPROCMNT
-	$B%^%&%s%H>pJs%U%!%$%k$H$7$F(B /proc/mounts $B$r;HMQ$7$^$9!#(B
-	($B$3$N<jK!$O(B mount(8) $B$G$O$J$/%+!<%M%k$+$i$N>pJs$r<h(B
-	$BF@$7$F$7$^$&$N$G$*>)$a$G$-$^$;$s!#5gM>$N:v$@$H;W$C$F(B
-	$B2<$5$$!#(B)
+	マウント情報ファイルとして /proc/mounts を使用します。
+	(この手法は mount(8) ではなくカーネルからの情報を取
+	得してしまうのでお奨めできません。窮余の策だと思って
+	下さい。)
 HAVEPROCMNT
-	/etc/mtab $B$,B8:_$7$J$$>l9g$K!"%^%&%s%H>pJs%U%!%$%k$H(B
-	$B$7$F(B /proc/mounts $B$r;HMQ$7$^$9!#(B
+	/etc/mtab が存在しない場合に、マウント情報ファイルと
+	して /proc/mounts を使用します。
 
-($B0J2<$N(B 2 $B8D$OGSB>E*$G$9!#F1;~$KJ#?tDj5A$G$-$^$;$s!#>e5-$N(B 8
-$B$D$NA*Br;h$N$&$A(B USEMNTINFO $B0J30$rDj5A$7$?>l9g$O0UL#$r;}$A$^(B
-$B$;$s!#(B)
+(以下の 2 個は排他的です。同時に複数定義できません。上記の 8
+つの選択肢のうち USEMNTINFO 以外を定義した場合は意味を持ちま
+せん。)
 USEVFCNAME
-	$B9=B$BN(B vfsconf $B$N%a%s%P$NCf$G!"%^%&%s%H%?%$%W$rI=$9(B
-	$BJ8;zNs$H$7$F(B vfc_name $B$r;2>H$7$^$9!#$^$?!"(Bvfsconf $B7?(B
-	$B$N<hF@$K(B getvfsbytype() $B$rMQ$$$^$9!#(B
+	構造体 vfsconf のメンバの中で、マウントタイプを表す
+	文字列として vfc_name を参照します。また、vfsconf 型
+	の取得に getvfsbytype() を用います。
 USEFFSTYPE
-	$B9=B$BN(B statfs $B$N%a%s%P$NCf$G!"%^%&%s%H%?%$%W$rI=$9J8(B
-	$B;zNs$H$7$F(B f_fstypename $B$r;2>H$7$^$9!#(B
+	構造体 statfs のメンバの中で、マウントタイプを表す文
+	字列として f_fstypename を参照します。
 
-($B0J2<$N(B 3 $B8D$OGSB>E*$G$9!#F1;~$KJ#?tDj5A$G$-$^$;$s!#(B)
+(以下の 3 個は排他的です。同時に複数定義できません。)
 USERE_COMP
-	$B@55,I=8=8!:w$N$?$a$K4X?t(B re_comp(3) $B$rMQ$$$^$9!#(B
+	正規表現検索のために関数 re_comp(3) を用います。
 USEREGCOMP
-	$B@55,I=8=8!:w$N$?$a$K4X?t(B regcomp(3) $B$rMQ$$$^$9!#(B
+	正規表現検索のために関数 regcomp(3) を用います。
 USEREGCMP
-	$B@55,I=8=8!:w$N$?$a$K4X?t(B regcmp(3) $B$rMQ$$$^$9!#(B
+	正規表現検索のために関数 regcmp(3) を用います。
 
 USERAND48
-	$BMp?tH/@8MQ4X?t$H$7$F(B random(3) $B$G$O$J$/(B rand48(3) $B$r(B
-	$BMQ$$$^$9!#(B
+	乱数発生用関数として random(3) ではなく rand48(3) を
+	用います。
 USESETENV
-	$B4D6-JQ?t@_DjMQ4X?t$H$7$F(B setenv(3) $B$,;H$($^$9!#(B
+	環境変数設定用関数として setenv(3) が使えます。
 NOSELECT
-	$BDc%l%Y%kF~=PNO4X?t(B select(2) $B$r;H$&$3$H$,$G$-$^$;$s!#(B
+	低レベル入出力関数 select(2) を使うことができません。
 DEFFDSETSIZE
-	$BDc%l%Y%kF~=PNO4X?t(B select(2) $B$r;H$&$?$a$K!"M=$a<1JL(B
-	$B;R(B FD_SETSIZE $B$K%*!<%W%s%U%!%$%k$N:GBg?t$rDj5A$7$F$*(B
-	$B$/I,MW$,$"$j$^$9!#(B
+	低レベル入出力関数 select(2) を使うために、予め識別
+	子 FD_SETSIZE にオープンファイルの最大数を定義してお
+	く必要があります。
 SELECTRWONLY
-	$BDc%l%Y%kF~=PNO4X?t(B select(2) $B$,!"FI=q$-MQ$K(B open $B$5(B
-	$B$l$F$$$k%U%!%$%k5-=R;R$KH?1~$7$^$;$s!#(B
+	低レベル入出力関数 select(2) が、読書き用に open さ
+	れているファイル記述子に反応しません。
 NOVSPRINTF
-	$B=q<0IU=PNO4X?t(B vsprintf(3) $B$r;H$&$3$H$,$G$-$^$;$s!#(B
+	書式付出力関数 vsprintf(3) を使うことができません。
 NOTERMVAR
-	termcap(5) $B%i%$%V%i%jFb$K(B PC, ospeed, BC, UP $B$H$$$C(B
-	$B$?Bg0hJQ?t$,MQ0U$5$l$F$$$^$;$s!#(B
+	termcap(5) ライブラリ内に PC, ospeed, BC, UP といっ
+	た大域変数が用意されていません。
 USEUTIME
-	$B%?%$%`%9%?%s%W@_Dj4X?t$H$7$F(B utimes(2) $B$rMQ$$$i$l$:!"(B
-	$BBe$o$j$K(B utime(3) $B$rMQ$$$^$9!#(B
+	タイムスタンプ設定関数として utimes(2) を用いられず、
+	代わりに utime(3) を用います。
 USEGETWD
-	$B%+%l%s%H%G%#%l%/%H%j8!::4X?t$H$7$F!"(Bgetcwd(3) $B$rMQ$$(B
-	$B$i$l$:!"Be$o$j$K(B getwd(3) $B$rMQ$$$^$9!#(B
+	カレントディレクトリ検査関数として、getcwd(3) を用い
+	られず、代わりに getwd(3) を用います。
 ULONGIOCTL
-	$BF~=PNO@)8f4X?t(B ioctl(2) $B$NBh(B 2 $B0z?t$H$7$F!"(Bunsigned
-	long $B7?$rMQ$$$^$9!#(B
+	入出力制御関数 ioctl(2) の第 2 引数として、unsigned
+	long 型を用います。
 NOFTRUNCATE
-	$B%U%!%$%k%5%$%:@)8f4X?t(B ftruncate(2) $B$r;H$&$3$H$,$G$-(B
-	$B$^$;$s!#(B
+	ファイルサイズ制御関数 ftruncate(2) を使うことができ
+	ません。
 USEFCNTLOCK
-	$B%U%!%$%k@)8f4X?t(B fcntl(2) $B$r(B flock(2) $B$NBe$o$j$KMQ$$(B
-	$B$^$9!#(B
+	ファイル制御関数 fcntl(2) を flock(2) の代わりに用い
+	ます。
 USELOCKF
-	$B%U%!%$%k%m%C%/4X?t$H$7$F(B flock(2) $B$r;H$&$3$H$,$G$-$:!"(B
-	$BBe$o$j$K(B lockf(2) $B$rMQ$$$^$9!#(B
+	ファイルロック関数として flock(2) を使うことができず、
+	代わりに lockf(2) を用います。
 NOFLOCK
-	$B%U%!%$%k%m%C%/4X?t$H$7$F(B flock(2) $B$b(B lockf(2) $B$b;H$&(B
-	$B$3$H$,$G$-$^$;$s!#(B
+	ファイルロック関数として flock(2) も lockf(2) も使う
+	ことができません。
 NOSYSLOG
-	$B%7%9%F%`%m%,!<4X?t(B syslog(3) $B$r;H$&$3$H$,$G$-$^$;$s!#(B
+	システムロガー関数 syslog(3) を使うことができません。
 USETIMELOCAL
-	$B;~4VJQ494X?t(B timelocal(3) $B$,(B localtime(3) $B$N5U4X?t$H(B
-	$B$7$F;H$($^$9!#(B
+	時間変換関数 timelocal(3) が localtime(3) の逆関数と
+	して使えます。
 USEMKTIME
-	$B;~4VJQ494X?t(B mktime(3) $B$r(B timelocal(3) $B$NBe$o$j$KMQ(B
-	$B$$$^$9!#(B
+	時間変換関数 mktime(3) を timelocal(3) の代わりに用
+	います。
 USESYSCONF
-	$B@_Dj>pJs<hF@4X?t(B sysconf(3) $B$rMQ$$$F3F<o%7%9%F%`@_Dj(B
-	$BCM$r<hF@$7$^$9!#(B
+	設定情報取得関数 sysconf(3) を用いて各種システム設定
+	値を取得します。
 USELLSEEK
-	$B%U%!%$%k@)8f4X?t(B _llseek(2) $B$r(B lseek(2) $B$NBe$o$j$KMQ(B
-	$B$$$^$9!#(B32bit Linux $B4D6-$G$O(B 2^32 bytes $B$r1[$($kHO0O(B
-	$B$N(B offset $B;XDj$,$G$-$J$$$N$G(B _llseek(2) $B$,I,MW$G$9!#(B
+	ファイル制御関数 _llseek(2) を lseek(2) の代わりに用
+	います。32bit Linux 環境では 2^32 bytes を越える範囲
+	の offset 指定ができないので _llseek(2) が必要です。
 USEUNAME
-	$B%[%9%HL><hF@4X?t(B uname(2) $B$r(B gethostname(2) $B$NBe$o$j(B
-	$B$KMQ$$$^$9!#(B
+	ホスト名取得関数 uname(2) を gethostname(2) の代わり
+	に用います。
 NOKILLPG
-	$B%W%m%;%9%0%k!<%W4IM}4X?t(B killpg(2) $B$r;H$&$3$H$,$G$-(B
-	$B$^$;$s!#(B
+	プロセスグループ管理関数 killpg(2) を使うことができ
+	ません。
 USEWAITPID
-	$B%=%U%H%&%'%"%7%0%J%kBT$A4X?t(B waitpid(2) $B$r(B wait3(2)
-	$B$NBe$o$j$KMQ$$$^$9!#(B
+	ソフトウェアシグナル待ち関数 waitpid(2) を wait3(2)
+	の代わりに用います。
 USESIGACTION
-	$B%7%0%J%kA`:n4X?t(B sigaction(2) $B$r(B signal(2) $B$NBe$o$j(B
-	$B$KMQ$$$^$9!#(B
+	シグナル操作関数 sigaction(2) を signal(2) の代わり
+	に用います。
 USESIGPMASK
-	$B%7%0%J%kA`:n4X?t(B sigprocmask(2) $B$r(B sigsetmask(2) $B$N(B
-	$BBe$o$j$KMQ$$$^$9!#(B
+	シグナル操作関数 sigprocmask(2) を sigsetmask(2) の
+	代わりに用います。
 NODTABLESIZE
-	$B%G%#%9%/%j%W%?%5%$%:<hF@4X?t(B getdtablesize(2) $B$r;H$&(B
-	$B$3$H$,$G$-$^$;$s!#(B
+	ディスクリプタサイズ取得関数 getdtablesize(2) を使う
+	ことができません。
 USERESOURCEH
-	$B%j%=!<%9>pJs$r<hF@!&@_Dj$9$k:]$K(B <sys/resource.h> $B$G(B
-	$BDj5A$5$l$?4X?t72$rMQ$$$^$9!#(B
+	リソース情報を取得・設定する際に <sys/resource.h> で
+	定義された関数群を用います。
 USEULIMITH
-	$B%j%=!<%9>pJs$r<hF@!&@_Dj$9$k:]$K(B <ulimit.h> $B$GDj5A$5(B
-	$B$l$?4X?t72$rMQ$$$^$9!#(B
+	リソース情報を取得・設定する際に <ulimit.h> で定義さ
+	れた関数群を用います。
 USEGETRUSAGE
-	$B%W%m%;%9;~4V>pJs$r<hF@$9$k:]$K(B getrusage(2) $B$rMQ$$$^(B
-	$B$9!#(B
+	プロセス時間情報を取得する際に getrusage(2) を用いま
+	す。
 USETIMES
-	$B%W%m%;%9;~4V>pJs$r<hF@$9$k:]$K(B times(2) $B$rMQ$$$^$9!#(B
+	プロセス時間情報を取得する際に times(2) を用います。
 GETPGRPVOID
-	$B%W%m%;%9%0%k!<%W<hF@4X?t(B getpgrp(2) $B$,0z?t$r;}$A$^$;(B
-	$B$s!#(B
+	プロセスグループ取得関数 getpgrp(2) が引数を持ちませ
+	ん。
 USESETPGID
-	$B%W%m%;%9%0%k!<%W@_Dj4X?t(B setpgid(2) $B$r(B setpgrp(2) $B$N(B
-	$BBe$o$j$KMQ$$$^$9!#(B
+	プロセスグループ設定関数 setpgid(2) を setpgrp(2) の
+	代わりに用います。
 NOSETPGRP
-	$B%W%m%;%9%0%k!<%W@_Dj4X?t(B setpgrp(2) $B$r;H$&$3$H$,$G$-(B
-	$B$^$;$s!#(B
+	プロセスグループ設定関数 setpgrp(2) を使うことができ
+	ません。
 USETCGETPGRP
-	$B@)8fC<KvMQ4X?t$H$7$F(B ioctl(2) $B$G$O$J$/(B tcgetpgrp(3)
-	$B5Z$S(B tcsetpgrp(3) $B$rMQ$$$^$9!#(B
+	制御端末用関数として ioctl(2) ではなく tcgetpgrp(3)
+	及び tcsetpgrp(3) を用います。
 USESETVBUF
-	$B%P%C%U%!%j%s%04X?t(B setvbuf(3) $B$r(B setlinebuf(3) $B$NBe(B
-	$B$o$j$KMQ$$$^$9!#(B
+	バッファリング関数 setvbuf(3) を setlinebuf(3) の代
+	わりに用います。
 SIGARGINT
-	$B%=%U%H%&%'%"%7%0%J%k4X?t(B signal(3) $B$NBh(B 2 $B0z?t$H$7$F!"(B
-	int $B7?$rJV$94X?t$X$N%]%$%s%?$,MQ$$$i$l$^$9!#(B
+	ソフトウェアシグナル関数 signal(3) の第 2 引数として、
+	int 型を返す関数へのポインタが用いられます。
 SIGFNCINT
-	$B%=%U%H%&%'%"%7%0%J%k4X?t(B signal(3) $B$NBh(B 2 $B0z?t$H$7$F!"(B
-	int $B7?$N0z?t$r;}$D4X?t$X$N%]%$%s%?$,MQ$$$i$l$^$9!#(B
+	ソフトウェアシグナル関数 signal(3) の第 2 引数として、
+	int 型の引数を持つ関数へのポインタが用いられます。
 USESTRERROR
-	$B%(%i!<J8;zNs4X?t(B strerror(3) $B$r(B sys_errlist[] $B$NBe$o(B
-	$B$j$KMQ$$$^$9!#(B
+	エラー文字列関数 strerror(3) を sys_errlist[] の代わ
+	りに用います。
 GETTODARGS
-	$B;~9o<hF@4X?t(B gettimeofday(2) $B$NMQ$$$k0z?t$N?t$r;XDj(B
-	$B$7$^$9!#%G%U%)%k%H$O(B 2 $B$G$9!#(B
+	時刻取得関数 gettimeofday(2) の用いる引数の数を指定
+	します。デフォルトは 2 です。
 GETTODNULL
-	$B;~9o<hF@4X?t(B gettimeofday(2) $B$NBh(B 2 $B0z?t$,(B NULL $B$G$J(B
-	$B$/$F$O$J$j$^$;$s!#(B
+	時刻取得関数 gettimeofday(2) の第 2 引数が NULL でな
+	くてはなりません。
 USESETSID
-	$B%;%C%7%g%s@)8f4X?t(B setsid(2) $B$rMQ$$$k$3$H$,$G$-$^$9!#(B
+	セッション制御関数 setsid(2) を用いることができます。
 USEMMAP
-	$B%U%!%$%k%^%C%W4X?t(B mmap(2) $B$rMQ$$$k$3$H$,$G$-$^$9!#(B
+	ファイルマップ関数 mmap(2) を用いることができます。
 NOGETPASS
-	$B%Q%9%o!<%IF~NO4X?t(B getpass(3) $B$r;H$&$3$H$,$G$-$^$;$s!#(B
+	パスワード入力関数 getpass(3) を使うことができません。
 USESOCKLEN
-	$B%=%1%C%H4X?t(B bind(2)/connect(2)/accept(2) $B$NBh(B 3 $B0z(B
-	$B?t$H$7$F(B socklen_t $B7?$rMQ$$$^$9!#(B
+	ソケット関数 bind(2)/connect(2)/accept(2) の第 3 引
+	数として socklen_t 型を用います。
 NOSENDFLAGS
-	$B%=%1%C%H4X?t(B send(2) $B$NBh(B 4 $B0z?t$K%U%i%0$r;H$&$3$H$,(B
-	$B$G$-$^$;$s!#(B
+	ソケット関数 send(2) の第 4 引数にフラグを使うことが
+	できません。
 USEINETATON
-	$B%"%I%l%9A`:n4X?t(B inet_aton(3) $B$r(B inet_addr(3) $B$NBe$o(B
-	$B$j$KMQ$$$^$9!#(B
+	アドレス操作関数 inet_aton(3) を inet_addr(3) の代わ
+	りに用います。
 USEINETPTON
-	$B%"%I%l%9A`:n4X?t(B inet_pton(3) $B$r(B inet_addr(3) $B$NBe$o(B
-	$B$j$KMQ$$$^$9!#(B
+	アドレス操作関数 inet_pton(3) を inet_addr(3) の代わ
+	りに用います。
 NOGETPWENT
-	$B%f!<%6(B ID $B<hF@4X?t(B getpwent(3) $B$r;H$&$3$H$,$G$-$^$;(B
-	$B$s!#(B
+	ユーザ ID 取得関数 getpwent(3) を使うことができませ
+	ん。
 NOGETGRENT
-	$B%0%k!<%W(B ID $B<hF@4X?t(B getgrent(3) $B$r;H$&$3$H$,$G$-$^(B
-	$B$;$s!#(B
+	グループ ID 取得関数 getgrent(3) を使うことができま
+	せん。
 USESETREUID
-	$B%f!<%6(B ID $B@_Dj4X?t(B setreuid(2) $B$r(B seteuid(2) $B$NBe$o(B
-	$B$j$KMQ$$$^$9!#(B
+	ユーザ ID 設定関数 setreuid(2) を seteuid(2) の代わ
+	りに用います。
 USESETRESUID
-	$B%f!<%6(B ID $B@_Dj4X?t(B setresuid(2) $B$r(B seteuid(2) $B$NBe$o(B
-	$B$j$KMQ$$$^$9!#(B
+	ユーザ ID 設定関数 setresuid(2) を seteuid(2) の代わ
+	りに用います。
 USESETREGID
-	$B%0%k!<%W(B ID $B@_Dj4X?t(B setregid(2) $B$r(B setegid(2) $B$NBe(B
-	$B$o$j$KMQ$$$^$9!#(B
+	グループ ID 設定関数 setregid(2) を setegid(2) の代
+	わりに用います。
 USESETRESGID
-	$B%0%k!<%W(B ID $B@_Dj4X?t(B setresgid(2) $B$r(B setegid(2) $B$NBe(B
-	$B$o$j$KMQ$$$^$9!#(B
+	グループ ID 設定関数 setresgid(2) を setegid(2) の代
+	わりに用います。
 USEGETGROUPS
-	$B%0%k!<%W%"%/%;%9%j%9%H<hF@4X?t(B getgroups(2) $B$,MxMQ2D(B
-	$BG=$G$9!#(B
+	グループアクセスリスト取得関数 getgroups(2) が利用可
+	能です。
 
 SENSEPERSEC
-	1 $BIC4V$K%-!<F~NO$r4XCN$9$k2s?t$r;XDj$7$^$9!#C<KvDL?.(B
-	$BB.EY$NCY$$>l9g$KDj5A$9$k$HNI$$$G$7$g$&!#%G%U%)%k%H$O(B
-	50 $B2s$G$9!#(B
+	1 秒間にキー入力を関知する回数を指定します。端末通信
+	速度の遅い場合に定義すると良いでしょう。デフォルトは
+	50 回です。
 WAITKEYPAD
-	ESC $B%-!<%3!<%I$NF~NO$r<u$1$F$+$iBT$D;~4V$G$9!#C<KvDL(B
-	$B?.B.EY$NCY$$>l9g$KDj5A$9$k$HNI$$$G$7$g$&!#%G%U%)%k%H(B
-	$B$O(B 360ms $B$G$9!#(B
+	ESC キーコードの入力を受けてから待つ時間です。端末通
+	信速度の遅い場合に定義すると良いでしょう。デフォルト
+	は 360ms です。
 WAITTERMINAL
-	$BC<Kv$,1~Ez$9$k%(%9%1!<%W%7!<%1%s%9$N3FJ8;z$rBT$D;~4V(B
-	$B$G$9!#C<Kv$NH?1~$,F_$$>l9g$KDj5A$9$k$HNI$$$G$7$g$&!#(B
-	$B%G%U%)%k%H$G$O(B WAITKEYPAD $B$NCM$r7Q>5$7$^$9!#(B
+	端末が応答するエスケープシーケンスの各文字を待つ時間
+	です。端末の反応が鈍い場合に定義すると良いでしょう。
+	デフォルトでは WAITKEYPAD の値を継承します。
 WAITKANJI
-	$B%^%k%A%P%$%HJ8;z$NF~NOCf$K<!$N%-!<%3!<%IF~NO$rBT$D;~(B
-	$B4V$G$9!#C<KvDL?.B.EY$NCY$$>l9g$KDj5A$9$k$HNI$$$G$7$g(B
-	$B$&!#%G%U%)%k%H$O(B 120ms $B$G$9!#(B
+	マルチバイト文字の入力中に次のキーコード入力を待つ時
+	間です。端末通信速度の遅い場合に定義すると良いでしょ
+	う。デフォルトは 120ms です。
 HDDMOUNT
-	$B%U%m%C%T!<%I%i%$%V5!G=$r%O!<%I%G%#%9%/%I%i%$%V$KBP1~(B
-	$B$5$;$^$9!#(BPC-UNIX $B0J30$G$3$N5!G=$rMQ$$$?$$>l9g$O@_Dj(B
-	$B$7$F2<$5$$!#(B
+	フロッピードライブ機能をハードディスクドライブに対応
+	させます。PC-UNIX 以外でこの機能を用いたい場合は設定
+	して下さい。
 
 
-2.$B%G%#%l%/%H%j=q9~$_5!G=(B
+2.ディレクトリ書込み機能
 
-$B!!%3%^%s%I(B WRITE_DIR (w) $B$rMQ$$$k$3$H$G!"(BFDclone $B$NI=<(%G%#(B
-$B%l%/%H%j$NJB$S$r$=$N$^$^%U%!%$%k%7%9%F%`$K=q9~$`$3$H$,$G$-$^(B
-$B$9!#(B
-$B!!C"$7!"$3$N5!G=$O3F(B OS $B$N;}$D%U%!%$%k%7%9%F%`$N9=B$$H5sF0$r(B
-$B2r@O$7$?>e$G$N5!G=$J$N$G!"L$2r@O$N%U%!%$%k%7%9%F%`$K$D$$$F$O(B
-$B%G%#%l%/%H%j=q9~$_5!G=$O;H$($^$;$s!#(B
-$B!!2r@O:Q$N%U%!%$%k%7%9%F%`$G$"$k$+$I$&$+$O!"3F%U%!%$%k%7%9%F(B
-$B%`$N%^%&%s%H>pJs$+$i%U%!%$%k%7%9%F%`%?%$%W$r<($9J8;zNs$r;2>H(B
-$B$7!"$=$NJ8;zNs$+$iH=CG$7$F$$$^$9!#(B
-$B!!(BFDclone $B$G%G%#%l%/%H%j=q9~$_5!G=$r%5%]!<%H$7$F$$$k%U%!%$%k(B
-$B%7%9%F%`$O0J2<$N$H$*$j$G$9!#(B
+　コマンド WRITE_DIR (w) を用いることで、FDclone の表示ディ
+レクトリの並びをそのままファイルシステムに書込むことができま
+す。
+　但し、この機能は各 OS の持つファイルシステムの構造と挙動を
+解析した上での機能なので、未解析のファイルシステムについては
+ディレクトリ書込み機能は使えません。
+　解析済のファイルシステムであるかどうかは、各ファイルシステ
+ムのマウント情報からファイルシステムタイプを示す文字列を参照
+し、その文字列から判断しています。
+　FDclone でディレクトリ書込み機能をサポートしているファイル
+システムは以下のとおりです。
 
 	4.3	NEWS-OS 3,4.x
 	4.2	SunOS 4.x
@@ -588,259 +588,259 @@ HDDMOUNT
 	ext2	Linux
 	ext3	Linux
 	jfs	AIX
-	efs	IRIX		(SGI $BFH<+;EMM(B)
-	sysv	SVR3		(SystemV Rel.3 $B;EMM(B)
-	dg/ux	DG/UX		(SystemV Rel.3 $B;EMM(B)
+	efs	IRIX		(SGI 独自仕様)
+	sysv	SVR3		(SystemV Rel.3 仕様)
+	dg/ux	DG/UX		(SystemV Rel.3 仕様)
 
-$B!!$3$l0J30$NJ8;zNs$G<($5$l$k%?%$%W$N%U%!%$%k%7%9%F%`$G$O!";D(B
-$BG0$J$,$i%G%#%l%/%H%j=q9~$_5!G=$rMQ$$$k$3$H$O$G$-$^$;$s!#(B
-$B!!$b$&>/$7@53N$K8@$&$J$i$P!">e5-0J30$N%U%!%$%k%7%9%F%`$G$b!"(B
-$B%G%#%l%/%H%j=q9~$_$,$G$-$k2DG=@-$,$"$j$^$9$,!"L$3NG'$N$?$a0B(B
-$BA4:v$r$H$C$F!"%D!<%k$N5!G=$H$7$F$O;&$7$F$"$j$^$9!#(B
+　これ以外の文字列で示されるタイプのファイルシステムでは、残
+念ながらディレクトリ書込み機能を用いることはできません。
+　もう少し正確に言うならば、上記以外のファイルシステムでも、
+ディレクトリ書込みができる可能性がありますが、未確認のため安
+全策をとって、ツールの機能としては殺してあります。
 
-$B!!$b$7!"C55a?4$N$"$kJ}$G!"<+J,$N;}$D%U%!%$%k%7%9%F%`$G%G%#%l(B
-$B%/%H%j=q9~$_5!G=$,;H$($J$$$3$H$r2y$7$/;W$&$J$i$P!"(Binfo.c $B$N(B
-$BCf$K$"$k(B writablefs() $B$r=q49$($F$_$k$3$H$r$*>)$a$7$^$9!#(B
-$B!!$R$g$C$H$9$k$H=q9~$_$K@.8y$9$k$+$bCN$l$^$;$s$7!"<:GT$7$F%G(B
-$B%#%l%/%H%jFb$,L\Cc6lCc$K$J$C$F$7$^$&$+$bCN$l$^$;$s!#(B
-$B!!$b$C$HC55a?4$N$"$kJ}$G$7$?$i!"<+J,$G%U%!%$%k%7%9%F%`$N9=B$(B
-$B$r2r@O$7!"%G%#%l%/%H%j=q9~$_%"%k%4%j%:%`<+BN$r=q49$($F$_$k$H(B
-$BNI$$$+$bCN$l$^$;$s!#(B
-$B!!$3$l$i$N2~B$$N7k2L!"%G%#%l%/%H%j=q9~$_5!G=$N%5%]!<%HBP>]$,(B
-$BA}$($k$h$&$G$7$?$i!"@'Hs:n<T$^$G$40lJs2<$5$$!#<!2s$N%j%j!<%9(B
-$B$KH?1G$5$;$FD:$-$^$9!#(B
+　もし、探求心のある方で、自分の持つファイルシステムでディレ
+クトリ書込み機能が使えないことを悔しく思うならば、info.c の
+中にある writablefs() を書換えてみることをお奨めします。
+　ひょっとすると書込みに成功するかも知れませんし、失敗してデ
+ィレクトリ内が目茶苦茶になってしまうかも知れません。
+　もっと探求心のある方でしたら、自分でファイルシステムの構造
+を解析し、ディレクトリ書込みアルゴリズム自体を書換えてみると
+良いかも知れません。
+　これらの改造の結果、ディレクトリ書込み機能のサポート対象が
+増えるようでしたら、是非作者までご一報下さい。次回のリリース
+に反映させて頂きます。
 
-$B!!0lJ}!"%U%!%$%k%7%9%F%`$N%?%$%W$H$7$F$O=q9~$_5!G=$,;H$($k$O(B
-$B$:$J$N$K!"(BOS $BB&$NET9g$K$h$C$F$&$^$/5!G=$,F/$+$J$$>l9g$,$"$j(B
-$B$^$9!#(B
-$B!!Nc$($P(B ext2/ext3 $B%U%!%$%k%7%9%F%`$G$O!"(Bdir_index $BB0@-$rM-(B
-$B8z$K$7$F$"$k>l9g$K$O=q9~$_5!G=$,0l@ZH?1G$5$l$^$;$s$,!"$=$l$O(B
-tune2fs(8) $B$K$h$j$=$&$$$&@_Dj$K$5$l$F$$$k$?$a$G$9!#(B
-$B!!$b$7$/$O!"$I$s$J%U%!%$%k%7%9%F%`$G$"$C$F$b=q9~$_$G$-$J$$$h(B
-$B$&$J(B OS $B$b$"$k$G$7$g$&!#(B
-$B!!$3$N$h$&$J>l9g$K$O!"0BA4$r:GM%@h$7$F!"%3%s%Q%$%k;~$K<1JL;R(B
-UNKNOWNFS $B$rDj5A$7$F$*$$$F2<$5$$!#(B
+　一方、ファイルシステムのタイプとしては書込み機能が使えるは
+ずなのに、OS 側の都合によってうまく機能が働かない場合があり
+ます。
+　例えば ext2/ext3 ファイルシステムでは、dir_index 属性を有
+効にしてある場合には書込み機能が一切反映されませんが、それは
+tune2fs(8) によりそういう設定にされているためです。
+　もしくは、どんなファイルシステムであっても書込みできないよ
+うな OS もあるでしょう。
+　このような場合には、安全を最優先して、コンパイル時に識別子
+UNKNOWNFS を定義しておいて下さい。
 
-($BJdB-(B) $B%G%#%l%/%H%j=q9~$_$N%"%k%4%j%:%`(B
-	1.$B%+%l%s%H%G%#%l%/%H%jFb$K%F%s%]%i%j%G%#%l%/%H%j(B ($B2>(B
-	  $B$K(B TMP $B$H8F$V(B) $B$r:n@.!#$3$N;~!"(BTMP $B$N%U%!%$%kL>$O(B
-	  $B@hF,$KJB$Y$?$$%U%!%$%k$N%U%!%$%kL>$HF1$8D9$5$K$7$F(B
-	  $B$*$/!#(B
-	2.TMP $B$,%G%#%l%/%H%j%(%s%H%jFb$GJ*M}E*$K@hF,$K$"$k$+(B
-	  $B$I$&$+%A%'%C%/!#(B
-	3.TMP $B0J30$NA4%U%!%$%k(B ($B4^%G%#%l%/%H%j(B) $B$r(B TMP $B2<$K(B
-	  $B0\F0!#(B
-	4.$B$b$7(B 2. $B$G@hF,$K$J$+$C$?>l9g!"(BTMP $B$NL>A0$r%j%M!<%`!#(B
-	  $B$3$l$G(B TMP $B$O%(%s%H%jFb$N@hF,$K$"$k$3$H$,J]>Z$5$l(B
-	  $B$k!#(B
-	5.$BJB$Y$?$$=g$K!"(BTMP $BFb$N%U%!%$%k$r0l$D$:$D85$K0\F0!#(B
-	  $BC"$7!"@hF,$KJB$Y$?$$%U%!%$%k$@$1$O;D$7$F$*$/!#(B
-	6.$B%G%#%l%/%H%j$N%V%m%C%/%5%$%:$r9MN8$7!"%V%m%C%/6-3&(B
-	  $B$K7d4V$,$G$-$k>l9g$K$O!"C;$$%U%!%$%kL>$N%@%_!<%U%!(B
-	  $B%$%k$r:n@.$77d4V$rKd$a$k!#(B
-	7.$B%U%!%$%k0\F0$,=*$C$?$i!"(BTMP $B$NL>A0$r%j%M!<%`!#$3$l(B
-	  $B$G(B TMP $B$O%(%s%H%j$N:G8eHx$K$"$j!"%(%s%H%j@hF,$K6u(B
-	  $B$-NN0h$,3NJ]$5$l$k!#(B
-	8.$B@hF,$K;}$C$FJB$Y$?$$%U%!%$%k$r(B TMP $BFb$+$i85$KLa$9!#(B
-	9.TMP $B5Z$S(B 6. $B$G:n@.$5$l$?%@%_!<%U%!%$%k$r:o=|!#(B
-	10.$B40N;!#(B
-$BCp(B) $B%G%#%l%/%H%j%U%!%$%k$rD>@\A`:n$7$F$$$kLu$G$O$J$$$N$G!"%G(B
-    $B%#%l%/%H%j%5%$%:$K$h$C$F$O$+$J$jD9$$;~4V$rMW$7$^$9!#(B
-
-
-3.$B%U%!%$%k%7%9%F%`>pJs(B
-
-$B!!&B%F%9%H$G0lHV$NFqE@$@$C$?$N$,!"3F(B OS $BKh$K0[$J$k%U%!%$%k%7(B
-$B%9%F%`$K4X$9$k>pJs<hF@K!$G$9!#(B
-$B!!Bg;(GD$KJ,N`$9$k$H!"%U%!%$%k%7%9%F%`>pJs$K4X$7$F(B 5 $B<oN`!"(B
-$B%^%&%s%H>pJs$K4X$7$F(B 8 $B<oN`$N<jK!$rMQ0U$7$F$"$j$^$9!#(BOS $B$K$h(B
-$B$C$F$O!"$3$N$&$AJ#?t$N<jK!$KBP1~$G$-$k$b$N$b$"$j$^$9!#(B
-
-$B!!(BOS $BB&$GJ#?t$N<jK!$,MQ0U$5$l$F$$$k>l9g!"$=$N$&$A$I$l$rMQ$$(B
-$B$k$+$H$$$&Fq$7$$LdBj$,$"$j$^$9!#$H$$$&$N$b!"<jK!$NA*Br$K$h$C(B
-$B$F$O!"$=$N(B OS $B$G$OIT6q9g$N@8$8$k>l9g$,$"$k$+$i$G$9!#(B
-$B!!0lHL$K$O!"(B1.$B$GNs5s$5$l$F$$$k=g$KM%@h=g0L$r$D$1$F$b$i$($PNI(B
-$B$$$H;W$$$^$9$,!"(BOS $B$K$h$C$F$O$3$NM%@h=g0L$OI,$:$7$b@5$7$/$O(B
-$B$J$$$+$bCN$l$^$;$s!#(B
-$B!!:G=*E*$K$O!"2DG=$J<jK!$rA4It;n$7$F$_$F!"$=$NCf$G:GE,$J$b$N(B
-$B$r<BAu8e$KA*Br$7$F$d$k$7$+$J$$$H;W$$$^$9!#(B
-
-$B!!%3%s%Q%$%k$9$i$G$-$J$+$C$?>l9g$O!"J86g$J$7$K$=$l$OA*Br%_%9(B
-$B$G$9!#%3%s%Q%$%k$,@.8y$7$?$i!"?'!9$J%G%#%l%/%H%j%Q%9$KBP$7$F(B
-INFO_FILESYS (i) $B%3%^%s%I$r<B9T$7$F$_$F2<$5$$!#(B
-$B!!(BINFO_FILESYS $B%3%^%s%I$N=PNO$O!"(Bdf(1) $B$N=PNO$H$[$\F1$8$G$9!#(B
-$B4]$a8m:9$r9MN8$7$F$bL@$i$+$K$*$+$7$JCM$,=P$k$h$&$G$"$l$P!"A*(B
-$BBr%_%9$+$bCN$l$^$;$s!#(B
-
-$B!!A*Br%_%9$K$h$k=PNOCM$N0[>o$O!"(B2 $B$D$N860x$,9M$($i$l$^$9!#(B
-	1.$B%^%&%s%H%]%$%s%H$r<h$j0c$($?!#(B
-	2.$B%U%!%$%k%7%9%F%`>pJs$N<hF@%_%9!#(B
-$B!!=PNO>pJs$NCf$G!"!V%U%!%$%k%7%9%F%`!W$d!V%^%&%s%H%]%$%s%H!W(B
-$B$N9`L\$,@5$7$/$J$$>l9g$K$O!"%^%&%s%H>pJs<hF@K!$K4X$9$kA*Br$r(B
-$BJQ$($F$_$F2<$5$$!#(B
-$B!!$^$?!"$3$l$i$N9`L\$O@5$7$$$N$KMFNL$,@5$7$/$J$$>l9g$K$O!"%U(B
-$B%!%$%k%7%9%F%`>pJs$K4X$9$kA*Br$rJQ$($F$_$F2<$5$$!#(B
-
-$B!!:G0-$N>l9g!"$I$NA*Br$r$7$F$b!"@5$7$$=PNO$,F@$i$l$J$$>l9g$,(B
-$B$"$j$^$9!#$=$N>l9g$OD|$a$6$k$rF@$^$;$s!#(B
-$B!!C"$7!"=PNO$K8m$j$,$"$C$?$H$7$F$b!"(BFDclone $B$NCf$G$O$3$l$i$N(B
-$B>pJs%_%9$OCWL?E*$J7g4Y$K$O7k$SIU$-$^$;$s!#(BINFO_FILESYS $B%3%^(B
-$B%s%I0J30$K$OMxMQ$5$l$J$$$N$G!"$3$N%3%^%s%I$5$(;H$o$J$1$l$P;Y(B
-$B>c$"$j$^$;$s!#(B
-
-$B!!$?$@!"$I$N(B OS $B$K$b@5$7$$>pJs<hF@K!$OMQ0U$5$l$F$$$k$O$:$G$9!#(B
-$B$=$l$rCN$C$F$$$l$P!"(BFDclone $B$K$=$N<hF@K!$r<BAu$9$k$3$H$,2DG=(B
-$B$G$9$N$G!"$b$7BP=hK!$r9V$8$i$l$?>l9g$O!":n<T$^$G$40lJs2<$5$$!#(B
-$B<!2s$N%j%j!<%9$KH?1G$7$^$9!#(B
+(補足) ディレクトリ書込みのアルゴリズム
+	1.カレントディレクトリ内にテンポラリディレクトリ (仮
+	  に TMP と呼ぶ) を作成。この時、TMP のファイル名は
+	  先頭に並べたいファイルのファイル名と同じ長さにして
+	  おく。
+	2.TMP がディレクトリエントリ内で物理的に先頭にあるか
+	  どうかチェック。
+	3.TMP 以外の全ファイル (含ディレクトリ) を TMP 下に
+	  移動。
+	4.もし 2. で先頭になかった場合、TMP の名前をリネーム。
+	  これで TMP はエントリ内の先頭にあることが保証され
+	  る。
+	5.並べたい順に、TMP 内のファイルを一つずつ元に移動。
+	  但し、先頭に並べたいファイルだけは残しておく。
+	6.ディレクトリのブロックサイズを考慮し、ブロック境界
+	  に隙間ができる場合には、短いファイル名のダミーファ
+	  イルを作成し隙間を埋める。
+	7.ファイル移動が終ったら、TMP の名前をリネーム。これ
+	  で TMP はエントリの最後尾にあり、エントリ先頭に空
+	  き領域が確保される。
+	8.先頭に持って並べたいファイルを TMP 内から元に戻す。
+	9.TMP 及び 6. で作成されたダミーファイルを削除。
+	10.完了。
+註) ディレクトリファイルを直接操作している訳ではないので、デ
+    ィレクトリサイズによってはかなり長い時間を要します。
 
 
-4.$B%-!<%3!<%I(B
+3.ファイルシステム情報
 
-$B!!%-!<%\!<%I$+$i$NF~NO$O!"0lHL$N%-!<$G$"$l$P$=$N%-!<$N9o0u$N(B
-$BJ8;z$rI=$9(B ASCII $B%3!<%I$r<u?.$9$k$3$H$K$J$j$^$9$,!"3F<o5!G=(B
-$B%-!<$N>l9g$K$O!"%-!<%\!<%I$O(B ESC $B$G;O$^$k%7!<%1%s%9$rEG$-$^(B
-$B$9!#(B
-$B!!$3$l$i$N%7!<%1%s%9$H(B ESC $B$=$N$b$N$NF~NO$r@5$7$/H=CG$9$k$?(B
-$B$a$K!"(BFDclone $B$G$O(B ESC $B<u?.8e$K(B 360ms $BBT$C$F!"8eB3$NF~NO%3!<(B
-$B%I$,$J$1$l$P(B ESC $B$=$N$b$N$NF~NO$H8+$J$7$F$$$^$9!#(B
-$B!!C"$7!"$3$N?tCM$O:n<T<~JU$N4D6-$G?'!93NG'$7$F$_$?:]$NCM$G$9(B
-$B$N$G!"@dBPE*$J:,5r$O2?$b$"$j$^$;$s!#$3$NCM$G$&$^$/F0$+$J$$4D(B
-$B6-$,$"$k$h$&$G$"$l$P!"(Bmachine.h $BFb$G(B WAITKEYPAD $B$NCM$r(B 360ms
-$B$h$jBg$-$$CM$GDj5A$7$F$_$F2<$5$$!#(B
+　βテストで一番の難点だったのが、各 OS 毎に異なるファイルシ
+ステムに関する情報取得法です。
+　大雑把に分類すると、ファイルシステム情報に関して 5 種類、
+マウント情報に関して 8 種類の手法を用意してあります。OS によ
+っては、このうち複数の手法に対応できるものもあります。
 
-$B!!$^$?!"%-!<%7!<%1%s%9$H<B:]$N%-!<$NBP1~I=$H$7$F!"(Btermcap $B$^(B
-$B$?$O(B terminfo $B$N5-=R$r;2>H$7$F$$$^$9!#5-=R$,$J$+$C$?%-!<$K$D(B
-$B$$$F$O!"(BVT200 $B8_49C<Kv$N%-!<%^%C%W$r%G%U%)%k%H$H$7$FMQ$$$^$9!#(B
-$B!!$3$NBP1~$,<B:]$N%-!<%\!<%I$NAw?.%3!<%I$H9gCW$7$F$$$J$$>l9g!"(B
-$B$=$N%-!<$N<hF@$,$G$-$J$/$J$j$^$9!#$=$N$h$&$J>l9g$K$O(B termcap
-$B$d(B terminfo $B$NEPO?$r@5$7$$$b$N$K2~$a$k$3$H$r$*>)$a$7$^$9!#(B
+　OS 側で複数の手法が用意されている場合、そのうちどれを用い
+るかという難しい問題があります。というのも、手法の選択によっ
+ては、その OS では不具合の生じる場合があるからです。
+　一般には、1.で列挙されている順に優先順位をつけてもらえば良
+いと思いますが、OS によってはこの優先順位は必ずしも正しくは
+ないかも知れません。
+　最終的には、可能な手法を全部試してみて、その中で最適なもの
+を実装後に選択してやるしかないと思います。
+
+　コンパイルすらできなかった場合は、文句なしにそれは選択ミス
+です。コンパイルが成功したら、色々なディレクトリパスに対して
+INFO_FILESYS (i) コマンドを実行してみて下さい。
+　INFO_FILESYS コマンドの出力は、df(1) の出力とほぼ同じです。
+丸め誤差を考慮しても明らかにおかしな値が出るようであれば、選
+択ミスかも知れません。
+
+　選択ミスによる出力値の異常は、2 つの原因が考えられます。
+	1.マウントポイントを取り違えた。
+	2.ファイルシステム情報の取得ミス。
+　出力情報の中で、「ファイルシステム」や「マウントポイント」
+の項目が正しくない場合には、マウント情報取得法に関する選択を
+変えてみて下さい。
+　また、これらの項目は正しいのに容量が正しくない場合には、フ
+ァイルシステム情報に関する選択を変えてみて下さい。
+
+　最悪の場合、どの選択をしても、正しい出力が得られない場合が
+あります。その場合は諦めざるを得ません。
+　但し、出力に誤りがあったとしても、FDclone の中ではこれらの
+情報ミスは致命的な欠陥には結び付きません。INFO_FILESYS コマ
+ンド以外には利用されないので、このコマンドさえ使わなければ支
+障ありません。
+
+　ただ、どの OS にも正しい情報取得法は用意されているはずです。
+それを知っていれば、FDclone にその取得法を実装することが可能
+ですので、もし対処法を講じられた場合は、作者までご一報下さい。
+次回のリリースに反映します。
 
 
-5.$B%"!<%+%$%V%V%i%&%6$NEPO?(B
+4.キーコード
 
-$B!!%"!<%+%$%V%V%i%&%6$r?75,EPO?$9$k>l9g$K$O!"(B.fd2rc $B$J$I$K%U(B
-$B%)!<%^%C%HJ8;zNs$r5-=R$9$kI,MW$,$"$j$^$9!#$3$3$G$O!"%^%K%e%"(B
-$B%k$K?($l$i$l$F$$$J$$6qBNNc$K$D$$$F$*OC$7$7$^$9!#(B
-$B!!%U%)!<%^%C%HJ8;zNs$N=q<0$O2<5-$N$h$&$K$J$C$F$$$^$9!#(B
+　キーボードからの入力は、一般のキーであればそのキーの刻印の
+文字を表す ASCII コードを受信することになりますが、各種機能
+キーの場合には、キーボードは ESC で始まるシーケンスを吐きま
+す。
+　これらのシーケンスと ESC そのものの入力を正しく判断するた
+めに、FDclone では ESC 受信後に 360ms 待って、後続の入力コー
+ドがなければ ESC そのものの入力と見なしています。
+　但し、この数値は作者周辺の環境で色々確認してみた際の値です
+ので、絶対的な根拠は何もありません。この値でうまく動かない環
+境があるようであれば、machine.h 内で WAITKEYPAD の値を 360ms
+より大きい値で定義してみて下さい。
+
+　また、キーシーケンスと実際のキーの対応表として、termcap ま
+たは terminfo の記述を参照しています。記述がなかったキーにつ
+いては、VT200 互換端末のキーマップをデフォルトとして用います。
+　この対応が実際のキーボードの送信コードと合致していない場合、
+そのキーの取得ができなくなります。そのような場合には termcap
+や terminfo の登録を正しいものに改めることをお奨めします。
+
+
+5.アーカイブブラウザの登録
+
+　アーカイブブラウザを新規登録する場合には、.fd2rc などにフ
+ォーマット文字列を記述する必要があります。ここでは、マニュア
+ルに触れられていない具体例についてお話しします。
+　フォーマット文字列の書式は下記のようになっています。
 
 	"%n %n %n ... " top bottom
 
-$B!!(Btop, bottom $B$K$D$$$F$O!"$[$H$s$I$N%"!<%+%$%P$K$D$$$F$O2sHr(B
-$B$G$-$k$H;W$$$^$9$N$G!"IaDL$O6&$K(B 0 $B$G9=$$$^$;$s!#N>J}6&$K(B 0
-$B$J$i$P5-=R$r>JN,$9$k$3$H$b$G$-$^$9!#(B
-$B!!%"!<%+%$%V%U%!%$%k>pJs0J30$K%3%T!<%i%$%HI=<($J$I$NM>7W$J9T(B
-$B$,I=<($5$l$F$7$^$&>l9g$N$_!"$=$l$>$l!"@hF,9T$+$i!":G=*9T$+$i(B
-$B$N:o=|$9$k9T?t$r?tCM$G;XDj$7$F2<$5$$!#(B
-$B!!$^$?!"(B-i $B%*%W%7%g%s$G:o=|$7$?$$9T$r%Q%?!<%s$H$7$F;XDj$9$k(B
-$B$3$H$b$G$-$^$9$7!"(B-e $B%*%W%7%g%s$G%(%i!<%a%C%;!<%8$r;XDj$7$F(B
-$B=PNOFbMF$K1~$8$F%(%i!<07$$$K$9$k$3$H$b$G$-$^$9!#(B
+　top, bottom については、ほとんどのアーカイバについては回避
+できると思いますので、普通は共に 0 で構いません。両方共に 0
+ならば記述を省略することもできます。
+　アーカイブファイル情報以外にコピーライト表示などの余計な行
+が表示されてしまう場合のみ、それぞれ、先頭行から、最終行から
+の削除する行数を数値で指定して下さい。
+　また、-i オプションで削除したい行をパターンとして指定する
+こともできますし、-e オプションでエラーメッセージを指定して
+出力内容に応じてエラー扱いにすることもできます。
 
-$B!!%U%)!<%^%C%H$rI=$9J8;zNs$O!"(Bprintf(3) $B$d(B scanf(3) $B$N=q<0$K(B
-$B;w$F$$$k$N$G!"(BC $B8@8l$K47$l$F$$$k?M$J$iFC$KLB$&$3$H$O$J$$$H;W(B
-$B$$$^$9!#(B
-$B!!LLE]$J$N$O!"3F%U%#!<%k%I$,6uGrJ8;z$d%?%V$K$h$C$F6h@Z$i$l$F(B
-$B$$$J$$>l9g$G$7$g$&!#0lIt$N%"!<%+%$%P$G$O!"JL!9$N>pJs$,O"B3$7(B
-$B$FI=<($5$l$k$3$H$,$"$j$^$9!#(B
-$B!!<!$NNc$O!"(BBSD $B7O$N(B tar $B$K$h$k=PNONc$G$9!#(B
+　フォーマットを表す文字列は、printf(3) や scanf(3) の書式に
+似ているので、C 言語に慣れている人なら特に迷うことはないと思
+います。
+　面倒なのは、各フィールドが空白文字やタブによって区切られて
+いない場合でしょう。一部のアーカイバでは、別々の情報が連続し
+て表示されることがあります。
+　次の例は、BSD 系の tar による出力例です。
 
 rw-r--r--9999/999  17531 Aug  7 11:50 1995 main.c
 
-$B!!@hF,$N%U%!%$%k%b!<%I$rI=$9J8;zNs$H!"$=$N<!$N%f!<%6(B ID $B$rI=(B
-$B$9J8;zNs$H$N4V$K2?$N6h@Z$j$b$"$j$^$;$s!#$3$N$h$&$J>l9g!"%U%!(B
-$B%$%k%b!<%I$rI=$9J8;zNs$ND9$5$rL@<(E*$K;X<($7$F$d$kI,MW$,@8$8(B
-$B$^$9!#(B
-$B!!$3$NNc$G$9$H(B 9 $BJ8;zJ,$ND9$5$G$9$N$G!"!V(B%9a$B!W$GI=$;$k$3$H$K(B
-$B$J$j$^$9!#$J$N$G!"A4BN$N%U%)!<%^%C%HJ8;zNs$O<!$N$h$&$K$J$j$^(B
-$B$9!#(B
+　先頭のファイルモードを表す文字列と、その次のユーザ ID を表
+す文字列との間に何の区切りもありません。このような場合、ファ
+イルモードを表す文字列の長さを明示的に指示してやる必要が生じ
+ます。
+　この例ですと 9 文字分の長さですので、「%9a」で表せることに
+なります。なので、全体のフォーマット文字列は次のようになりま
+す。
 
 	"%9a %u/%g %s %m %d %t %y %*f"
 
-$B!!$3$NNc$G$O!V(B%9a$B!W$N8e$m$K6uGrJ8;z$r5-=R$7$F$$$^$9$,!"6uGr(B
-$BJ8;z$O(B 0 $B8D0J>e$N6uGrJ8;z$^$?$O%?%V$K%^%C%A$7$^$9$N$G!"$3$N(B
-$B%U%)!<%^%C%HJ8;zNs$O>e5-$N=PNONc$N$h$&$K6uGrJ8;z$,L5$$=PNO$K(B
-$B$b%^%C%A$7$^$9!#(B
-$B!!5U$K%U%)!<%^%C%HJ8;zNs$K$3$N6uGrJ8;z$,L5$$>l9g$K$O!"=PNOB&(B
-$B$K6uGrJ8;z$,8=$l$?>l9g$K%9%-%C%W$7$F$/$l$^$;$s!#(BBSD $B7O$N(B tar
-$B$G$O%f!<%6(B ID $B$,(B 3 $B7e$KK~$?$J$$>l9g$K6uGr$rA^F~$7$FI=<($7$^(B
-$B$9$N$G!"$3$N6uGrJ8;z$,L5$$$H$=$NA^F~$5$l$?6uGrJ8;z$OB3$/!V(B%u$B!W(B
-$B%U%#!<%k%I$N0lIt$H$7$F07$o$l$F$7$^$$$^$9!#(B
-$B!!%U%#!<%k%IFb$K6uGrJ8;z$d%?%V$,4^$^$l$F$$$?>l9g$N07$$$O%U%#(B
-$B!<%k%I$N<oN`$K$h$C$F0[$J$j$^$9$,!"8eB3$N%U%#!<%k%I<o$K$h$C$F(B
-$B$O6uGrJ8;z$r%U%#!<%k%I$K4^$s$G$7$^$&$H$^$:$$>l9g$b$"$j$^$9!#(B
-$B!!I,MW$N$J$$%U%#!<%k%I$G$OL5;k$5$l$^$9$,!"%U%!%$%kL>$r<($9%U(B
-$B%#!<%k%I$G$OKvHx$N6uGrJ8;z$N$_L5;k$7$F;D$j$O%U%!%$%kL>$N0lIt(B
-$B$H8+$J$7$^$9!#$=$l0J30$N%U%#!<%k%I$G$O!"A08e$N6uGr$N$_L5;k$7(B
-$B$F>pJs$r<hF@$7$^$9$,!"J#?t$N%U%)!<%^%C%HJ8;zNs8uJd$,$"$C$?>l(B
-$B9g$K$O$=$N%U%)!<%^%C%HJ8;zNs$NM%@hEY$r2<$2$F$7$^$$$^$9!#(B
-$B!!0x$_$K!"$3$NNc$G$O%U%!%$%kL>$r<($9%U%#!<%k%I$ND9$5$,!V9TKv(B
-$B$^$G!W$K;XDj$5$l$F$$$^$9$N$G!"6uGrJ8;z$d%?%VJ8;z$r4^$`9TKv$^(B
-$B$G$NA4$F$NJ8;z$,%U%!%$%kL>$H8+$J$5$l$^$9!#(B
+　この例では「%9a」の後ろに空白文字を記述していますが、空白
+文字は 0 個以上の空白文字またはタブにマッチしますので、この
+フォーマット文字列は上記の出力例のように空白文字が無い出力に
+もマッチします。
+　逆にフォーマット文字列にこの空白文字が無い場合には、出力側
+に空白文字が現れた場合にスキップしてくれません。BSD 系の tar
+ではユーザ ID が 3 桁に満たない場合に空白を挿入して表示しま
+すので、この空白文字が無いとその挿入された空白文字は続く「%u」
+フィールドの一部として扱われてしまいます。
+　フィールド内に空白文字やタブが含まれていた場合の扱いはフィ
+ールドの種類によって異なりますが、後続のフィールド種によって
+は空白文字をフィールドに含んでしまうとまずい場合もあります。
+　必要のないフィールドでは無視されますが、ファイル名を示すフ
+ィールドでは末尾の空白文字のみ無視して残りはファイル名の一部
+と見なします。それ以外のフィールドでは、前後の空白のみ無視し
+て情報を取得しますが、複数のフォーマット文字列候補があった場
+合にはそのフォーマット文字列の優先度を下げてしまいます。
+　因みに、この例ではファイル名を示すフィールドの長さが「行末
+まで」に指定されていますので、空白文字やタブ文字を含む行末ま
+での全ての文字がファイル名と見なされます。
 
 
-$B!!$J$*!"%"!<%+%$%P$K$h$C$F$OG/I=<($d;~9oI=<($,$G$-$J$+$C$?$j!"(B
-$B$3$l$i$r7sMQ$7$F$$$?$j$9$k$b$N$,$"$j$^$9!#0J2<$O(B LHa $B$K$h$k(B
-$B=PNONc$G$9!#(B
+　なお、アーカイバによっては年表示や時刻表示ができなかったり、
+これらを兼用していたりするものがあります。以下は LHa による
+出力例です。
 
 drwxr-xr-x  9999/999         0 ****** Jun  8 12:04 demo/
 -rw-r--r--  9999/999        49 100.0% Dec  8  1994 demo/Makefile
 
-$B!!$3$N$h$&$K!";~9o%U%#!<%k%I$HG/%U%#!<%k%I$,7sMQ$5$l!"%?%$%`(B
-$B%9%?%s%W$N8E$$$b$N$G$O;~9oI=<($,$"$j$^$;$s!#(B
-$B!!$3$N$h$&$J>l9g$O!"%"!<%+%$%P%V%i%&%6$NI=<($,$*$+$7$/$J$k$3(B
-$B$H$r3P8g$N>e$G!"(B{ } $B$rMQ$$$FG/>pJs$H;~9o>pJs$,F1$8%U%#!<%k%I(B
-$B$G$"$k$H$$$&$h$&$K;XDj$7$^$9!#(B
-$B!!$3$N>l9g!"A0<T$NNc$G$O(B 2012 $BG/$H$$$&G/I=<($K$J$j!"8e<T$NNc(B
-$B$G$O(B 0:00 $B$H$$$&;~9oI=<((B (1994 $B;~$H$$$&;~9o$OB8:_$7F@$J$$$?(B
-$B$a(B) $B$K$J$j$^$9!#(B
-$B!!0J2<$K$3$N>l9g$N%U%)!<%^%C%HJ8;zNs$r5-$7$F$*$-$^$9!#(B
+　このように、時刻フィールドと年フィールドが兼用され、タイム
+スタンプの古いものでは時刻表示がありません。
+　このような場合は、アーカイバブラウザの表示がおかしくなるこ
+とを覚悟の上で、{ } を用いて年情報と時刻情報が同じフィールド
+であるというように指定します。
+　この場合、前者の例では 2012 年という年表示になり、後者の例
+では 0:00 という時刻表示 (1994 時という時刻は存在し得ないた
+め) になります。
+　以下にこの場合のフォーマット文字列を記しておきます。
 
 	"%a %u/%g %s %x %m %d %{yt} %*f"
 
 
-$B!!$3$N$h$&$K!"%"!<%+%$%P$N=PNO7A<0$O4D6-$K$h$C$F0[$J$j$^$9$N(B
-$B$G!"$I$N4D6-$G$bF1MM$K%"!<%+%$%V%V%i%&%6$r;H$($k$h$&$K$7$F$*(B
-$B$/$?$a$K$O!"(B-f $B%*%W%7%g%s$rMQ$$$FJ#?t$N%U%)!<%^%C%HJ8;zNs$r(B
-$BEPO?$7$F$*$/$HNI$$$G$7$g$&!#(B
-$B!!(Btar $B$d(B LHa $B$N$h$&$KHf3SE*0lHLE*$KMxMQ$5$l$F$$$k%"!<%+%$%P(B
-$B$K4X$7$F$O!"4v$D$+$N0[$J$k%U%)!<%^%C%HJ8;zNs$rI8=`$GM=$aMQ0U(B
-$B$7$F$"$j$^$9$,!"$=$l0J30$N%"!<%+%$%P$K$D$$$F$O!"3F%f!<%6B&$G(B
-$BD4$Y$FEPO?$7$F$*$$$F2<$5$$!#(B
-$B!!C"$7!"J#?t$N%U%)!<%^%C%HJ8;zNs$,EPO?$5$l$F$$$k>l9g$K$O!"5-(B
-$B=R$5$l$?=g$KHf3S$,9T$o$l$^$9$N$G!"5-=R=g$KCm0U$7$F2<$5$$!#Nc(B
-$B$($P!"(B"%*f" $B$N$h$&$K0l9T4]$4$H$r%U%!%$%kL>$H8+$J$5$;$k$h$&$J(B
-$B%U%)!<%^%C%HJ8;zNs$O!"$I$s$J=PNO9T$K$b40A4$K%^%C%A$7$F$7$^$$(B
-$B$^$9$N$G!"$3$l0J9_$K5-=R$5$l$?%U%)!<%^%C%HJ8;zNs$,Hf3SBP>]$H(B
-$B$J$k$3$H$O$"$jF@$^$;$s!#(B
+　このように、アーカイバの出力形式は環境によって異なりますの
+で、どの環境でも同様にアーカイブブラウザを使えるようにしてお
+くためには、-f オプションを用いて複数のフォーマット文字列を
+登録しておくと良いでしょう。
+　tar や LHa のように比較的一般的に利用されているアーカイバ
+に関しては、幾つかの異なるフォーマット文字列を標準で予め用意
+してありますが、それ以外のアーカイバについては、各ユーザ側で
+調べて登録しておいて下さい。
+　但し、複数のフォーマット文字列が登録されている場合には、記
+述された順に比較が行われますので、記述順に注意して下さい。例
+えば、"%*f" のように一行丸ごとをファイル名と見なさせるような
+フォーマット文字列は、どんな出力行にも完全にマッチしてしまい
+ますので、これ以降に記述されたフォーマット文字列が比較対象と
+なることはあり得ません。
 
 
-6.$B%U%m%C%T!<%I%i%$%V$NEPO?(B
+6.フロッピードライブの登録
 
-$B!!%7%9%F%`$KIUB0$N%U%m%C%T!<%G%#%9%/%I%i%$%VFb$N(B MS-DOS $B%U%)(B
-$B!<%^%C%H$N%U%m%C%T!<$r!"(BFDclone $B>e$+$i0lHL$N%U%!%$%k%7%9%F%`(B
-$B$HF1MM$K07$&$?$a$K$O!"(B.fd2rc $B$J$I$K$=$N%I%i%$%V$rEPO?$7$F$d(B
-$B$kI,MW$,$"$j$^$9!#(B
-$B!!$3$NEPO?$N$?$a$K$O!"$^$:%U%m%C%T!<%G%#%9%/%I%i%$%VMQ$N%I%i(B
-$B%$%P$,(B OS $B$KAH$_9~$^$l$F$$$k$3$H$H!"$=$N%I%i%$%P%"%/%;%9MQ$N(B
-$B%$%s%?%U%'!<%9$,%9%Z%7%c%k%U%!%$%k$H$7$FMQ0U$5$l$F$$$k$3$H$,(B
-$BI,MW$G$9!#(B
-$B!!>\:Y$O(B OS $B$K$h$C$F0[$J$j$^$9$,!"(Bfd(4) $B$N%^%K%e%"%k$K>\$7$/(B
-$B=q$+$l$F$$$k>l9g$,B?$$$h$&$G$9!#(B
+　システムに付属のフロッピーディスクドライブ内の MS-DOS フォ
+ーマットのフロッピーを、FDclone 上から一般のファイルシステム
+と同様に扱うためには、.fd2rc などにそのドライブを登録してや
+る必要があります。
+　この登録のためには、まずフロッピーディスクドライブ用のドラ
+イバが OS に組み込まれていることと、そのドライバアクセス用の
+インタフェースがスペシャルファイルとして用意されていることが
+必要です。
+　詳細は OS によって異なりますが、fd(4) のマニュアルに詳しく
+書かれている場合が多いようです。
 
-$B!!0lHLE*$JNc$G$9$,!"0l$D$NJ*M}E*$J%I%i%$%V$KBP$7!"J#?t$N%U%)(B
-$B!<%^%C%H$,BP1~$5$l$F$$$k%1!<%9$,B?$$$h$&$G$9!#$3$NJ#?t$N%U%)(B
-$B!<%^%C%H$O!"<+F0<1JL$5$l$k>l9g$b$"$j$^$9$7!"%9%Z%7%c%k%U%!%$(B
-$B%kL>$K$h$C$FJ,N`$5$l$F$$$k>l9g$b$"$j$^$9!#(B
-$B!!A0<T$N>l9g!"%I%i%$%VEPO?9T$N%G%P%$%9%U%!%$%k$K$OF1$8%9%Z%7(B
-$B%c%k%U%!%$%kL>$r5-$7!"%U%)!<%^%C%H$N%Q%i%a!<%?$G$=$l$>$l$r6h(B
-$BJL$5$;$^$9!#(B
-$B!!8e<T$N>l9g!"%I%i%$%VL>$OF1$8$G$b%G%P%$%9%U%!%$%k$K$O$=$l$>(B
-$B$l$N%U%)!<%^%C%H$K1~$8$?%9%Z%7%c%k%U%!%$%kL>$r5-$7$F$*$/I,MW(B
-$B$,$"$j$^$9!#(B
-$B!!$^$?!"$3$3$G$OA*$V%G%P%$%9%U%!%$%k$O!"$G$-$k$@$1(B raw $B%G%P(B
-$B%$%9$K$7$F$*$$$?J}$,NI$$$G$7$g$&!#(B
+　一般的な例ですが、一つの物理的なドライブに対し、複数のフォ
+ーマットが対応されているケースが多いようです。この複数のフォ
+ーマットは、自動識別される場合もありますし、スペシャルファイ
+ル名によって分類されている場合もあります。
+　前者の場合、ドライブ登録行のデバイスファイルには同じスペシ
+ャルファイル名を記し、フォーマットのパラメータでそれぞれを区
+別させます。
+　後者の場合、ドライブ名は同じでもデバイスファイルにはそれぞ
+れのフォーマットに応じたスペシャルファイル名を記しておく必要
+があります。
+　また、ここでは選ぶデバイスファイルは、できるだけ raw デバ
+イスにしておいた方が良いでしょう。
 
-$B!!0J2<$O(B SPARCsystems $B$H(B NWS-3400$B%7%j!<%:$NFbB"%I%i%$%V$K4X(B
-$B$9$k@_DjNc$G$9!#(B
+　以下は SPARCsystems と NWS-3400シリーズの内蔵ドライブに関
+する設定例です。
 
 SPARC:
 	A:	"/dev/rfd0c"	2  18 80	(1440KB	2HD)
@@ -852,112 +852,112 @@ NWS-3400:
 	A:	"/dev/rfd01a"	2   9 80	(720KB	2DD)
 	A:	"/dev/rfd03a"	2   8 80	(640KB	2DD)
 
-$B!!$3$l$i$N@_Dj$O!"(BOS $B$,F1$8$G$b%^%7%s$d9=@.$,0[$J$l$P$=$l$K(B
-$B0MB8$7$^$9$N$G!"%3%s%Q%$%k;~$NAH9~$_$G9T$J$&$h$j$b!"6&DL@_Dj(B
-$B%U%!%$%k$G9T$J$C$?J}$,$$$$$+$bCN$l$^$;$s!#(B
-$B!!5U$K!"40@.$5$l$?(B FDclone $B$N%P%$%J%j$r;H$&2DG=@-$N$"$k%^%7(B
-$B%s$,$=$l0lBf$@$1$G$"$k$J$i$P!"AH9~$_$G%3%s%Q%$%k$7$F$7$^$&<j(B
-$B$bM-8z$G$9!#(B
-$B!!AH9~$_$G%3%s%Q%$%k$7$?$$>l9g$O!"(Bdosdisk.c $B$NCf$K$"$k(B fdtype
-$B$H$$$&9=B$BNG[Ns$NCM$r=q$-49$($^$9!#@_Dj$9$kMWAG$O!"(B.fd2rc
-$BEy$G$NEPO?$HA4$/F1$8$G$9!#(B
-$B!!C"$7!"%I%i%$%VL>$O(B "A:" $B$H$$$C$?J8;zNs$G$J$/!"%"%k%U%!%Y%C(B
-$B%H(B 1 $BJ8;z$GI=$7$^$9!#$3$3$G$O!"I,$:BgJ8;z$K$7$F$*$$$F2<$5$$!#(B
+　これらの設定は、OS が同じでもマシンや構成が異なればそれに
+依存しますので、コンパイル時の組込みで行なうよりも、共通設定
+ファイルで行なった方がいいかも知れません。
+　逆に、完成された FDclone のバイナリを使う可能性のあるマシ
+ンがそれ一台だけであるならば、組込みでコンパイルしてしまう手
+も有効です。
+　組込みでコンパイルしたい場合は、dosdisk.c の中にある fdtype
+という構造体配列の値を書き換えます。設定する要素は、.fd2rc
+等での登録と全く同じです。
+　但し、ドライブ名は "A:" といった文字列でなく、アルファベッ
+ト 1 文字で表します。ここでは、必ず大文字にしておいて下さい。
 
-$B!!$I$N%9%Z%7%c%k%U%!%$%k$,!"$I$N%I%i%$%V$N$I$&$$$&%U%)!<%^%C(B
-$B%H$r;X$7$F$$$k$+$O!"(BOS $B$d5!<o$K40A4$K0MB8$7$^$9$N$G!"3F%^%K(B
-$B%e%"%k$r;2>H$9$k$+!"%a!<%+$KD>@\<ALd$7$F2<$5$$!#(B
-$B!!G[I[%Q%C%1!<%8$G$O!"I8=`E*$J5!<o$NFbB"%I%i%$%V$KBP$9$k@_Dj(B
-$B$rAH9~$_$G9T$J$&$h$&$K$7$F$"$j$^$9$,!"$3$l$O%$%s%9%H!<%k$9$k(B
-$B?M4V$NH=CG$GJQ99$7$F2<$5$$!#(B
+　どのスペシャルファイルが、どのドライブのどういうフォーマッ
+トを指しているかは、OS や機種に完全に依存しますので、各マニ
+ュアルを参照するか、メーカに直接質問して下さい。
+　配布パッケージでは、標準的な機種の内蔵ドライブに対する設定
+を組込みで行なうようにしてありますが、これはインストールする
+人間の判断で変更して下さい。
 
-$B!!>0!"(BMS-DOS $B$N%U%!%$%kL>$K4X$9$k@)8B$K$h$k%3%s%P!<%H$O!"0J(B
-$B2<$N%k!<%k$K$h$C$F9T$J$o$l$^$9!#$3$l$O!"(BBSD on Windows $B$N;E(B
-$BMM$HF1$8$K$7$F$"$j$^$9!#(B
-	1.$B%U%!%$%kL>$,(B 8+3 $BJ8;z$r1[$($kItJ,$O:o=|!#(B
-	2.$B9TF,$^$?$O(B 2 $B$DL\0J9_$N(B . $B$O(B $ $B$KJQ99!#(B
-	3.$BG$0U$N(B + $B$O(B ` $B$KJQ99!#(B
-	4.$BG$0U$N(B , $B$O(B ' $B$KJQ99!#(B
-	5.$BG$0U$N(B [ $B$O(B & $B$KJQ99!#(B
-$B!!%U%m%C%T!<%I%i%$%V$N%U%!%$%kL>$r(B FDclone $B$+$i8+$k>l9g$K$O!"(B
-$B>e5-(B 2-5 $B$N5UJQ49$,9T$J$o$l$^$9!#(B
-$B!!C"$7!"%I%i%$%VL>$K>.J8;z$r;XDj$7(B LFN $B%"%/%;%9$7$F$$$k;~$K(B
-$B$O$3$N%k!<%k$O;H$o$l$^$;$s!#?75,%U%!%$%k:n@.;~$K:n$i$l$k(B SFN
-$B$O(B Windows95/98 $B$N%U%!%$%kL>@8@.5,B'$K=>$$$^$9!#(B
+　尚、MS-DOS のファイル名に関する制限によるコンバートは、以
+下のルールによって行なわれます。これは、BSD on Windows の仕
+様と同じにしてあります。
+	1.ファイル名が 8+3 文字を越える部分は削除。
+	2.行頭または 2 つ目以降の . は $ に変更。
+	3.任意の + は ` に変更。
+	4.任意の , は ' に変更。
+	5.任意の [ は & に変更。
+　フロッピードライブのファイル名を FDclone から見る場合には、
+上記 2-5 の逆変換が行なわれます。
+　但し、ドライブ名に小文字を指定し LFN アクセスしている時に
+はこのルールは使われません。新規ファイル作成時に作られる SFN
+は Windows95/98 のファイル名生成規則に従います。
 
 
-$B!!$^$?!"(BPC-UNIX $B$G$O%U%m%C%T!<%G%#%9%/%I%i%$%V$HF1MM$K%O!<%I(B
-$B%G%#%9%/%I%i%$%V$NEPO?$b$G$-$^$9!#EPO?J}K!$O!"%^%K%e%"%k$K$"(B
-$B$k$H$*$j!"%X%C%I?tEy$N9`L\CM$NBe$o$j$K(B "HDD" $B$^$?$O(B "HDD98"
-$B$H$$$&J8;zNs$r5-$7$^$9!#(B
-$B!!$3$N;~;XDj$9$k%9%Z%7%c%k%U%!%$%k$O!"3F%Q!<%F%#%7%g%s(B ($B%9%i(B
-$B%$%9(B) $BJL$KJ,3d$5$l$?$b$N$G$O$J$/!"J*M}%I%i%$%VAuCVC10L$KMQ0U(B
-$B$5$l$F$$$k$b$N$r;XDj$7$^$9!#(B
-$B!!0J2<$K!"BeI=E*$J(B PC-UNIX $B$K$D$$$F!"$3$NJ*M}%I%i%$%VAuCVC1(B
-$B0L$N%9%Z%7%c%k%U%!%$%kL>$r5s$2$F$*$-$^$9!#FsBfL\0J9_$NAuCV$G(B
-$B$O!"2<5-%U%!%$%kL>$N(B '0' $B$^$?$O(B 'a' $B$NItJ,$,(B '1' $B$^$?$O(B 'b'
-$B0J9_$NJ8;z$K$J$j$^$9!#(B(Solaris $B$G$O(B 'd' $B$KB3$/(B '0')
+　また、PC-UNIX ではフロッピーディスクドライブと同様にハード
+ディスクドライブの登録もできます。登録方法は、マニュアルにあ
+るとおり、ヘッド数等の項目値の代わりに "HDD" または "HDD98"
+という文字列を記します。
+　この時指定するスペシャルファイルは、各パーティション (スラ
+イス) 別に分割されたものではなく、物理ドライブ装置単位に用意
+されているものを指定します。
+　以下に、代表的な PC-UNIX について、この物理ドライブ装置単
+位のスペシャルファイル名を挙げておきます。二台目以降の装置で
+は、下記ファイル名の '0' または 'a' の部分が '1' または 'b'
+以降の文字になります。(Solaris では 'd' に続く '0')
 	Solaris	/dev/rdsk/c0d0p0 (IDE)	/dev/rdsk/c0t1d0p0 (SCSI)
 	Linux	/dev/hda (IDE)		/dev/sda (SCSI)
 	FreeBSD	/dev/rwd0 (IDE)		/dev/rsd0 (SCSI)
-	 $B$^$?$O(B	/dev/rad0 (IDE)		/dev/rda0 (SCSI)
+	 または	/dev/rad0 (IDE)		/dev/rda0 (SCSI)
 	NetBSD	/dev/rwd0d (IDE)	/dev/rsd0d (SCSI)
 	OpenBSD	/dev/rwd0c (IDE)	/dev/rsd0c (SCSI)
 
 
-7.$B4X?t(B
+7.関数
 
-$B!!(Bsh(1) $B$N4X?tDj5A$HF1$8$G$9!#3NG'$N$?$a!"(BVer. 1.x $B$N4X?t<B(B
-$BAu$H$N0c$$$rNs5s$7$F$*$-$^$9!#(B
-	1.'\' $B$rMQ$$$J$/$F$bJ#?t9T$KJ,$1$F5-=R$G$-$k!#(B
-	2.$B%3%^%s%IJ8;zNs$N9TF,$K$J$/$F$b4X?t$H8+$J$5$l$k!#(B
-	3.$B%Q%$%W$d%j%@%$%l%/%HEy$HJ;MQ$G$-$k!#(B
-	4.$B4X?tDj5AFb$N0z?t$K%Q%i%a!<%?%^%/%m$rMQ$$$k$3$H$,$G(B
-	  $B$-$J$$!#(B
-$B!!(B1.-3. $B$O(B FDclone $B$r%7%'%k2=$7$?7k2L<B8=$5$l$^$7$?$,!"$=$N(B
-$BJ@32$G(B 4. $B$N(B FDclone $B$J$i$G$O$N3HD%5!G=$,<:$o$l$F$7$^$$$^$7(B
-$B$?!#(B
-$B!!$=$3$G(B Ver. 2.00 $B0J9_$G$O(B evalmacro $B$H$$$&AH9~$_%3%^%s%I$r(B
-$BMQ0U$7!"4X?tFb$G$OL@<(E*$K%^%/%mE83+$r9T$J$o$;$F$+$i<B9T$9$k(B
-$B$H$$$&<jK!$K$h$j!"%Q%i%a!<%?%^%/%m$rMQ$$$k$3$H$r2DG=$K$7$F$$(B
-$B$^$9!#(B
+　sh(1) の関数定義と同じです。確認のため、Ver. 1.x の関数実
+装との違いを列挙しておきます。
+	1.'\' を用いなくても複数行に分けて記述できる。
+	2.コマンド文字列の行頭になくても関数と見なされる。
+	3.パイプやリダイレクト等と併用できる。
+	4.関数定義内の引数にパラメータマクロを用いることがで
+	  きない。
+　1.-3. は FDclone をシェル化した結果実現されましたが、その
+弊害で 4. の FDclone ならではの拡張機能が失われてしまいまし
+た。
+　そこで Ver. 2.00 以降では evalmacro という組込みコマンドを
+用意し、関数内では明示的にマクロ展開を行なわせてから実行する
+という手法により、パラメータマクロを用いることを可能にしてい
+ます。
 
-$B!!%Q%i%a!<%?%^%/%m$rMQ$$$k$3$H$NMxE@$O!"<g$KA*Br%U%!%$%kL>$r(B
-$B0z?t$KMQ$$$k$3$H$,$G$-$k$3$H$K$"$k$H;W$C$F$$$^$9!#(B
-$B!!$3$N5!G=$r0lHVH/4x$G$-$kNc$H$7$F!"%o%$%k%I%+!<%I$rMQ$$$F8!(B
-$B:w$7$?%U%!%$%kL>$KBP$7!"2?$i$+$N%3%^%s%I$rE,MQ$9$k4X?t$r9M$((B
-$B$F$_$^$7$g$&!#(B
+　パラメータマクロを用いることの利点は、主に選択ファイル名を
+引数に用いることができることにあると思っています。
+　この機能を一番発揮できる例として、ワイルドカードを用いて検
+索したファイル名に対し、何らかのコマンドを適用する関数を考え
+てみましょう。
 
 	delete() {
 		MARK_FIND $1
 		DELETE_FILE
 	}
 
-$B!!;HMQNc$H$7$F$O!"!V(Bdelete '*.bak'$B!W$J$I$H$7$F$d$l$P!"%+%l%s(B
-$B%H%G%#%l%/%H%jFb$N3HD%;R!V(B.bak$B!W$r;}$D%U%!%$%k$,A4$F>C5n$5$l(B
-$B$^$9!#(B
-$B!!(B'' $B$G3g$i$J$$$H!"4X?t(B delete $B$K0z?t$,EO$kA0$K!V(B*.bak$B!W$,E8(B
-$B3+$5$l$F$7$^$&$N$G5$$r$D$1$^$7$g$&!#(B
+　使用例としては、「delete '*.bak'」などとしてやれば、カレン
+トディレクトリ内の拡張子「.bak」を持つファイルが全て消去され
+ます。
+　'' で括らないと、関数 delete に引数が渡る前に「*.bak」が展
+開されてしまうので気をつけましょう。
 
-$B!!$3$N%1!<%9$G$O!"%3%^%s%I%i%$%s$N0z?t$G$"$k!V(B*.bak$B!W$,0LCV(B
-$B%Q%i%a!<%?(B $1 $B$KBeF~$5$l$k$N$G!"(B1 $B9TL\$O!V(BMARK_FIND *.bak$B!W(B
-$B$HE83+$5$l$^$9!#(B
-$B!!(B2 $B9TL\$N(B DELETE_FILE $B$O0z?t$r<h$i$:!"A*Br%U%!%$%k$,$"$l$P(B
-$BA4$F:o=|$9$k%3%^%s%I$G$9$N$G!"(B1 $B9TL\$GA*Br$5$l$?!V(B*.bak$B!W$N(B
-$B%U%!%$%k$,A4$F:o=|$5$l$^$9!#(B
-$B!!$3$3$G5$$r$D$1$J$/$F$O$J$i$J$$$N$O!"(B1 $B9TL\$G!V(B*.bak$B!W$K%^(B
-$B%C%A$9$k%U%!%$%kL>$,0l$D$b$J$+$C$?>l9g!"(BDELETE_FILE $B$NBP>]$H(B
-$B$J$k%U%!%$%k$,A*Br$5$l$J$$$N$G!"BP>]$,%+!<%=%k0LCV$N%U%!%$%k(B
-$B$H$J$C$F$7$^$&E@$G$9!#(B
-$B!!L`$b!"(BDELETE_FILE $B$O:o=|$K@h$@$C$F3NG'$rJ9$$$F$-$^$9$N$G!"(B
-$B$=$N;~E@$G5$$E$-$^$9$7!"M=$a%+!<%=%k0LCV$r(B DELETE_FILE $B$G$O(B
-$B>C$;$J$$%U%!%$%k!"Nc$($P!V(B..$B!W$N0LCV$KCV$$$F$*$1$P0BA4$G$9!#(B
-$B!!0x$_$K!"$3$N4X?t(B delete $B$O!"0z?t$r$D$1$:$K%3%^%s%I%i%$%s$+(B
-$B$i<B9T$7$?>l9g!"(BMARK_FIND $B$N%G%U%)%k%H$NF0:n!"$D$^$j%o%$%k%I(B
-$B%+!<%IJ8;zNs$NF~NOMW5a$r$7$F$-$^$9$N$G!"BPOCE*$K:o=|$H$$$&7A(B
-$B<0$K$J$j$^$9!#(B
+　このケースでは、コマンドラインの引数である「*.bak」が位置
+パラメータ $1 に代入されるので、1 行目は「MARK_FIND *.bak」
+と展開されます。
+　2 行目の DELETE_FILE は引数を取らず、選択ファイルがあれば
+全て削除するコマンドですので、1 行目で選択された「*.bak」の
+ファイルが全て削除されます。
+　ここで気をつけなくてはならないのは、1 行目で「*.bak」にマ
+ッチするファイル名が一つもなかった場合、DELETE_FILE の対象と
+なるファイルが選択されないので、対象がカーソル位置のファイル
+となってしまう点です。
+　尤も、DELETE_FILE は削除に先だって確認を聞いてきますので、
+その時点で気づきますし、予めカーソル位置を DELETE_FILE では
+消せないファイル、例えば「..」の位置に置いておけば安全です。
+　因みに、この関数 delete は、引数をつけずにコマンドラインか
+ら実行した場合、MARK_FIND のデフォルトの動作、つまりワイルド
+カード文字列の入力要求をしてきますので、対話的に削除という形
+式になります。
 
-$B!!$G$O!"$b$&>/$7J#;($J%1!<%9$r8+$F$_$^$7$g$&!#(B
+　では、もう少し複雑なケースを見てみましょう。
 
 	rename() {
 		MARK_ALL 0
@@ -965,214 +965,214 @@ NWS-3400:
 		evalmacro mv %%M $2
 	}
 
-$B!!$3$l$O!";XDj$N%U%!%$%kL>$r0l3g$7$F%j%M!<%`$9$k4X?t$G$9!#:#(B
-$BEY$OG0$rF~$l$F(B 1 $B9TL\$K%^!<%/$N%/%j%"$rF~$l$F$_$^$7$?!#;EMM(B
-$B>e!"(BMARK_FIND $B$O4{B8$N%^!<%/$r>C$5$:$KA*Br$7$F$$$-$^$9!#(B
-$B!!%j%M!<%`$G$9$+$i!"(B3 $B9TL\$O(B RENAME_FILE $B$rMQ$$$l$PNI$$$h$&(B
-$B$K$b;W$($^$9$,!"<B$OL5M}$J$N$G$9!#$H$$$&$N$b!"(BRENAME_FILE $B$K(B
-$B$O%+!<%=%k0LCV$N%U%!%$%kL>$NJQ99$H$$$&;EMM$7$+$J$/!"A*Br%U%!(B
-$B%$%k$rO"B3$7$F%j%M!<%`$9$k5!G=$O$J$$$+$i$G$9!#(B
-$B!!$=$3$G!"(BUNIX $BI8=`%3%^%s%I$G$"$k(B mv(1) $B$rMQ$$$^$9!#O"B3<B9T(B
-$B$K$O!"(Bmv(1) $B$N5!G=$G$O$J$/!"%Q%i%a!<%?%^%/%m$N5!G=$rMQ$$$^$9!#(B
-$B$3$l$,(B 3 $B9TL\$N(B %M $B$G$9!#(B
+　これは、指定のファイル名を一括してリネームする関数です。今
+度は念を入れて 1 行目にマークのクリアを入れてみました。仕様
+上、MARK_FIND は既存のマークを消さずに選択していきます。
+　リネームですから、3 行目は RENAME_FILE を用いれば良いよう
+にも思えますが、実は無理なのです。というのも、RENAME_FILE に
+はカーソル位置のファイル名の変更という仕様しかなく、選択ファ
+イルを連続してリネームする機能はないからです。
+　そこで、UNIX 標準コマンドである mv(1) を用います。連続実行
+には、mv(1) の機能ではなく、パラメータマクロの機能を用います。
+これが 3 行目の %M です。
 
-$B!!Nc$($P!"%3%^%s%I%i%$%s$+$i!V(Brename '*.c' '%XM.c.bak'$B!W$HF~(B
-$BNO$9$k$H!"3HD%;R!V(B.c$B!W$r;}$D%U%!%$%k$,A4$F!V(B.c.bak$B!W$H$$$&3H(B
-$BD%;R$KCV$-49$o$j$^$9!#(B
-$B!!(B'' $B$r$D$1$J$$$H!"4X?t(B rename $B$K0z?t$,EO$kA0$K!V(B*.c$B!W$d!V(B%XM$B!W(B
-$B$,E83+$5$l$F$7$^$&$N$G5$$r$D$1$^$7$g$&!#(B
+　例えば、コマンドラインから「rename '*.c' '%XM.c.bak'」と入
+力すると、拡張子「.c」を持つファイルが全て「.c.bak」という拡
+張子に置き換わります。
+　'' をつけないと、関数 rename に引数が渡る前に「*.c」や「%XM」
+が展開されてしまうので気をつけましょう。
 
-$B!!$3$NNc$G$O(B $1="*.c", $2="%XM.c.bak" $B$G$9$+$i!"(B3 $B9TL\$rE83+(B
-$B$9$k$H!V(Bmv %M %XM.c.bak$B!W$G$9!#(B%M $B$OA*Br%U%!%$%kL>$,=g!9$KE8(B
-$B3+$5$l$F$$$/%Q%i%a!<%?%^%/%m!"(B%XM $B$O$=$N3HD%;R$r<h$C$?$b$N$G(B
-$B$9!#(B
-$B!!(B2 $B9TL\$G!V(B*.c$B!W$rA*Br$7$F$$$^$9$+$i!"(B3 $B9TL\$G$O$=$NA*Br%U(B
-$B%!%$%k$rC`0l!V(B*.c.bak$B!W$H$$$&7A$K%j%M!<%`$7$F$$$/$H$$$&@#K!(B
-$B$G$9!#(B
+　この例では $1="*.c", $2="%XM.c.bak" ですから、3 行目を展開
+すると「mv %M %XM.c.bak」です。%M は選択ファイル名が順々に展
+開されていくパラメータマクロ、%XM はその拡張子を取ったもので
+す。
+　2 行目で「*.c」を選択していますから、3 行目ではその選択フ
+ァイルを逐一「*.c.bak」という形にリネームしていくという寸法
+です。
 
-$B!!$3$3$GCm0U$9$Y$-E@$O!"4X?tDj5A$N:]$K%Q%i%a!<%?%^%/%m!V(B%M$B!W(B
-$B$r!V(B%%M$B!W$H5-=R$7$F$$$kE@$G$9!#(B
-$B!!;EMM>e!"=i4|@_Dj%U%!%$%k$d(B source $B%3%^%s%I$NF~NO%U%!%$%kCf(B
-$B$G$O!"4X?tFb$HF1MM%Q%i%a!<%?%^%/%m$OI>2A$5$l$^$;$s$N$G!"$3$N(B
-$BItJ,$N5-=R$O!V(B%M$B!W$G9=$$$^$;$s!#(B
-$B!!$7$+$7!"$3$N4X?tDj5A$r(B EXECUTE_SH $B$N%3%^%s%I%i%$%s$+$i9T$J(B
-$B$&>l9g$O!"!V(B%M$B!W$N$^$^$@$H$3$N%Q%i%a!<%?%^%/%m$rI>2A$7$?8e$G(B
-$B4X?tDj5A$r9T$J$C$F$7$^$$$^$9!#(B
-$B!!$=$3$G!"%Q%i%a!<%?%^%/%mI>2A8e$K!V(B%M$B!W$H$J$k$h$&$JJ8;zNs$H(B
-$B$7$F!V(B%%M$B!W$r;XDj$9$kLu$G$9!#(B
-$B!!4X?t$N0z?t$N>l9g$HF1MM$K!V(B'%M'$B!W$H$7$F$b3N$+$K!V(B%M$B!W$OL$I>(B
-$B2A$K$J$k$N$G$9$,!"4X?tDj5A;~$K$O!V(B'$B!W$rI>2A$7$J$$$?$a!V(B'%M'$B!W(B
-$B$N$^$^Dj5A$5$l$F$7$^$$!"4|BT$7$?F0:n$K$O$J$j$^$;$s!#(B
-$B!!(BEXECUTE_SH $B$+$i4X?tDj5A$r9T$J$&>l9g$O$3$N$h$&$KLq2p$JLdBj(B
-$B$,H<$$$^$9$N$G!"=i4|@_Dj%U%!%$%k$d(B source $B%3%^%s%I$NF~NO%U%!(B
-$B%$%k!"$b$7$/$O(B fdsh (EXECUTE_SH $B$G6u9T$rF~NO$9$k$3$H$G5/F0(B)
-$B$GDj5A$9$k$HL5Fq$G$7$g$&!#(B
+　ここで注意すべき点は、関数定義の際にパラメータマクロ「%M」
+を「%%M」と記述している点です。
+　仕様上、初期設定ファイルや source コマンドの入力ファイル中
+では、関数内と同様パラメータマクロは評価されませんので、この
+部分の記述は「%M」で構いません。
+　しかし、この関数定義を EXECUTE_SH のコマンドラインから行な
+う場合は、「%M」のままだとこのパラメータマクロを評価した後で
+関数定義を行なってしまいます。
+　そこで、パラメータマクロ評価後に「%M」となるような文字列と
+して「%%M」を指定する訳です。
+　関数の引数の場合と同様に「'%M'」としても確かに「%M」は未評
+価になるのですが、関数定義時には「'」を評価しないため「'%M'」
+のまま定義されてしまい、期待した動作にはなりません。
+　EXECUTE_SH から関数定義を行なう場合はこのように厄介な問題
+が伴いますので、初期設定ファイルや source コマンドの入力ファ
+イル、もしくは fdsh (EXECUTE_SH で空行を入力することで起動)
+で定義すると無難でしょう。
 
-$B!!(BMARK_FIND $B$HAH9g$o$;$k$3$NMQK!$O!"$I$3$H$J$/(B RISC $B%W%m%0%i(B
-$B%_%s%0$rWGWJ$H$5$;$k$b$N$,$"$j!"$J$+$J$+$KM}2r$7$K$/$$$b$N$@(B
-$B$H$O;W$$$^$9!#(B
-$B!!$7$+$7!"C1$K%3%^%s%INs5s$@$1$J$i$P%(%$%j%"%9$G$b$G$-$k$3$H(B
-$B$G!"4X?t$H$7$F$N5!G=$r==J,$K;H$$$3$J$=$&$H;W$($P!"$3$&$$$C$?(B
-$B;H$$J}$rCN$C$F$*$$$?J}$,NI$$$G$7$g$&!#(B
-
-
-8.$B%3%s%Q%$%k;~$N5!G=@)8B(B
-
-$B!!%3%s%Q%$%k;~$K!"0J2<$N<1JL;R$rDj5A$7$F$*$/$H!"$=$l$>$l$N5!(B
-$BG=$r<BAu$7$J$$<B9T%U%!%$%k$r:n$k$3$H$,$G$-$^$9!#(B
-
-	_NOARCHIVE	$B%"!<%+%$%t%V%i%&%6$,;HMQITG=(B
-	_NODOSDRIVE	MS-DOS $B%U%m%C%T!<$,%"%/%;%9ITG=(B
-	_NOUSELFN	LongFileName $B$,;HMQITG=(B (MS-DOS $BHG(B)
-	_NOTREE		$B%D%j!<I=<(2hLL$,;HMQITG=(B
-	_NOROCKRIDGE	$B5?;w(B RockRidge $B3HD%5!G=$,;HMQITG=(B
-	_NOCOMPLETE	$B%U%!%$%kL>Jd405!G=$,;HMQITG=(B
-	_NOWRITEFS	$B%G%#%l%/%H%j=q9~$_5!G=$,;HMQITG=(B
-	_NOEDITMODE	$BJT=8%b!<%I$NBeBX%-!<5!G=$,;HMQITG=(B
-	_NOKANJICONV	$B4A;z%3!<%I$,F0E*$KJQ99ITG=(B
-	_NOKANJIFCONV	filename $B$N4A;z%3!<%I$,F0E*$KJQ99ITG=(B
-	_NOUNICODE	UNICODE $B$NBP1~ITG=(B
-	_NOENGMES	$B1Q8l%a%C%;!<%8$,I=<(ITG=(B
-	_NOJPNMES	$BF|K\8l%a%C%;!<%8$,I=<(ITG=(B
-	_NOCOLOR	$B%+%i!<I=<(5!G=$,;HMQITG=(B
-	_NOKEYMAP	keymap, getkey $BAH9~$_%3%^%s%I$,;HMQITG=(B
-	_NOORIGSHELL	$BFbB"%7%'%k$,;HMQITG=(B
-	_NOUSEHASH	$B%3%^%s%I%Q%98!:wMQ%O%C%7%e4X?t$,;HMQITG=(B
-	_NOORIGGLOB	filename globbing $B$K@55,I=8=%i%$%V%i%j4X?t$r;HMQ(B
-	_NOSPLITWIN	$B%&%#%s%I%&J,3d5!G=$,;HMQITG=(B
-	_NOPRECEDE	$B@h9T%U%!%$%kI=<(5!G=$,;HMQITG=(B
-	_NOCUSTOMIZE	$B%+%9%?%^%$%65!G=$,;HMQITG=(B
-	_NOEXTRACOPY	$B6/2=$5$l$?%3%T!<5!G=$,;HMQITG=(B
-	_NOBROWSE	$BAH9~$_%3%^%s%I(B browse $B$,;HMQITG=(B
-	_NOEXTRAMACRO	%T, %M $B%^%/%m$,%9%F!<%H%a%s%HCf$G;HMQITG=(B
-	_NOTRADLAYOUT	$B%*%j%8%J%kHG!X#F#D!Y=`5r$N2hLL%l%$%"%&%H$,;HMQITG=(B
-	_NODOSCOMMAND	UNIX $BHG$G(B COMMAND.COM $BFbB"%3%^%s%I$,;HMQITG=(B
-	_NOEXTRAWIN	$B3FJ,3d%&%#%s%I%&$N%5%$%:$,JQ99ITG=(B
-	_NOPTY		$B5?;wC<Kv5!G=$,;HMQITG=(B
-	_NOEXTRAATTR	$B%U%!%$%kB0@-JQ99%3%^%s%I$N3HD%5!G=$,;HMQITG=(B
-	_NOLOGGING	$B%m%0%U%!%$%k5!G=$,;HMQITG=(B
-	_NOIME		$B4J0WF|K\8l(B IME $B5!G=$,;HMQITG=(B
-	_NOCATALOG	$B%a%C%;!<%8%+%?%m%05!G=$,;HMQITG=(B
-	_NODYNAMICLIST	$B3F<o@_DjEPO??t$N@)8B$,ITG=(B
-	_NOSOCKET	$B%=%1%C%H$rMQ$$$?%M%C%H%o!<%/5!G=$,;HMQITG=(B
-	_NOSOCKREDIR	$B%=%1%C%H$rMQ$$$?%j%@%$%l%/%H5!G=$,;HMQITG=(B
-	_NOFTP		FTP $B@\B35!G=$,;HMQITG=(B
-	_NOHTTP		HTTP $B@\B35!G=$,;HMQITG=(B
-	_NOUNICDTBL	fd-unicd.tbl $B$,;HMQITG=(B ($BBe$o$j$KKd9~$_(B)
-	_NODICTTBL	fd-dict.tbl $B$,;HMQITG=(B ($BBe$o$j$KKd9~$_(B)
-
-$B!!(Bconfig.hin $B$rJT=8$7$F$3$l$i$N<1JL;R$NDj5A$rDI2C$7$F$*$1$P!"(B
-$B5!G=$r=L>.$7$F%5%$%:$r>.$5$/$7$?$j!"%(%s%I%f!<%6$K;HMQ$5$;$?(B
-$B$/$J$$5!G=$rM^@)$7$?$j$G$-$^$9!#(B
+　MARK_FIND と組合わせるこの用法は、どことなく RISC プログラ
+ミングを彷彿とさせるものがあり、なかなかに理解しにくいものだ
+とは思います。
+　しかし、単にコマンド列挙だけならばエイリアスでもできること
+で、関数としての機能を十分に使いこなそうと思えば、こういった
+使い方を知っておいた方が良いでしょう。
 
 
-9.PC-UNIX $B$G$N%U%m%C%T!<%I%i%$%V$NF14|(B
+8.コンパイル時の機能制限
 
-$B!!%U%m%C%T!<%I%i%$%V5!G=$G$O!"%G%#%9%/%"%/%;%9$N9bB.2=$r?^$k(B
-$B$?$a$K%-%c%C%7%e%a%b%j$rMQ$$$F$$$^$9!#(B
-$B!!O"B3$7$FF1$82U=j$N%G%#%9%/%"%/%;%9$r9T$J$*$&$H$9$k$H!"Fs2s(B
-$BL\0J9_$O<B:]$N%G%#%9%/%"%/%;%9$NBe$o$j$K%-%c%C%7%e%a%b%j$KJ](B
-$BB8$5$l$F$$$k$b$N$r;2>H$7$^$9!#(B
-$B!!$3$N$?$a!"(BFDclone $B0J30$N%W%m%;%9$,$3$N%G%#%9%/$KF1;~$K%"%/(B
-$B%;%9$9$k$H!"0l;~E*$KAPJ}$GFbMF$,0[$J$C$F$7$^$&$3$H$,$"$j$^$9!#(B
-$B!!B?$/$N(B PC-UNIX $B$K$O!"(BMS-DOS $B%U%!%$%k%7%9%F%`$r(B mount $B$7$F(B
-$BD>@\%"%/%;%9$9$k5!G=$,MQ0U$5$l$F$*$j!"$3$N5!G=$rMQ$$$F8+$?Fb(B
-$BMF$H%U%m%C%T!<%I%i%$%V$NFbMF$OF14|$7$^$;$s!#(B
+　コンパイル時に、以下の識別子を定義しておくと、それぞれの機
+能を実装しない実行ファイルを作ることができます。
 
-$B!!(BMS-DOS $B%U%!%$%k%7%9%F%`B&$G=q9~$_$r9T$J$&$H!"$^$:%U%!%$%k(B
-$B%7%9%F%`B&$N%-%c%C%7%e%a%b%j$K=q9~$^$l!"$3$l$h$j8e$N%?%$%_%s(B
-$B%0$G<B:]$N%G%#%9%/=q9~$_$,9T$J$o$l$^$9!#(B
-$B!!$^$?!"<B:]$N%G%#%9%/=q9~$_$,9T$J$o$l$?8e$b!"(BFDclone $BB&$G$O(B
-$B$=$&$$$&=q9~$_$N$"$C$?;v<B$r;!CN$G$-$J$$$N$G!"(BFDclone $BB&$N%-(B
-$B%c%C%7%e$rFI$_$K9T$C$F$$$k4V$O8E$$>pJs$r;2>H$7B3$1$^$9!#(B
-$B!!%U%!%$%k%7%9%F%`B&$N%-%c%C%7%e%a%b%j$NFbMF$r<B:]$N%G%#%9%/(B
-$B$KH?1G$9$k$K$O!"(Bsync(2) $B%7%9%F%`%3!<%k$NH/9T$r9T$J$&$3$H$K$h(B
-$B$j<B8=$5$l$^$9!#(B
-$B!!%G%#%9%/$NFbMF$r%U%m%C%T!<%I%i%$%VB&$N%-%c%C%7%e%a%b%j$KH?(B
-$B1G$9$k$K$O!"%U%m%C%T!<%I%i%$%V$N:F%*!<%W%s$^$?$O(B REREAD_DIR
-$B%3%^%s%I$K$h$j<B8=$5$l$^$9!#(B
-$B!!$^$?!"(BREREAD_DIR $B%3%^%s%I$G$O!"%U%m%C%T!<%I%i%$%V5!G=$r;H(B
-$BMQ$7$F$$$k>l9g$K8B$j!"(Bsync(2) $B$NH/9T$r9T$J$C$F$$$k$N$G!"F1;~(B
-$B$KAPJ}$NF14|$r<h$k$3$H$,$G$-$^$9!#(B
+	_NOARCHIVE	アーカイヴブラウザが使用不能
+	_NODOSDRIVE	MS-DOS フロッピーがアクセス不能
+	_NOUSELFN	LongFileName が使用不能 (MS-DOS 版)
+	_NOTREE		ツリー表示画面が使用不能
+	_NOROCKRIDGE	疑似 RockRidge 拡張機能が使用不能
+	_NOCOMPLETE	ファイル名補完機能が使用不能
+	_NOWRITEFS	ディレクトリ書込み機能が使用不能
+	_NOEDITMODE	編集モードの代替キー機能が使用不能
+	_NOKANJICONV	漢字コードが動的に変更不能
+	_NOKANJIFCONV	filename の漢字コードが動的に変更不能
+	_NOUNICODE	UNICODE の対応不能
+	_NOENGMES	英語メッセージが表示不能
+	_NOJPNMES	日本語メッセージが表示不能
+	_NOCOLOR	カラー表示機能が使用不能
+	_NOKEYMAP	keymap, getkey 組込みコマンドが使用不能
+	_NOORIGSHELL	内蔵シェルが使用不能
+	_NOUSEHASH	コマンドパス検索用ハッシュ関数が使用不能
+	_NOORIGGLOB	filename globbing に正規表現ライブラリ関数を使用
+	_NOSPLITWIN	ウィンドウ分割機能が使用不能
+	_NOPRECEDE	先行ファイル表示機能が使用不能
+	_NOCUSTOMIZE	カスタマイザ機能が使用不能
+	_NOEXTRACOPY	強化されたコピー機能が使用不能
+	_NOBROWSE	組込みコマンド browse が使用不能
+	_NOEXTRAMACRO	%T, %M マクロがステートメント中で使用不能
+	_NOTRADLAYOUT	オリジナル版『ＦＤ』準拠の画面レイアウトが使用不能
+	_NODOSCOMMAND	UNIX 版で COMMAND.COM 内蔵コマンドが使用不能
+	_NOEXTRAWIN	各分割ウィンドウのサイズが変更不能
+	_NOPTY		疑似端末機能が使用不能
+	_NOEXTRAATTR	ファイル属性変更コマンドの拡張機能が使用不能
+	_NOLOGGING	ログファイル機能が使用不能
+	_NOIME		簡易日本語 IME 機能が使用不能
+	_NOCATALOG	メッセージカタログ機能が使用不能
+	_NODYNAMICLIST	各種設定登録数の制限が不能
+	_NOSOCKET	ソケットを用いたネットワーク機能が使用不能
+	_NOSOCKREDIR	ソケットを用いたリダイレクト機能が使用不能
+	_NOFTP		FTP 接続機能が使用不能
+	_NOHTTP		HTTP 接続機能が使用不能
+	_NOUNICDTBL	fd-unicd.tbl が使用不能 (代わりに埋込み)
+	_NODICTTBL	fd-dict.tbl が使用不能 (代わりに埋込み)
 
-$B!!%U%m%C%T!<%I%i%$%VB&$G=q9~$_$r9T$J$&$H!"$^$:(B FDclone $BB&$N(B
-$B%-%c%C%7%e%a%b%j$K=q9~$^$l!"$3$l$h$j8e$N%?%$%_%s%0$G<B:]$N%G(B
-$B%#%9%/=q9~$_$,9T$J$o$l$^$9!#(B
-$B!!$^$?!"0lHL$K%U%!%$%k%7%9%F%`$O%P%C%U%!%j%s%0$7$J$,$i%G%#%9(B
-$B%/%"%/%;%9$r9T$J$$$^$9$N$G!"%U%m%C%T!<%I%i%$%VB&$G<B:]$N%G%#(B
-$B%9%/=q9~$_$,9T$J$o$l$?8e$b!"$=$N3:Ev2U=j$,%U%!%$%k%7%9%F%`$N(B
-$B%-%c%C%7%e%P%C%U%!$K$"$l$P!"%P%C%U%!Fb$N8E$$>pJs$r;2>H$7B3$1(B
-$B$^$9!#(B
-$B!!%U%m%C%T!<%I%i%$%V$N%/%m!<%:$^$?$O(B REREAD_DIR $B%3%^%s%I$K$h(B
-$B$j!"(BFDclone $BB&$N%-%c%C%7%e%a%b%j$H<B:]$N%G%#%9%/$NFbMF$H$OF1(B
-$B4|$,<h$i$l$^$9$,!"(BMS-DOS $B%U%!%$%k%7%9%F%`$NB&$G$O99?7$5$l$J(B
-$B$$>l9g$b$"$j$^$9!#(B
-$B!!$3$N>l9g$K$O!"%U%m%C%T!<%I%i%$%V$N%/%m!<%:$^$?$O(B REREAD_DIR
-$B%3%^%s%I$N<B9T8e!"0lC6(B MS-DOS $B%U%!%$%k%7%9%F%`$r(B umount $B$7!"(B
-$B:FEY(B mount $B$7D>$9$3$H$G3N<B$KFbMF$,99?7$5$l$^$9!#(B
-
-
-$B!!C"$7!"(BLinux $B$N>l9g$O>u67$O$3$N8B$j$G$O$"$j$^$;$s!#(BLinux $B$K(B
-$B$O(B raw $B%G%P%$%9$r;}$?$J$$$H$$$&FC<l;v>p$,$"$k$?$a$G$9!#(B
-
-$B!!(BLinux $B0J30$N(B OS $B$G$O!"%U%m%C%T!<%I%i%$%V5!G=$N@_Dj$N:]$K;H(B
-$B$&%G%P%$%9L>$K(B raw $B%G%P%$%9$rA*$V$3$H$G!"(BFDclone $B$,%G%P%$%9(B
-$B$KBP$7%"%/%;%9$r9T$J$&$HF1;~$K<B:]$N%G%#%9%/%"%/%;%9$r9T$J$o(B
-$B$;$k$3$H$,$G$-$^$9!#(B
-$B!!$7$+$7!"(BLinux $B$K$O(B raw $B%G%P%$%9$,$J$/!"%G%P%$%9<+BN$,%P%C(B
-$B%U%!!<7PM3$G%G%#%9%/%"%/%;%9$7$F$$$k$?$a!"$3$NF14|$r<B8=$5$;(B
-$B$k$3$H$,$G$-$^$;$s!#(B
-
-$B!!$^$:!"%U%m%C%T!<%I%i%$%V$KBP$9$k=q9~$_$G$9$,!"(Bsync(2) $B$NH/(B
-$B9T$K$h$j%U%m%C%T!<%I%i%$%V$G=q9~$s$@%P%C%U%!$H%U%!%$%k%7%9%F(B
-$B%`B&$NFI9~$_%P%C%U%!$,6&$K<B:]$N%G%#%9%/$K=q9~$^$l$^$9!#(B
-$B!!$3$N$?$a!"%U%m%C%T!<%I%i%$%V$G4v$i99?7$7$F$b!"%U%!%$%k%7%9(B
-$B%F%`B&$N%P%C%U%!$K$h$j>o$K>e=q$-$5$l$F$7$^$&$N$G!"99?7$,H?1G(B
-$B$5$l$^$;$s!#(B
-$B!!$3$N2sHr:v$H$7$F!"(BLinux $B$G$O%U%m%C%T!<%I%i%$%V$N%*!<%W%s;~(B
-$B$K%U%!%$%k%7%9%F%`$H$7$F(B mount $B$5$l$F$$$?>l9g$OFI<h$j@lMQ$H(B
-$B$7$F07$&$3$H$K$7$F$$$^$9!#(B
-
-$B!!$^$?!"%U%m%C%T!<%I%i%$%V$+$i$NFI9~$_$G$9$,!"$3$A$i$NJ}$OF1(B
-$B4|$r<B8=$9$k8"8B$,(B root $B$K$7$+$J$$$?$a!"0lHL%f!<%6$O<B:]$N%G(B
-$B%#%9%/$NFbMF$rCN$k=Q$r;}$A$^$;$s!#(B
-$B!!$3$N$?$a!"(BMS-DOS $B%U%!%$%k%7%9%F%`B&$G=q9~$s$@FbMF$r%U%m%C(B
-$B%T!<%I%i%$%VB&$G;2>H$9$k$?$a$K$O!"%U%m%C%T!<%I%i%$%VB&$G$N=q(B
-$B9~$_$HF1MM$K!"0lC6(B MS-DOS $B%U%!%$%k%7%9%F%`$r(B umount $B$7$F$d$k(B
-$BI,MW$,$"$j$^$9!#(B
-$B!!$H$3$m$,!"%G%#%9%/$,%U%m%C%T!<$N$h$&$K%j%`!<%P%k%a%G%#%"$G(B
-$B$"$C$?>l9g$K$O%G%P%$%9%P%C%U%!!<$O(B umount $B$K$h$jGK4~$5$l$k$N(B
-$B$G$9$,!"%O!<%I%G%#%9%/$N$h$&$K8GDj%a%G%#%"$N>l9g$K$O(B umount
-$B$7$F$bGK4~$5$l$J$$;EMM$K$J$C$F$$$^$9!#(B
-$B!!$3$l$rGK4~$5$;$k$K$O!"(Broot $B8"8B$G$=$N;X<($r$9$k0J30$K=Q$O(B
-$B$"$j$^$;$s!#(B
-$B!!%U%m%C%T!<%I%i%$%V$N%*!<%W%s5Z$S(B REREAD_DIR $B%3%^%s%I$G$O!"(B
-root $B8"8B$G5/F0$5$l$F$$$k>l9g$K8B$j$3$N(B Linux $B%P%C%U%!!<GK4~(B
-$BL?Na$rH/9T$7$F$$$^$9!#(B
-$B!!(BLinux $B>e$G$I$&$7$F$bF14|$r<h$j$?$$>l9g$O!"0lC6(B root $B8"8B$G(B
-FDclone $B$r5/F0$7!"%U%m%C%T!<%I%i%$%V5!G=$r;H$C$F2<$5$$!#(B
+　config.hin を編集してこれらの識別子の定義を追加しておけば、
+機能を縮小してサイズを小さくしたり、エンドユーザに使用させた
+くない機能を抑制したりできます。
 
 
-$B!!L`$b!"$3$NF14|LdBj$N:,K\E*LdBjE@$O!"0l$D$N%G%#%9%/G^BN$rJ#(B
-$B?t$N<jK!$G%"%/%;%9$9$k$3$H$K$"$k$N$G!"0[$J$k<jK!$GF1;~$K%"%/(B
-$B%;%9$7$J$$$H$$$&1?MQ$K$h$k2sHr$,0lHVK>$^$7$$$H;W$$$^$9!#(B
-$B!!%U%m%C%T!<%I%i%$%V5!G=$rMQ$$$F$$$k4V$O!"BP1~$9$k(B MS-DOS $B%U(B
-$B%!%$%k%7%9%F%`$r(B umount $B$7$F$*$/$+!"$b$7$/$OB>$N%f!<%6$d%W%m(B
-$B%;%9$,%"%/%;%9$7$J$$$h$&5$$r$D$1$k$J$I!"1?MQ>e$N9)IW$G2?$H$+(B
-$B%+%P!<$7$F2<$5$$!#(B
+9.PC-UNIX でのフロッピードライブの同期
+
+　フロッピードライブ機能では、ディスクアクセスの高速化を図る
+ためにキャッシュメモリを用いています。
+　連続して同じ箇所のディスクアクセスを行なおうとすると、二回
+目以降は実際のディスクアクセスの代わりにキャッシュメモリに保
+存されているものを参照します。
+　このため、FDclone 以外のプロセスがこのディスクに同時にアク
+セスすると、一時的に双方で内容が異なってしまうことがあります。
+　多くの PC-UNIX には、MS-DOS ファイルシステムを mount して
+直接アクセスする機能が用意されており、この機能を用いて見た内
+容とフロッピードライブの内容は同期しません。
+
+　MS-DOS ファイルシステム側で書込みを行なうと、まずファイル
+システム側のキャッシュメモリに書込まれ、これより後のタイミン
+グで実際のディスク書込みが行なわれます。
+　また、実際のディスク書込みが行なわれた後も、FDclone 側では
+そういう書込みのあった事実を察知できないので、FDclone 側のキ
+ャッシュを読みに行っている間は古い情報を参照し続けます。
+　ファイルシステム側のキャッシュメモリの内容を実際のディスク
+に反映するには、sync(2) システムコールの発行を行なうことによ
+り実現されます。
+　ディスクの内容をフロッピードライブ側のキャッシュメモリに反
+映するには、フロッピードライブの再オープンまたは REREAD_DIR
+コマンドにより実現されます。
+　また、REREAD_DIR コマンドでは、フロッピードライブ機能を使
+用している場合に限り、sync(2) の発行を行なっているので、同時
+に双方の同期を取ることができます。
+
+　フロッピードライブ側で書込みを行なうと、まず FDclone 側の
+キャッシュメモリに書込まれ、これより後のタイミングで実際のデ
+ィスク書込みが行なわれます。
+　また、一般にファイルシステムはバッファリングしながらディス
+クアクセスを行ないますので、フロッピードライブ側で実際のディ
+スク書込みが行なわれた後も、その該当箇所がファイルシステムの
+キャッシュバッファにあれば、バッファ内の古い情報を参照し続け
+ます。
+　フロッピードライブのクローズまたは REREAD_DIR コマンドによ
+り、FDclone 側のキャッシュメモリと実際のディスクの内容とは同
+期が取られますが、MS-DOS ファイルシステムの側では更新されな
+い場合もあります。
+　この場合には、フロッピードライブのクローズまたは REREAD_DIR
+コマンドの実行後、一旦 MS-DOS ファイルシステムを umount し、
+再度 mount し直すことで確実に内容が更新されます。
 
 
-10.$BAH9~$_%3%^%s%I(B browse
+　但し、Linux の場合は状況はこの限りではありません。Linux に
+は raw デバイスを持たないという特殊事情があるためです。
 
-$B!!%^%K%e%"%k$G$O;EMM$K$D$$$F$7$+5-=R$5$l$F$$$^$;$s$N$G!"$3$3(B
-$B$G$O<BNc$r<($7$J$,$iAH9~$_%3%^%s%I(B browse $B$N;H$$$+$?$r2r@b$7(B
-$B$F$$$-$^$9!#(B
+　Linux 以外の OS では、フロッピードライブ機能の設定の際に使
+うデバイス名に raw デバイスを選ぶことで、FDclone がデバイス
+に対しアクセスを行なうと同時に実際のディスクアクセスを行なわ
+せることができます。
+　しかし、Linux には raw デバイスがなく、デバイス自体がバッ
+ファー経由でディスクアクセスしているため、この同期を実現させ
+ることができません。
 
-$B!!(Bbrowse $B%3%^%s%I$N4pK\$O!"$^$:%V%i%&%6$r5/F0$7!"$=$NCf$N%U(B
-$B%!%$%k$rA*Br$9$k$H<!$N%V%i%&%6$r5/F0$7!"$H$$$C$?6q9g$K:F5"E*(B
-$B$K%V%i%&%6$r5/F0$9$k$3$H$K$"$j$^$9!#(B
-$B!!Nc$($P4JC1$JNc$G!";XDj$7$?G/7n$N%+%l%s%@!<$rI=<($9$k$h$&$J(B
-browse $B%3%^%s%I$r>R2p$7$^$7$g$&!#(B
+　まず、フロッピードライブに対する書込みですが、sync(2) の発
+行によりフロッピードライブで書込んだバッファとファイルシステ
+ム側の読込みバッファが共に実際のディスクに書込まれます。
+　このため、フロッピードライブで幾ら更新しても、ファイルシス
+テム側のバッファにより常に上書きされてしまうので、更新が反映
+されません。
+　この回避策として、Linux ではフロッピードライブのオープン時
+にファイルシステムとして mount されていた場合は読取り専用と
+して扱うことにしています。
+
+　また、フロッピードライブからの読込みですが、こちらの方は同
+期を実現する権限が root にしかないため、一般ユーザは実際のデ
+ィスクの内容を知る術を持ちません。
+　このため、MS-DOS ファイルシステム側で書込んだ内容をフロッ
+ピードライブ側で参照するためには、フロッピードライブ側での書
+込みと同様に、一旦 MS-DOS ファイルシステムを umount してやる
+必要があります。
+　ところが、ディスクがフロッピーのようにリムーバルメディアで
+あった場合にはデバイスバッファーは umount により破棄されるの
+ですが、ハードディスクのように固定メディアの場合には umount
+しても破棄されない仕様になっています。
+　これを破棄させるには、root 権限でその指示をする以外に術は
+ありません。
+　フロッピードライブのオープン及び REREAD_DIR コマンドでは、
+root 権限で起動されている場合に限りこの Linux バッファー破棄
+命令を発行しています。
+　Linux 上でどうしても同期を取りたい場合は、一旦 root 権限で
+FDclone を起動し、フロッピードライブ機能を使って下さい。
+
+
+　尤も、この同期問題の根本的問題点は、一つのディスク媒体を複
+数の手法でアクセスすることにあるので、異なる手法で同時にアク
+セスしないという運用による回避が一番望ましいと思います。
+　フロッピードライブ機能を用いている間は、対応する MS-DOS フ
+ァイルシステムを umount しておくか、もしくは他のユーザやプロ
+セスがアクセスしないよう気をつけるなど、運用上の工夫で何とか
+カバーして下さい。
+
+
+10.組込みコマンド browse
+
+　マニュアルでは仕様についてしか記述されていませんので、ここ
+では実例を示しながら組込みコマンド browse の使いかたを解説し
+ていきます。
+
+　browse コマンドの基本は、まずブラウザを起動し、その中のフ
+ァイルを選択すると次のブラウザを起動し、といった具合に再帰的
+にブラウザを起動することにあります。
+　例えば簡単な例で、指定した年月のカレンダーを表示するような
+browse コマンドを紹介しましょう。
 	browse \
 	'for i in 0 1 2 3 4 5 6 7 8 9; do echo 200$i; done' \
 	-f "%f" \
@@ -1180,46 +1180,46 @@ browse $B%3%^%s%I$r>R2p$7$^$7$g$&!#(B
 	-f "%f" \
 	'cal $1 $2%K'
 
-$B!!$o$+$j0W$$$h$&$K0z?t$r9TC10L$G6h@Z$C$F=q$$$F$$$^$9$N$G!"9T(B
-$BKv$K!V(B\$B!W$,$D$$$F$$$^$9$,!"$3$l$i$O0l$D$N%3%^%s%I9T$G$9$N$G!"(B
-$BK\Mh$O0l9T$G5-=R$5$l$k$Y$-$b$N$G$9!#(B
-$B!!(B1 $B9TL\$O%3%^%s%IL>$G$9!#(B2 $B9TL\$O!V(B2000$B!W$+$i!V(B2009$B!W$^$G$N(B
-$BJ8;zNs$r0l9T$:$DI=<($5$;$k%3%^%s%I%^%/%m$G$9!#%7%'%k$NJ8K!$O(B
-$B$3$3$G$O?($l$^$;$s$N$G!"$3$N5-=R$G$=$&$J$k$b$N$@$HM}2r$7$F2<(B
-$B$5$$!#(B
-$B!!(B3 $B9TL\$O%"!<%+%$%V%V%i%&%6MQ$N%U%)!<%^%C%H$G$9!#$3$N(B 2 $B9T(B
-$BL\$K$h$C$F=PNO$5$l$k7k2L$O%?%$%`%9%?%s%W$d%U%!%$%k%5%$%:Ey$N(B
-$B>pJs$r4^$s$G$$$^$;$s$+$i!"%U%!%$%kL>$r<($9!V(B%f$B!W$@$1$r;XDj$7(B
-$B$F$$$^$9!#(B
-$B!!$3$N5-=R$K$h$j!"!V(B2000$B!W$+$i!V(B2009$B!W$^$G$N%U%!%$%kL>$r2hLL(B
-$B$K0lMwI=<($7!"$=$NCf$+$i0l%U%!%$%k$rA*$P$;$k$h$&$J%V%i%&%6$,(B
-$B9=C[$5$l$^$9!#(B
+　わかり易いように引数を行単位で区切って書いていますので、行
+末に「\」がついていますが、これらは一つのコマンド行ですので、
+本来は一行で記述されるべきものです。
+　1 行目はコマンド名です。2 行目は「2000」から「2009」までの
+文字列を一行ずつ表示させるコマンドマクロです。シェルの文法は
+ここでは触れませんので、この記述でそうなるものだと理解して下
+さい。
+　3 行目はアーカイブブラウザ用のフォーマットです。この 2 行
+目によって出力される結果はタイムスタンプやファイルサイズ等の
+情報を含んでいませんから、ファイル名を示す「%f」だけを指定し
+ています。
+　この記述により、「2000」から「2009」までのファイル名を画面
+に一覧表示し、その中から一ファイルを選ばせるようなブラウザが
+構築されます。
 
-$B!!$3$N$&$A$$$:$l$+$N%U%!%$%k$rA*Br$9$k$H!"(B4 $B9TL\$N<!$N%3%^%s(B
-$B%I$,<B9T$5$l$^$9!#$3$l$O!V(B1$B!W$+$i!V(B12$B!W$^$G$NJ8;zNs$r0l9T$:(B
-$B$DI=<($5$;$k%3%^%s%I%^%/%m$G$9!#(B
-$B!!(B5 $B9TL\$O@h$HF1MM$K!"=PNO7k2L$+$i%U%!%$%kL>MWAG$@$1$rCj=P$9(B
-$B$k$h$&$K;X<($7$?%"!<%+%$%V%V%i%&%6MQ%U%)!<%^%C%H$G$9!#$3$N7k(B
-$B2L!"!V(B1$B!W$+$i!V(B12$B!W$^$G$NCf$+$i$$$:$l$+$rA*$P$;$k$h$&$J%V%i(B
-$B%&%6$,9=C[$5$l$^$9!#(B
+　このうちいずれかのファイルを選択すると、4 行目の次のコマン
+ドが実行されます。これは「1」から「12」までの文字列を一行ず
+つ表示させるコマンドマクロです。
+　5 行目は先と同様に、出力結果からファイル名要素だけを抽出す
+るように指示したアーカイブブラウザ用フォーマットです。この結
+果、「1」から「12」までの中からいずれかを選ばせるようなブラ
+ウザが構築されます。
 
-$B!!(B6 $B9TL\$O30It%3%^%s%I(B cal $B$r<B9T$5$;$F$$$^$9!#(B$1, $2 $B$H$$$C(B
-$B$?0LCV%Q%i%a!<%?$K$O$3$l$^$GA*Br$7$F$-$?%U%!%$%kL>$,J]B8$5$l(B
-$B$F$$$^$9$N$G!"$=$l$>$l!V(B1$B!W$+$i!V(B12$B!W$^$G$N$$$:$l$+!"!V(B2000$B!W(B
-$B$+$i!V(B2009$B!W$^$G$N$$$:$l$+$,J]B8$5$l$^$9!#(B
-$B!!$3$N%3%^%s%I$K$O(B -f $B%*%W%7%g%s$,IUB0$7$F$$$^$;$s$N$G!"$3$3(B
-$B$G$O$3$N=PNO$OC1$K2hLL$KI=<($5$l$F=*$o$j$G$9!#$=$N$^$^=*$o$C(B
-$B$F$7$^$C$?$N$G$O=PNO$rFI$`2K$,$"$j$^$;$s$N$G!"!V(B%K$B!W%^%/%m$r(B
-$B$D$1$F%-!<F~NOBT$A$r$5$;$F$$$^$9!#(B
+　6 行目は外部コマンド cal を実行させています。$1, $2 といっ
+た位置パラメータにはこれまで選択してきたファイル名が保存され
+ていますので、それぞれ「1」から「12」までのいずれか、「2000」
+から「2009」までのいずれかが保存されます。
+　このコマンドには -f オプションが付属していませんので、ここ
+ではこの出力は単に画面に表示されて終わりです。そのまま終わっ
+てしまったのでは出力を読む暇がありませんので、「%K」マクロを
+つけてキー入力待ちをさせています。
 
-$B!!Am9gE*$K8+$k$H!"$3$N%3%^%s%I$O(B
-	1. $B$^$:G/$rA*Br$9$k!#(B
-	2. $B<!$K7n$rA*Br$9$k!#(B
-	3. $BA*Br$5$l$?G/7n$N%+%l%s%@!<$rI=<($9$k!#(B
-$B$H$$$&9=@.$N%V%i%&%6$K$J$C$F$$$^$9!#(B
+　総合的に見ると、このコマンドは
+	1. まず年を選択する。
+	2. 次に月を選択する。
+	3. 選択された年月のカレンダーを表示する。
+という構成のブラウザになっています。
 
 
-$B!!$G$O<!$O$b$&>/$7J#;($JNc$r8+$F$_$^$7$g$&!#(B
+　では次はもう少し複雑な例を見てみましょう。
 	browse \
 	'echo "host1
 	host2
@@ -1233,213 +1233,213 @@ browse $B%3%^%s%I$r>R2p$7$^$7$g$&!#(B
 	-d loop \
 	'rcp $RHOST:$RPATH ./${RPATH##*/}'
 
-$B!!(B1 $B9TL\$O%3%^%s%IL>$G$9!#(B2-4 $B9TL\$O!V(Bhost1$B!W!V(Bhost2$B!W!V(Bhost3$B!W(B
-$B$r0l9T$:$DI=<($5$;$^$9!#(B5 $B9TL\$O%U%)!<%^%C%H$G$9!#$3$3$^$G$O(B
-$B>e$NNc$HBg:9$J$$$G$7$g$&!#(B
-$B!!(B6 $B9TL\$N(B -p $B%*%W%7%g%s$O>/$7FC<l$JF/$-$r$7$^$9!#$$$9$l$+$N(B
-$B%U%!%$%k$rA*Br$9$k$H<!$NA*Br$K0\$k$O$:$G$9$,!"$3$3$G$O$=$NA0(B
-$B$K!V(BRHOST=$1; RPATH=$B!W$H$$$&%3%^%s%I$r<B9T$5$;$k$h$&$K;XDj$7(B
-$B$F$$$^$9!#(B
-$B!!$3$l$OA*Br$7$?%U%!%$%kL>$r!V(BRHOST$B!WFbItJQ?t$KBeF~$7!V(BRPATH$B!W(B
-$BFbItJQ?t$NCM$r6u$K$5$;$k%3%^%s%I$G$9!#%U%!%$%k$rA*Br$9$k$H<!(B
-$B$NCJ3,$N%3%^%s%I$,<B9T$5$l$k$N$G!"$=$NCf$G5-=R$9$l$P==J,$N$h(B
-$B$&$K$b;W$($^$9$,!"$=$&$7$J$$$N$K$OFs$D$N0UL#$,$"$j$^$9!#(B
-$B!!0l$D$K$O<!$NCJ3,$G$O%k!<%W$,H/@8$7$F$$$k$+$i$G$9$,!"$3$l$O(B
-$B8e=R$7$^$9!#$b$&0l$D$K$O!"=PNO$r%"!<%+%$%V%V%i%&%6MQ$K;H$C$F(B
-$B$7$^$&%3%^%s%I$NCf$GFbItJQ?t$rDj5A$7$F$b!"$=$NFbMF$O8e$K;D$i(B
-$B$J$$$+$i$G$9!#(B
-$B!!0lHL$K!"!V(B|$B!W$rMQ$$$?%7%'%k$N%Q%$%W%i%$%s$O;R%W%m%;%9$G<B(B
-$B9T$5$l!";R%W%m%;%9$GJQ99$5$l$?3F<o@_DjCM$O?F%W%m%;%9$K$O1F6A(B
-$B$r5Z$\$7$^$;$s!#(B
-$B!!L^O@!"%+%l%s%H%W%m%;%9$G<B9T$7$?=PNO7k2L$r%"!<%+%$%V%V%i%&(B
-$B%6$KEO$9$h$&$J<BAu$K$9$k$3$H$b2DG=$G$9$,!"$3$3$G$O$=$&$$$&;E(B
-$BMM$K$O$7$F$"$j$^$;$s!#$=$&$$$&$b$N$@$H;W$C$F2<$5$$!#(B
+　1 行目はコマンド名です。2-4 行目は「host1」「host2」「host3」
+を一行ずつ表示させます。5 行目はフォーマットです。ここまでは
+上の例と大差ないでしょう。
+　6 行目の -p オプションは少し特殊な働きをします。いすれかの
+ファイルを選択すると次の選択に移るはずですが、ここではその前
+に「RHOST=$1; RPATH=」というコマンドを実行させるように指定し
+ています。
+　これは選択したファイル名を「RHOST」内部変数に代入し「RPATH」
+内部変数の値を空にさせるコマンドです。ファイルを選択すると次
+の段階のコマンドが実行されるので、その中で記述すれば十分のよ
+うにも思えますが、そうしないのには二つの意味があります。
+　一つには次の段階ではループが発生しているからですが、これは
+後述します。もう一つには、出力をアーカイブブラウザ用に使って
+しまうコマンドの中で内部変数を定義しても、その内容は後に残ら
+ないからです。
+　一般に、「|」を用いたシェルのパイプラインは子プロセスで実
+行され、子プロセスで変更された各種設定値は親プロセスには影響
+を及ぼしません。
+　勿論、カレントプロセスで実行した出力結果をアーカイブブラウ
+ザに渡すような実装にすることも可能ですが、ここではそういう仕
+様にはしてありません。そういうものだと思って下さい。
 
-$B!!$5$F!"$$$:$l$+$N!V(Bhost?$B!W$rA*$V$H<!$NA*Br$K?J$_$^$9!#$3$3(B
-$B$G$O(B 7 $B9TL\$N%3%^%s%I$,<B9T$5$l$^$9!#(B
-$B!!@h$K(B -p $B%*%W%7%g%s$G@_Dj$5$l$?FbItJQ?t$,AaB.;H$o$l$F$$$^$9!#(B
-$B30It%3%^%s%I(B rsh $B$G$O!"Bh0l0z?t$K%j%b!<%H%[%9%HL>$r!"BhFs0z(B
-$B?t$K%j%b!<%H%[%9%H>e$G<B9T$9$k%3%^%s%IJ8;zNs$r$=$l$>$l5-=R$7(B
-$B$^$9!#(B
-$B!!!V(BRPATH$B!W$NFbMF$O6u$J$N$G!"$3$3$G$OA*Br$5$l$?%[%9%H>e$G!"(B
-$B!V(Bls -lag$B!W$r<B9T$5$;$k$3$H$K$J$j$^$9!#(B8 $B9TL\$N%U%)!<%^%C%H(B
-$B$O(B ls $B$N=PNO7A<0$rI=$7$F$$$^$9!#(B
-$B!!(B9 $B9TL\$N(B -i $B%*%W%7%g%s$O(B ls $B$N=PNO$NCf$+$iL5;k$5$;$?$$J8;z(B
-$BNs$rA*$s$G$$$^$9!#!V(Bls -lag$B!W$O@hF,9T$K!V(Btotal 123$B!W$N$h$&$K(B
-$BA4MFNL$rI=<($5$;$F$7$^$&$N$G!"$=$l$rL5;k$9$k$h$&$K;XDj$7$F$$(B
-$B$^$9!#(B
-$B!!(B10 $B9TL\$G$O@h$HF1MM$KFbItJQ?t$NCM$r@_Dj$7$F$$$^$9!#$d$d$3(B
-$B$7$$$3$H$r=q$$$F$"$k$h$&$K8+$($^$9$,!"7k6I$OFbItJQ?t!V(BRPATH$B!W(B
-$B$NCM$O!V(B.../$3/$2/$1$B!W$K$J$j$^$9!#(B
-$B!!!V(B[ "$#" -gt 2 ]$B!W$H$$$&>r7o$,$D$$$F$$$k$N$G!"0lHV:G8e$N0L(B
-$BCV%Q%i%a!<%?$O$3$NCf$K4^$^$l$^$;$s!#0lHV:G8e$N0LCV%Q%i%a!<%?(B
-$B$K$O0lHV:G=i$KA*Br$5$l$?%U%!%$%kL>$,J]B8$5$l$F$$$k$N$G!"$3$N(B
-$B>l9g$O%[%9%HL>$G$9$M!#(B
-$B!!(B11 $B9TL\$G$O!VA*Br$5$l$?%U%!%$%k$,%G%#%l%/%H%j$@$C$?$i!"<!(B
-$B$K?J$^$:$K@h$HF1$8%3%^%s%I$r<B9T$9$k!W$H$$$&;XDj$r$7$F$$$^$9!#(B
-$B%G%#%l%/%H%j$NA*Br$KBP$7$F$O!"2?EY$G$b(B rsh $B$r<B9T$9$k$3$H$K(B
-$B$J$j$^$9!#(B
-$B!!7k6I!"%G%#%l%/%H%j$,A*Br$5$lB3$1$k8B$j$O!"$=$NL>A0$rFbItJQ(B
-$B?t!V(BRPATH$B!W$KDI2C$7$F$$$C$F!"$=$NFbMF$KBP$7$F(B ls $B$r<B9T$9$k(B
-$B$H$$$&:n6H$r7+$jJV$9$3$H$K$J$j$^$9!#(B
-$B!!$3$3$G%k!<%W$,@8$8$F$$$k$N$G!"@h$N!V(BRHOST$B!W!V(BRPATH$B!W$N=i4|(B
-$B2=$O(B -p $B%*%W%7%g%s$G5-=R$9$kI,MW$,$"$C$?$N$G$9!#(B
+　さて、いずれかの「host?」を選ぶと次の選択に進みます。ここ
+では 7 行目のコマンドが実行されます。
+　先に -p オプションで設定された内部変数が早速使われています。
+外部コマンド rsh では、第一引数にリモートホスト名を、第二引
+数にリモートホスト上で実行するコマンド文字列をそれぞれ記述し
+ます。
+　「RPATH」の内容は空なので、ここでは選択されたホスト上で、
+「ls -lag」を実行させることになります。8 行目のフォーマット
+は ls の出力形式を表しています。
+　9 行目の -i オプションは ls の出力の中から無視させたい文字
+列を選んでいます。「ls -lag」は先頭行に「total 123」のように
+全容量を表示させてしまうので、それを無視するように指定してい
+ます。
+　10 行目では先と同様に内部変数の値を設定しています。ややこ
+しいことを書いてあるように見えますが、結局は内部変数「RPATH」
+の値は「.../$3/$2/$1」になります。
+　「[ "$#" -gt 2 ]」という条件がついているので、一番最後の位
+置パラメータはこの中に含まれません。一番最後の位置パラメータ
+には一番最初に選択されたファイル名が保存されているので、この
+場合はホスト名ですね。
+　11 行目では「選択されたファイルがディレクトリだったら、次
+に進まずに先と同じコマンドを実行する」という指定をしています。
+ディレクトリの選択に対しては、何度でも rsh を実行することに
+なります。
+　結局、ディレクトリが選択され続ける限りは、その名前を内部変
+数「RPATH」に追加していって、その内容に対して ls を実行する
+という作業を繰り返すことになります。
+　ここでループが生じているので、先の「RHOST」「RPATH」の初期
+化は -p オプションで記述する必要があったのです。
 
-$B!!$G$O!"%G%#%l%/%H%j0J30$rA*Br$7$?>l9g$O$I$&$J$k$G$7$g$&!#%G(B
-$B%#%l%/%H%j0J30$KBP$7$F%k!<%W$O;XDj$5$l$F$$$J$$$N$G!"<!$N(B 12
-$B9TL\$K?J$`$3$H$K$J$j$^$9!#(B
-$B!!30It%3%^%s%I(B rcp $B$G$O!"Bh0l0z?t$K%3%T!<85$N%U%!%$%kL>$r!"(B
-$BBhFs0z?t$K%3%T!<@h$N%U%!%$%kL>$r$=$l$>$l5-=R$7$^$9!#3F!9$N%U(B
-$B%!%$%kL>$NF,$K!V%[%9%HL>(B:$B!W$r$D$1$k$H!"%j%b!<%H%[%9%H$N%U%!(B
-$B%$%k$G$"$k$3$H$r0UL#$7$^$9!#(B
-$B!!(B12 $B9TL\$N<B9T$K@h$@$C$F(B 10 $B9TL\$N(B -p $B%*%W%7%g%s$G;XDj$5$l(B
-$B$?%3%^%s%I$,<B9T$5$l$F$$$^$9$N$G!"FbItJQ?t!V(BRPATH$B!W$K$OA*Br(B
-$B$5$l$?%U%!%$%k$N%U%k%Q%9L>$,J]B8$5$l$F$$$^$9!#(B
-$B!!$^$?!"!V(B${RPATH##*/}$B!W$H$$$&5-=R$O$3$N%U%k%Q%9L>$NCf$+$i:G(B
-$B8e$NMWAG$N$_$rCj=P$7$^$9$N$G!"7k6I$3$N5-=R$G$O!"A*Br$5$l$?%[(B
-$B%9%H>e$NA*Br$5$l$?%U%!%$%k$r!"%m!<%+%k$N%+%l%s%H%G%#%l%/%H%j(B
-$B$KF1$8L>A0$G%3%T!<$9$k$3$H$K$J$j$^$9!#(B
+　では、ディレクトリ以外を選択した場合はどうなるでしょう。デ
+ィレクトリ以外に対してループは指定されていないので、次の 12
+行目に進むことになります。
+　外部コマンド rcp では、第一引数にコピー元のファイル名を、
+第二引数にコピー先のファイル名をそれぞれ記述します。各々のフ
+ァイル名の頭に「ホスト名:」をつけると、リモートホストのファ
+イルであることを意味します。
+　12 行目の実行に先だって 10 行目の -p オプションで指定され
+たコマンドが実行されていますので、内部変数「RPATH」には選択
+されたファイルのフルパス名が保存されています。
+　また、「${RPATH##*/}」という記述はこのフルパス名の中から最
+後の要素のみを抽出しますので、結局この記述では、選択されたホ
+スト上の選択されたファイルを、ローカルのカレントディレクトリ
+に同じ名前でコピーすることになります。
 
-$B!!Am9gE*$K8+$k$H!"$3$N%3%^%s%I$O(B
-	1. $B$^$:%[%9%HL>$rA*Br$9$k!#(B
-	2. $B<!$K%G%#%l%/%H%j$r:F5"E*$KA*Br$9$k!#(B
-	3. $B:G8e$K%U%!%$%kL>$rA*Br$9$k!#(B
-	4. $BA*Br$5$l$?%j%b!<%H%[%9%H$+$i!"A*Br$5$l$?%G%#%l%/(B
-	   $B%H%j$NA*Br$5$l$?%U%!%$%k$r%m!<%+%k$N%+%l%s%H%G%#(B
-	   $B%l%/%H%j$K%3%T!<$9$k!#(B
-$B$H$$$&9=@.$N%V%i%&%6$K$J$C$F$$$^$9!#(B
-$B!!@h$N%+%l%s%@!<$NNc$HHf$Y$k$H?oJ,%V%i%&%6$i$7$/$J$C$F$$$k$H(B
-$B;W$$$^$9!#;w$?$h$&$J9=@.$NNc$,(B _fdrc $B$N(B getftp() $B$H$$$&4X?t(B
-$BDj5A$K$"$j$^$9$N$G!"5$$,8~$$$?$i$3$A$i$bI32r$$$F$_$F2<$5$$!#(B
-
-
-$B!!$5$F!"%V%i%&%8%s%0$9$k$+$i$K$O%G%#%l%/%H%j$N2<$r0lJ}E*$K7!(B
-$B$j?J$s$G9T$/$@$1$G$O:$$j$^$9!#>e$N%G%#%l%/%H%j$KLa$C$?$jJL$N(B
-$B%G%#%l%/%H%j$KF~$jD>$7$?$j!"$=$&$$$&=PF~$j$,IT2D7g$G$9!#(B
-$B!!AH9~$_%3%^%s%I(B browse $B$G9=C[$5$l$?%V%i%&%6$G$O!"%^%K%e%"%k(B
-$B$K$b=q$+$l$F$$$k$H$*$j!"!V(B..$B!W$H$$$&%U%!%$%kL>$,FC<l$J07$$$K(B
-$B$J$C$F$$$^$9!#$3$l$O0lHL$N%V%i%&%6$G$bF1$8$3$H$G$9!#(B
-$B!!!V(B..$B!W$O?F%G%#%l%/%H%j$rI=$9%U%!%$%kL>$G$"$k$3$H$,L@3N$J$N(B
-$B$G!"%"!<%+%$%V%V%i%&%6$KEO$5$l$?=PNO$NCf$K!V(B..$B!W$,8=$l$J$+$C(B
-$B$?$H$7$F$b!VLa$k$?$a$N%U%!%$%kL>!W$H$7$FMQ$$$i$l$^$9!#0lMw$K(B
-$B!V(B..$B!W$,L5$/$F$b(B [Bs] $B%-!<$r2!$9$+(B LOG_DIR $B%3%^%s%I$G!V(B..$B!W(B
-$B$rA*$V$+$9$l$P>e$N%G%#%l%/%H%j$KLa$l$^$9!#(B
-$B!!$3$N>l9g!"!V(B..$B!W$OL5>r7o$K%G%#%l%/%H%j$J$N$G(B -d $B%*%W%7%g%s(B
-$B$N;X<($K=>$$$^$9!#>e$NNc$G$O(B rcp $B$K?J$^$:$K(B rsh $B$r<B9T$7B3$1(B
-$B$^$9!#(B
-$B!!$^$?!"(B-d noprep $B$5$l$J$$8B$j$O(B -p $B%*%W%7%g%s$G;XDj$5$l$?%3(B
-$B%^%s%I$r<B9T$7$^$9$N$G!">e$NNc$G$O!V(BRPATH$B!W$NCM$b@_Dj$5$l$^(B
-$B$9!#(B
-$B!!(B[Bs] $B%-!<$r2!$7$?>l9g$b!V(B..$B!W$rA*$s$@$3$H$H$7$F07$o$l$k$N(B
-$B$G!"(B$1 $B$K$O!V(B..$B!W$,J]B8$5$l$F$$$^$9!#$J$N$G!"!V(BRPATH$B!W$K$O>o(B
-$B$K%+%l%s%H%G%#%l%/%H%jL>$,J]B8$5$l$F$$$k$3$H$K$J$j$^$9!#(B
-
-$B!!NI$/8+$k$H(B 10 $B9TL\$N(B -p $B%*%W%7%g%s$NCf$G(B shift $B$r<B9T$7$F(B
-$B$$$^$9$N$G!"0LCV%Q%i%a!<%?$OA4ItL5$/$J$C$F$7$^$&$h$&$K$b;W$((B
-$B$^$9$,!"%^%K%e%"%k$K$b$"$k$H$*$j!"$3$N0LCV%Q%i%a!<%?$O%U%!%$(B
-$B%kA*Br;~$K$^$H$a$F@_Dj$5$l$^$9$N$G!"(Bshift $B$7$h$&$,AH9~$_%3%^(B
-$B%s%I(B set $B$GB>$NCM$K@_Dj$7$h$&$,!"<!$N%U%!%$%kA*Br;~$K$O85$K(B
-$BLa$C$F$$$^$9!#(B
-$B!!C"$7!"(B-p $B%*%W%7%g%s$N%3%^%s%I$,<B9T$5$l$F$+$i<!$N%"!<%+%$(B
-$B%V%V%i%&%6MQ%3%^%s%I$,<B9T$5$l$k$^$G$N4V$K$O%U%!%$%kA*Br$,$"(B
-$B$j$^$;$s$+$i!"(B-p $B%*%W%7%g%s$G>C$5$l$F$7$^$C$?0LCV%Q%i%a!<%?(B
-$B$O<!$N%"!<%+%$%V%V%i%&%6MQ%3%^%s%I$NCf$G$O;2>H$G$-$J$$$3$H$K(B
-$BCm0U$7$F2<$5$$!#(B
+　総合的に見ると、このコマンドは
+	1. まずホスト名を選択する。
+	2. 次にディレクトリを再帰的に選択する。
+	3. 最後にファイル名を選択する。
+	4. 選択されたリモートホストから、選択されたディレク
+	   トリの選択されたファイルをローカルのカレントディ
+	   レクトリにコピーする。
+という構成のブラウザになっています。
+　先のカレンダーの例と比べると随分ブラウザらしくなっていると
+思います。似たような構成の例が _fdrc の getftp() という関数
+定義にありますので、気が向いたらこちらも紐解いてみて下さい。
 
 
-$B!!:G8e$K0l$D=EMW$JCm0UE@$K8@5Z$7$F$*$-$^$9!#Nc$K$"$k(B rsh $B$d(B
-ftp $B$N$h$&$J30It%3%^%s%I$rMQ$$$?>l9g!"$=$N=PNO7A<0$O(B OS $B$d4D(B
-$B6-$K$h$C$F0[$J$k$H$$$&E@$G$9!#(B
+　さて、ブラウジングするからにはディレクトリの下を一方的に掘
+り進んで行くだけでは困ります。上のディレクトリに戻ったり別の
+ディレクトリに入り直したり、そういう出入りが不可欠です。
+　組込みコマンド browse で構築されたブラウザでは、マニュアル
+にも書かれているとおり、「..」というファイル名が特殊な扱いに
+なっています。これは一般のブラウザでも同じことです。
+　「..」は親ディレクトリを表すファイル名であることが明確なの
+で、アーカイブブラウザに渡された出力の中に「..」が現れなかっ
+たとしても「戻るためのファイル名」として用いられます。一覧に
+「..」が無くても [Bs] キーを押すか LOG_DIR コマンドで「..」
+を選ぶかすれば上のディレクトリに戻れます。
+　この場合、「..」は無条件にディレクトリなので -d オプション
+の指示に従います。上の例では rcp に進まずに rsh を実行し続け
+ます。
+　また、-d noprep されない限りは -p オプションで指定されたコ
+マンドを実行しますので、上の例では「RPATH」の値も設定されま
+す。
+　[Bs] キーを押した場合も「..」を選んだこととして扱われるの
+で、$1 には「..」が保存されています。なので、「RPATH」には常
+にカレントディレクトリ名が保存されていることになります。
 
-$B!!0lHL$N%"!<%+%$%V%V%i%&%6$G$b!"30It%3%^%s%I$G$"$k3F<o%"!<%+(B
-$B%$%P$N=PNO$,F1MM$K4D6-0MB8$G$"$k$?$a!"AH9~$_%3%^%s%I(B launch
-$B$G$O(B -f $B%*%W%7%g%s$rMQ$$$FJ#?t$N%U%)!<%^%C%HJ8;zNs$rEPO?$7$F(B
-$B$*$/I,MW$,$"$j$^$9!#(B
-$B!!$3$l$HF1MM$N$3$H$,AH9~$_%3%^%s%I(B browse $B$K4X$7$F$b8@$($kLu(B
-$B$G$9$,!"C10l$N4D6-$K$OC10l$N<BAu$7$+B8:_$7$J$$%"!<%+%$%P%3%^(B
-$B%s%I$H0[$J$j!"(Brsh $B$d(B ftp $B$N$h$&$J%M%C%H%o!<%/$rMxMQ$7$?%3%^(B
-$B%s%I$G$O!"C10l$N4D6-$7$+MQ$$$J$$>l9g$G$b!"%j%b!<%H%[%9%H$,0[(B
-$B$J$k$@$1$GA4$/0[$J$k=PNO7A<0$K$J$C$F$7$^$$$^$9!#(B
-$B!!>e5-$NNc$G$O3d$H0lHLE*$J=PNO7A<0$KBP$9$k%U%)!<%^%C%HJ8;zNs(B
-$B$r<($7$^$7$?$,!"<BMQ$K4.$($i$l$k$h$&$K$9$k$?$a$K$O!"$b$C$HB?(B
-$B<oB?MM$J%j%b!<%H%[%9%H$KBP1~$G$-$k$h$&$K$9$k$?$a!"%U%)!<%^%C(B
-$B%HJ8;zNs$OJ#?tEPO?$7$F$*$/$Y$-$G$7$g$&!#(B
-$B!!F1MM$K!"(B-i $B%*%W%7%g%s$d(B -e $B%*%W%7%g%s$bJ#?tEPO?$7$F$*$/$H(B
-$BNI$$$G$7$g$&!#(B
-
-
-11.$B$+$J4A;zJQ49<-=q(B
-
-$B!!I8=`>uBV$G$O!"F1:-$N(B mktankan.c $B$,C14A;zJQ49MQ$N%F%-%9%H<-(B
-$B=q$r:n@.$7!"$3$l$r85$K$+$J4A;zJQ49<-=q(B fd-dict.tbl $B$,:n@.$5(B
-$B$l$^$9!#(B
-$B!!$3$N>uBV$G$O!"(Bfd-dict.tbl $B$OIJ;l>pJs$r4^$s$G$$$^$;$s$N$G!"(B
-$B$3$l$r$=$N$^$^MQ$$$k8B$j$O!"$+$J4A;zJQ49F~NO%b!<%I$G$OC14A;z(B
-$BJQ49$7$+$G$-$^$;$s!#(B
-$B!!FbB"$NJQ49%(%s%8%s$OIJ;l>pJs$r85$K$7$?C1J8@aJQ49$KBP1~$7$F(B
-$B$$$^$9$N$G!"IJ;l>pJs$r4^$`%F%-%9%H<-=q$rJLESMQ0U$7$F$d$l$P!"(B
-$B$+$J4A;zJQ49F~NO%b!<%I$GC1J8@aJQ49$r9T$J$&$3$H$,$G$-$^$9!#(B
-
-$B!!BP1~$7$F$$$k<-=q7A<0$O(B pubdic $B7A<0$G$9!#$^$?!"(BWnn$B!"(BCanna$B!"(B
-SJ3 $B$N<-=q$r%F%-%9%HJQ49$7$?$b$N$b;H$&$3$H$,$G$-$^$9!#(B
-$B!!$3$l$i$N<-=q$r%3%s%Q%$%k;~$K(B Makefile.in $B$N(B DICTSRC $B$K5-=R(B
-$B$9$k$3$H$G!"$+$J4A;zJQ49<-=q(B fd-dict.tbl $B$,$3$l$i$N<-=q$K4p(B
-$B$E$/$b$N$K$J$j$^$9!#(B
-
-$B!!(BDICTSRC $B$K5-=R$9$k:]$O!"@dBP%Q%9$b$7$/$O%3%s%Q%$%k$9$k%G%#(B
-$B%l%/%H%j$+$i$NAjBP%Q%9$G<-=q%U%!%$%kL>$r5-=R$7$F2<$5$$!#L^O@!"(B
-$BF1$8%G%#%l%/%H%j$KCV$$$?>l9g$O%U%!%$%kL>$N$_$N5-=R$G9=$$$^$;(B
-$B$s!#(B
-$B!!J#?t$N<-=q%U%!%$%k$r5-=R$9$k>l9g$O!"6uGr$G6h@Z$C$FNs5s$7$F(B
-$B2<$5$$!#C"$7!"<B9T;~$K$=$l$i$N<-=q$r;H$$J,$1$k$3$H$O$G$-$J$$(B
-$B$N$G!"A4$F$N<-=q$+$iJQ498uJd$,A*$P$l$^$9!#(B
-$B!!$^$?!"<-=q$,0l$D$7$+$J$$>l9g$O!"!V(Bmake DICTSRC=./pubdic.p$B!W(B
-$B$N$h$&$K(B make $B$N%3%^%s%I%i%$%s$+$i;XDj$7$F$b9=$$$^$;$s!#(B
-
-$B!!0lC6%3%s%Q%$%k$r<B9T$7$F$7$^$C$?8e$K<-=q;XDj$rJQ99$9$k>l9g(B
-$B$O!"@h$K:n@.$5$l$F$$$k(B fd-dict.tbl $B$r:o=|$7$F$+$i%3%s%Q%$%k(B
-$B$9$kI,MW$,$"$j$^$9!#(B
-$B!!$3$N>l9g$O!V(Bmake rmdict$B!W$r<B9T$7$F2<$5$$!#B>$N%3%s%Q%$%k(B
-$B7k2L$rJ];}$7$?$^$^<-=q4XO"$N%U%!%$%k$@$1$r:o=|$7$^$9!#(B
+　良く見ると 10 行目の -p オプションの中で shift を実行して
+いますので、位置パラメータは全部無くなってしまうようにも思え
+ますが、マニュアルにもあるとおり、この位置パラメータはファイ
+ル選択時にまとめて設定されますので、shift しようが組込みコマ
+ンド set で他の値に設定しようが、次のファイル選択時には元に
+戻っています。
+　但し、-p オプションのコマンドが実行されてから次のアーカイ
+ブブラウザ用コマンドが実行されるまでの間にはファイル選択があ
+りませんから、-p オプションで消されてしまった位置パラメータ
+は次のアーカイブブラウザ用コマンドの中では参照できないことに
+注意して下さい。
 
 
-12.$B%a%C%;!<%8%+%?%m%0(B
+　最後に一つ重要な注意点に言及しておきます。例にある rsh や
+ftp のような外部コマンドを用いた場合、その出力形式は OS や環
+境によって異なるという点です。
 
-$B!!I8=`>uBV$G$O!"F1:-$N(B mkcat.c $B$,(B kanji.hin $B$K=q$+$l$?%a%C%;(B
-$B!<%8J8;zNs$r85$K!"F|K\8lMQ%a%C%;!<%8%+%?%m%0(B fd-cat.ja $B5Z$S(B
-$B1Q8lMQ%a%C%;!<%8%+%?%m%0(B fd-cat.C $B$r:n@.$7$^$9!#(B
-$B!!$3$l$i$N%a%C%;!<%8%+%?%m%0$,(B fd $B$N5/F0%G%#%l%/%H%j$K$"$k>l(B
-$B9g!"$=$N3HD%;RJ8;zNs$rFbItJQ?t(B MESSAGELANG $B$K@_Dj$9$k$3$H$G!"(B
-$BI=<(%a%C%;!<%8$r$=$N%+%?%m%0$NFbMF$KCV49$($i$l$^$9!#(B
+　一般のアーカイブブラウザでも、外部コマンドである各種アーカ
+イバの出力が同様に環境依存であるため、組込みコマンド launch
+では -f オプションを用いて複数のフォーマット文字列を登録して
+おく必要があります。
+　これと同様のことが組込みコマンド browse に関しても言える訳
+ですが、単一の環境には単一の実装しか存在しないアーカイバコマ
+ンドと異なり、rsh や ftp のようなネットワークを利用したコマ
+ンドでは、単一の環境しか用いない場合でも、リモートホストが異
+なるだけで全く異なる出力形式になってしまいます。
+　上記の例では割と一般的な出力形式に対するフォーマット文字列
+を示しましたが、実用に堪えられるようにするためには、もっと多
+種多様なリモートホストに対応できるようにするため、フォーマッ
+ト文字列は複数登録しておくべきでしょう。
+　同様に、-i オプションや -e オプションも複数登録しておくと
+良いでしょう。
 
-$B!!FH<+$N%a%C%;!<%8%+%?%m%0$r;HMQ$7$?$$>l9g$O!"I8=`$N%a%C%;!<(B
-$B%8$rJT=8$7$F?7$7$$%a%C%;!<%8%+%?%m%0$r:n@.$7$F2<$5$$!#(B
-$B!!%3%s%Q%$%k$N2aDx$G(B _fd-cat.ja $B5Z$S(B _fd-cat.C $B$H$$$&%F%-%9(B
-$B%H%U%!%$%k$,<+F0@8@.$5$l$^$9!#$3$l$i$,$=$l$>$l$N%a%C%;!<%8%+(B
-$B%?%m%0$N%=!<%9%U%!%$%k$K$J$C$F$$$^$9!#(B
-$B!!C"$7!"$3$l$i$N%=!<%9%U%!%$%k$O(B Shift JIS $B$^$?$O(B EUC $B4A;z$G(B
-$B5-=R$9$kI,MW$,$"$j$^$9!#<1JL;R(B CODEEUC $B$,@_Dj$5$l$F$$$k4D6-(B
-$B$G$O(B EUC $B4A;z!"$=$l0J30$G$O(B Shift JIS $B$G$9!#(B
-$B!!%7%s%0%k%P%$%HJ8;z$N%a%C%;!<%8%+%?%m%0$r:n@.$9$k>l9g$O4A;z(B
-$B%3!<%I$rFC$K5$$K$9$kI,MW$O$"$j$^$;$s!#F|K\8l0J30$N%^%k%A%P%$(B
-$B%HJ8;z$N%a%C%;!<%8%+%?%m%0$O8=:_HsBP1~$G$9!#(B
 
-$B!!%a%C%;!<%8%+%?%m%0$N@8@.$K$O(B mkcat.c $B$rMQ$$$^$9!#$3$3$G$O(B
-$B2>$K(B _fd-cat.fr $B$r%=!<%9$K;H$C$F(B fd-cat.fr $B$r@8@.$9$k<j=g$r(B
-$B<($7$^$9!#(B
-$B!!%3%s%Q%$%k$r<B9T$7$?%G%#%l%/%H%j$G0J2<$N%3%^%s%I$r<B9T$7$F(B
-$B2<$5$$!#@8@.$5$l$?(B fd-cat.fr $B$r(B fd $B$N5/F0%G%#%l%/%H%j$K%3%T(B
-$B!<$9$l$P!"DI2C$N%a%C%;!<%8%+%?%m%0$H$7$F;HMQ2DG=$G$9!#(B
+11.かな漢字変換辞書
+
+　標準状態では、同梱の mktankan.c が単漢字変換用のテキスト辞
+書を作成し、これを元にかな漢字変換辞書 fd-dict.tbl が作成さ
+れます。
+　この状態では、fd-dict.tbl は品詞情報を含んでいませんので、
+これをそのまま用いる限りは、かな漢字変換入力モードでは単漢字
+変換しかできません。
+　内蔵の変換エンジンは品詞情報を元にした単文節変換に対応して
+いますので、品詞情報を含むテキスト辞書を別途用意してやれば、
+かな漢字変換入力モードで単文節変換を行なうことができます。
+
+　対応している辞書形式は pubdic 形式です。また、Wnn、Canna、
+SJ3 の辞書をテキスト変換したものも使うことができます。
+　これらの辞書をコンパイル時に Makefile.in の DICTSRC に記述
+することで、かな漢字変換辞書 fd-dict.tbl がこれらの辞書に基
+づくものになります。
+
+　DICTSRC に記述する際は、絶対パスもしくはコンパイルするディ
+レクトリからの相対パスで辞書ファイル名を記述して下さい。勿論、
+同じディレクトリに置いた場合はファイル名のみの記述で構いませ
+ん。
+　複数の辞書ファイルを記述する場合は、空白で区切って列挙して
+下さい。但し、実行時にそれらの辞書を使い分けることはできない
+ので、全ての辞書から変換候補が選ばれます。
+　また、辞書が一つしかない場合は、「make DICTSRC=./pubdic.p」
+のように make のコマンドラインから指定しても構いません。
+
+　一旦コンパイルを実行してしまった後に辞書指定を変更する場合
+は、先に作成されている fd-dict.tbl を削除してからコンパイル
+する必要があります。
+　この場合は「make rmdict」を実行して下さい。他のコンパイル
+結果を保持したまま辞書関連のファイルだけを削除します。
+
+
+12.メッセージカタログ
+
+　標準状態では、同梱の mkcat.c が kanji.hin に書かれたメッセ
+ージ文字列を元に、日本語用メッセージカタログ fd-cat.ja 及び
+英語用メッセージカタログ fd-cat.C を作成します。
+　これらのメッセージカタログが fd の起動ディレクトリにある場
+合、その拡張子文字列を内部変数 MESSAGELANG に設定することで、
+表示メッセージをそのカタログの内容に置換えられます。
+
+　独自のメッセージカタログを使用したい場合は、標準のメッセー
+ジを編集して新しいメッセージカタログを作成して下さい。
+　コンパイルの過程で _fd-cat.ja 及び _fd-cat.C というテキス
+トファイルが自動生成されます。これらがそれぞれのメッセージカ
+タログのソースファイルになっています。
+　但し、これらのソースファイルは Shift JIS または EUC 漢字で
+記述する必要があります。識別子 CODEEUC が設定されている環境
+では EUC 漢字、それ以外では Shift JIS です。
+　シングルバイト文字のメッセージカタログを作成する場合は漢字
+コードを特に気にする必要はありません。日本語以外のマルチバイ
+ト文字のメッセージカタログは現在非対応です。
+
+　メッセージカタログの生成には mkcat.c を用います。ここでは
+仮に _fd-cat.fr をソースに使って fd-cat.fr を生成する手順を
+示します。
+　コンパイルを実行したディレクトリで以下のコマンドを実行して
+下さい。生成された fd-cat.fr を fd の起動ディレクトリにコピ
+ーすれば、追加のメッセージカタログとして使用可能です。
 	./mkcat _fd-cat.fr fd-cat.fr
 
-$B!!C"$7!"%3%s%Q%$%kA0$K<1JL;R(B USEDATADIR $B$rDj5A$7$F$"$k>l9g$O(B
-$BCm0U$,I,MW$G$9!#(B
-$B!!$3$N>l9g!"%a%C%;!<%8%+%?%m%0$O(B fd $B$N5/F0%G%#%l%/%H%j$G$O$J(B
-$B$/(B Makefile.in $B$N(B DATADIR $B$G;XDj$5$l$?%G%#%l%/%H%j$KCV$/I,MW(B
-$B$,$"$j$^$9!#(B
-$B!!(BDATADIR $B$ND>2<$K(B fd $B$N%P!<%8%g%sHV9fKh$K%G%#%l%/%H%j$r:n@.(B
-$B$7$F$=$N2<$K%3%T!<$7$^$9!#Nc$($P(B DATADIR=/fd $B$G%P!<%8%g%s$,(B
-3.00 $B$@$H$9$k$H!"%G%#%l%/%H%jL>$O(B /fd/3.00 $B$K$J$j$^$9!#(B
-$B!!$3$N%a%C%;!<%8%+%?%m%0MQ%G%#%l%/%H%j$O!"%$%s%9%H!<%k;~$K<+(B
-$BF0E*$K:n@.$5$l$k$N$G!"@h$K0lC6%$%s%9%H!<%k$r<B9T$7$F$*$/$HNI(B
-$B$$$G$7$g$&!#(B
+　但し、コンパイル前に識別子 USEDATADIR を定義してある場合は
+注意が必要です。
+　この場合、メッセージカタログは fd の起動ディレクトリではな
+く Makefile.in の DATADIR で指定されたディレクトリに置く必要
+があります。
+　DATADIR の直下に fd のバージョン番号毎にディレクトリを作成
+してその下にコピーします。例えば DATADIR=/fd でバージョンが
+3.00 だとすると、ディレクトリ名は /fd/3.00 になります。
+　このメッセージカタログ用ディレクトリは、インストール時に自
+動的に作成されるので、先に一旦インストールを実行しておくと良
+いでしょう。

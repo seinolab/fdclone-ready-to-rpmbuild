@@ -26,10 +26,11 @@ based OS.  It is a clone of "FD" for MS-DOS, made by Mr.
 A.Idei <SDI00544@niftyserve.or.jp> in 1989.
 
 %description(ja)
-FDclone ¤Ï¡¢1989Ç¯¤Ë A.Idei <SDI00544@niftyserve.or.jp> »á¤Î
-¼ê¤Ë¤è¤Ã¤Æ MS-DOS ÍÑ¤ËºîÀ®¤µ¤ì¤¿¡Ø£Æ£Ä¡Ù¤òÌÏ¤·¤¿¡¢UNIX ¥Ù¡¼
-¥¹¤Î OS ÈÆÍÑ¤Î¥Õ¥¡¥¤¥ë & ¥Ç¥£¥ì¥¯¥È¥ê´ÉÍı¥Ä¡¼¥ë¤Ç¤¹¡£
+FDclone ã¯ã€1989å¹´ã« A.Idei <SDI00544@niftyserve.or.jp> æ°ã®
+æ‰‹ã«ã‚ˆã£ã¦ MS-DOS ç”¨ã«ä½œæˆã•ã‚ŒãŸã€ï¼¦ï¼¤ã€ã‚’æ¨¡ã—ãŸã€UNIX ãƒ™ãƒ¼
+ã‚¹ã® OS æ±ç”¨ã®ãƒ•ã‚¡ã‚¤ãƒ« & ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªç®¡ç†ãƒ„ãƒ¼ãƒ«ã§ã™ã€‚
 
+%global debug_package %{nil}
 %prep
 %setup -q -n FD-%{version}
 
@@ -170,11 +171,11 @@ rm -rf $RPM_BUILD_ROOT
 - include fd-dict.tbl in files
 - change the directory where manuals are installed from /usr/man to %{_mandir}
 
-* Tue Jul  7 2004 Takashi SHIRAI <shirai@unixusers.net>
+* Wed Jul  7 2004 Takashi SHIRAI <shirai@unixusers.net>
 - for 2.05g
 - support the filename in RPM which includes spaces and tabs
 
-* Tue Sep 17 2003 Takashi SHIRAI <shirai@unixusers.net>
+* Wed Sep 17 2003 Takashi SHIRAI <shirai@unixusers.net>
 - for 2.04b
 - extended for portability
 
